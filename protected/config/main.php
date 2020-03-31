@@ -8,7 +8,7 @@ $logoAssociazione = '/css/images/logonapay.png';
 $logoAssociazionePrint = '/css/images/anb-trasparente-single2.png';
 $ibanAssociazione = 'xx xx x xxxxx xxxxx xxxxxxxxxxxxxxxxx';
 
-$logoApplicazione = '/css/images/napay-yellow.png';
+$logoApplicazione = '/css/images/logo.png';
 
 $timeOutSeconds = 3600*24*30; // 1 mese
 
