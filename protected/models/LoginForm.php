@@ -43,7 +43,7 @@ class LoginForm extends CFormModel
 				array('password', 'authenticate'),
 
 				// username has to be a valid email address
-				array('username', 'email'),
+				//array('username', 'email'),
 
 				// secret is required
 				array('reCaptcha ', 'required'),
@@ -60,7 +60,7 @@ class LoginForm extends CFormModel
 	public function attributeLabels()
 	{
 		return array(
-			'username'=>'Email',
+			'username'=>'Username',
 			'password'=>'Password'
 		);
 	}
@@ -85,7 +85,7 @@ class LoginForm extends CFormModel
 					break;
 
 				case UserIdentity::ERROR_USERNAME_INVALID:
-					$this->addError('username','L\'email non è corretta.');
+					$this->addError('username','L\'username non è corretto.');
 					break;
 
 				case UserIdentity::ERROR_USERNAME_NOT_ACTIVE:
