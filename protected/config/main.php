@@ -32,7 +32,7 @@ $blockchainCheck = 'https://blockchair.com/search?q=';
 // CWebApplication properties can be configured here.
 Yii::setPathOfAlias('bootstrap', dirname(__FILE__).'/../extensions/bootstrap');
 
-$libsPath = dirname(__FILE__).DIRECTORY_SEPARATOR.'../../../libs/';
+$libsPath = dirname(__FILE__).DIRECTORY_SEPARATOR.'../../../libs2/';
 
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
