@@ -30,7 +30,7 @@
 						 		array(
 										 'name'=>'Data',
 										 'type'=>'raw',
-							 		 'value'=> 'WebApp::data_it($data->data)',
+							 		 'value'=> 'date("d/M/Y", $data->data)',
 								  ),
 									array(
 									   'name'=>'Codice Fiscale',
