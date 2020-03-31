@@ -1,0 +1,87 @@
+.square
+	{
+		position: relative;
+		float:left;
+
+		width:230px;
+		height:210px;
+
+		background-color:#eee;
+
+		border-top: 1px solid #ccc ;
+		border-right:  2px solid #aaa;
+		border-left: 1px solid #ccc;
+		border-bottom:  2px solid #aaa;
+
+		text-shadow: 1px 1px 2px black;
+		text-align:center;
+		vertical-align: middle;
+
+		border-radius: 12px 12px 12px 12px;
+		-moz-border-radius:12px;
+		-khtml-border-radius: 12px;
+		-webkit-border-radius: 12px;
+
+		margin:10px 10px 10px 10px;
+	}
+.square a
+	{
+		text-decoration:none;
+	}
+.square:hover
+	{
+		background-color:#bbb;
+	}
+
+.squareimg
+	{
+		position: relative;
+		border:none;
+	}
+.squareimgsrc
+	{
+		max-width: 150px;
+		max-height: 120px;
+		height: 120px;
+	}
+
+.squaretitle
+	{
+		color:#7689c4;
+		font-size:1em;
+		text-shadow: none;
+	}
+.squaredescri
+	{
+		color:#333;
+		font-size: 1.5em;
+		text-shadow: none;
+	}
+
+
+/* dissolvenza */
+.square .nascosto {
+   -webkit-transition: 0.5s ease-in-out;
+    -moz-transition: 0.5s ease-in-out;
+    -o-transition: 0.5s ease-in-out;
+    transition: 0.5s ease-in-out;
+   opacity:0;
+   }
+.square:hover .nascosto { opacity:1;}
+
+.clear{
+	clear:both;
+}
+
+@media (max-width: 991px){
+	.header-wrap .notifi-dropdown {
+		left: -10px;
+	}
+	.account-wrap #apps-dropdown{
+		left:-90px;
+	}
+}
+
+table.items th {
+    background-color: #bbb;
+}

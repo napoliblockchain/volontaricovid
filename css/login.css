@@ -1,0 +1,97 @@
+#sfondo-login {
+width: 100%; height: 100%; top: 0; left: 0;
+background: url(images/BG.svg) no-repeat center top; position: fixed; z-index: -1;
+-webkit-background-size: cover;
+-moz-background-size: cover;
+-o-background-size: cover;
+background-size: cover;
+
+overflow-y: auto;
+scroll-behavior: auto;
+}
+#login-form{
+    /*padding: 0px 0px 0px 0px;*/
+    /* margin: -10px -10px -10px -10px; */
+
+}
+.login-content{
+    border-radius:36px;
+    border: solid 1px #ddd;
+    padding: 15px 15px 10px;
+}
+
+.login-active{
+  background-color: rgba(74, 122, 170, .8);
+}
+
+.login-login a{
+    color: white;
+}
+.login-pos a{
+    color: white;
+}
+
+#login-menu{
+  margin-bottom: 20px;
+  background-color: rgba(74, 122, 170, .5);
+  border-radius:12px 0px 12px 0px;
+}
+
+.login-login{
+  padding: 6px 20px 0px 20px;
+  margin: 0px 0px 0px 0px;
+  font-size: 1.25em;
+  max-height: 70px;
+
+
+
+  border-top: 1px solid #333333 ;
+  border-right:  1px solid #cccccc;
+  border-left: 1px solid #333333;
+  border-bottom:  1px solid #cccccc;
+
+   -moz-border-radius:12px 0px 0px 0px;
+  -khtml-border-radius: 12px 0px 0px 0px;
+  -webkit-border-radius: 12px 0px 0px 0px;
+  border-radius:12px 0px 0px 0px;
+}
+.login-pos{
+  padding: 6px 20px 0px 20px;
+  margin: 0px 0px 0px 0px;
+  font-size: 1.25em;
+  max-height: 70px;
+
+  border-top: 1px solid #333333 ;
+  border-right:  1px solid #cccccc;
+  border-left: 1px solid #333333;
+  border-bottom:  1px solid #cccccc;
+
+
+
+   -moz-border-radius:0px 12px 0px 0px;
+  -khtml-border-radius: 0px 12px 0px 0px;
+  -webkit-border-radius: 0px 12px 0px 0px;
+  border-radius:0px 0px 12px 0px;
+}
+
+.login-login:hover{
+  background-color: rgba(74, 122, 170, 1);
+  cursor: pointer;
+
+  -webkit-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+.login-pos:hover{
+  background-color: rgba(74, 122, 170, 1);
+  cursor: pointer;
+
+  -webkit-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+.login-wrap{
+  padding-top: 1vh;
+}
