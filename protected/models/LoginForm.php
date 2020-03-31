@@ -29,7 +29,7 @@ class LoginForm extends CFormModel
 				array('password', 'authenticate'),
 
 				// username has to be a valid email address
-				array('username', 'email'),
+				// array('username', 'email'),
 
 				// secret is required
 				array('reCaptcha ', 'required'),

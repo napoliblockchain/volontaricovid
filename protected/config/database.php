@@ -14,8 +14,8 @@ switch (gethostname()){
 		case 'blockchain1':										//napoliblockchain.tk
 		case 'sergio-HP-255-G7-Notebook-PC': // NUOVO PC Ubuntu SERGIO
 			$array_config_database['username'] = 'root';
-			$array_config_database['connectionString'] = 'mysql:host=127.0.0.1;port=3306;dbname=';
-			$array_config_database['password'] = '';
+			$array_config_database['connectionString'] = 'mysql:host=127.0.0.1;port=3306;dbname=npay';
+			$array_config_database['password'] = 'napoli80126';
 			break;
 }
 

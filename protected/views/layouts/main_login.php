@@ -50,9 +50,6 @@
 
     <!-- Main CSS-->
     <link href="<?php echo Yii::app()->request->baseUrl; ?>/themes/cool/css/theme.css" rel="stylesheet" media="all">
-    <!-- <link href="<?php echo Yii::app()->request->baseUrl; ?>/css/glyphicon.css" rel="stylesheet" media="all" > -->
-    <!-- <link href="<?php echo Yii::app()->request->baseUrl; ?>/css/orologio.css" rel="stylesheet" media="all" > -->
-    <!-- <link href="<?php echo Yii::app()->request->baseUrl; ?>/css/login.css" rel="stylesheet" media="all" > -->
 
     <!-- NEW CSS-->
     <link href="<?php echo Yii::app()->request->baseUrl; ?>/themes/cool/css/lumen.css" rel="stylesheet" media="all">

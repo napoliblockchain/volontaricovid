@@ -65,11 +65,11 @@ Yii::app()->clientScript->registerScript('iscriviti', $iscriviti);
 				<div class="form-group">
 					<!-- <label>Email Address</label> -->
 					<div class="input-group">
-                        <div class="input-group-addon">
-                            <!-- <i class="fa fa-envelope"></i> -->
+              <div class="input-group-addon">
+              <!-- <i class="fa fa-envelope"></i> -->
 							<img style="height:25px;" src="css/images/ic_account_circle.svg">
-                        </div>
-						<?php echo $form->textField($model,'username',array('placeholder'=>'Email address','class'=>'form-control','style'=>'height:45px;')); ?>
+              </div>
+						<?php echo $form->textField($model,'username',array('placeholder'=>'Username','class'=>'form-control','style'=>'height:45px;')); ?>
 
 					</div>
 					<?php echo $form->error($model,'username',array('class'=>'alert alert-danger')); ?>

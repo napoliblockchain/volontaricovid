@@ -50,7 +50,6 @@
 
     <!-- Main CSS-->
     <link href="<?php echo Yii::app()->request->baseUrl; ?>/themes/cool/css/theme.css" rel="stylesheet" media="all">
-    <link href="<?php echo Yii::app()->request->baseUrl; ?>/css/glyphicon.css" rel="stylesheet" media="all" >
 
     <link href="<?php echo Yii::app()->request->baseUrl; ?>/css/main.css" rel="stylesheet" media="all" >
 
@@ -58,78 +57,16 @@
     <!-- NEW CSS-->
     <link href="<?php echo Yii::app()->request->baseUrl; ?>/css/wallet.css" rel="stylesheet" media="all" >
     <link href="<?php echo Yii::app()->request->baseUrl; ?>/themes/cool/css/sandstone.css" rel="stylesheet" media="all">
-    <!-- <link href="<?php echo Yii::app()->request->baseUrl; ?>/themes/cool/css/lumen.css" rel="stylesheet" media="all"> -->
 
     <!-- Jquery JS-->
-    <!-- <script src="<?php //echo Yii::app()->request->baseUrl; ?>/themes/cool/vendor/jquery-3.2.1.min.js"></script> -->
     <script src="<?php echo Yii::app()->request->baseUrl; ?>/themes/cool/vendor/chartjs/Chart.bundle.min.js"></script>
 
-    <link href="<?php echo Yii::app()->request->baseUrl; ?>/css/orologio.css" rel="stylesheet" media="all" >
 
 </head>
 
 <body class="animsition">
     <div class="page-wrapper">
-        <?php
-            // PREPARAZIONE LINK MENU
-            //Stabilisco in base ai privilegi se visualizzare o meno un menù
-            $pos = 'none';
-            $socio = 'none';
-            $commerciante = 'none';
-            //$associazione = 'none';
-            $amministratore = 'none';
 
-            //$privilegesName = [0=>'pos',10=>'merch',15=>'assoc',20=>'admin'];
-            //$privilegesName = [0=>'pos',10=>'merch',15=>'assoc',20=>'admin'];
-
-			$visible[20] = 'none';
-			//$visible[15] = 'none';
-			$visible[10] = 'none';
-            $visible[5] = 'none';
-			$visible[0] = 'none';
-
-            if (!Yii::app()->user->isGuest){
-				switch (Yii::app()->user->objUser['privilegi']){
-					case 0:
-						$visible[0] = 'ihnerit';
-						break;
-
-                    case 5:
-                        $visible[5] = 'ihnerit';
-                        break;
-
-					case 10:
-						$visible[10] = 'ihnerit';
-                        //$visible[5] = 'ihnerit';
-						break;
-
-					// case 15:
-					// 	$visible[15] = 'ihnerit';
-					// 	$visible[10] = 'ihnerit';
-                    //     //$visible[5] = 'ihnerit';
-					// 	break;
-
-					case 20:
-						$visible[20] = 'ihnerit';
-						//$visible[15] = 'ihnerit';
-						$visible[10] = 'ihnerit';
-                        //$visible[5] = 'ihnerit';
-						break;
-				}
-
-                //(Yii::app()->user->objUser['privilegi'] >= 20) ? $amministratore = 'ihnerit' : $amministratore = 'none';
-
-
-               /* (Yii::app()->user->objUser['privilegi'] == 0) ? $pos = 'ihnerit' : $pos = 'none';
-                (Yii::app()->user->objUser['privilegi'] >= 10 && Yii::app()->user->objUser['privilegi'] <15) ? $commerciante = 'ihnerit' : $commerciante = 'none';
-                (Yii::app()->user->objUser['privilegi'] >= 15) ? $associazione = 'ihnerit' : $associazione = 'none';
-                (Yii::app()->user->objUser['privilegi'] >= 20) ? $amministratore = 'ihnerit' : $amministratore = 'none';*/
-            }
-
-            // echo Yii::app()->user->objUser['privilegi'];
-            // echo $commerciante;
-
-        ?>
         <!-- HEADER MOBILE-->
             <?php include ('header_mobile.php'); ?>
         <!-- END HEADER MOBILE-->
@@ -144,8 +81,8 @@
         <div class="page-container">
             <!-- HEADER DESKTOP-->
             <?php
-            if (!Yii::app()->user->isGuest)
-                include ('header_desktop.php');
+          //  if (!Yii::app()->user->isGuest)
+                //include ('header_desktop.php');
             ?>
             <!-- HEADER DESKTOP-->
 
@@ -189,9 +126,9 @@
 
 <?php
 
-include ('js_backend.php'); // backend notify
+//include ('js_backend.php'); // backend notify
 include ('js_sw.php');  // service worker
-include ('js_validatepassword.php'); // validate password
+//include ('js_validatepassword.php'); // validate password
 
 
 ?>
