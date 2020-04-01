@@ -44,7 +44,8 @@ class ConsegneController extends Controller
 					'create', // elemento in fase di 1° inserimento
 					'update', // elemento in fase di modifica
 					'select', // elemento da selezionare per la consegna
-					'delivery' // elemento consegnato
+					'delivery', // elemento consegnato
+					'checkCF',	// verifica presenza del CODICE FISCALE entro i 7 giorni
 					//'delete'
 				),
 				'users'=>array('@'),
@@ -53,6 +54,33 @@ class ConsegneController extends Controller
 				'users'=>array('*'),
 			),
 		);
+	}
+
+	public function actionCheckCF(){
+		$criteria = new CDbCriteria();
+		$criteria->compare('codfisc',strtoupper($_POST['codfisc']),false);
+
+		$tmp = explode("/",$_POST['data']);
+		$time = strtotime($tmp[2].'-'.$tmp[1].'-'.$tmp[0]);
+
+		$settimana = 60 * 60 * 24 * 7;
+		$limite = $time - $settimana;
+
+		$criteria->addCondition('data > '.$limite);
+
+		$dataProvider=new CActiveDataProvider('Consegne', array(
+				'criteria'=>$criteria,
+		));
+
+		$totaleCodici = $dataProvider->totalItemCount;
+
+		if ($totaleCodici >0 ){
+			$result = true;
+		}else{
+			$result = false;
+		}
+
+		echo CJSON::encode(['success'=>$result],true);
 	}
 
 	/**
@@ -83,7 +111,6 @@ class ConsegneController extends Controller
 			//echo "<pre>".print_r($_POST,true)."</pre>";
 				$tmp = explode("/",$model->data);
 				$model->data = strtotime($tmp[2].'-'.$tmp[1].'-'.$tmp[0]);
-				$model->trigger_alert = 0;
 				$model->id_user = Yii::app()->user->objUser['id_user'];
 				$model->codfisc = strtoupper($model->codfisc);
 				$model->nome = strtoupper($model->nome);

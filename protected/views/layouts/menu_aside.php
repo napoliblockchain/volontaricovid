@@ -29,8 +29,10 @@
 							<i class="fas fa-tasks"></i>Inserisci</a>
 					</li>
 					<li>
-						<a class="js-arrow" href="<?php echo Yii::app()->createUrl('site/logout');?>">
-							<i class="fa fa-power-off"></i>Uscita</a>
+						<div class="delete-serviceWorker">
+								<a href="<?php echo Yii::app()->createUrl('site/logout');?>" >
+								<i class="fa fa-power-off"></i>Uscita</a>
+						</div>
 					</li>
 
 

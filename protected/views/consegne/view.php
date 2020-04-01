@@ -37,6 +37,7 @@ else
 								'cognome',
 								'telefono',
 								'indirizzo',
+								'note',
 								'adulti',
 								'bambini',
 							),
@@ -50,8 +51,8 @@ else
 							<div class="overview-wrap">
 								<h2 class="title-1">
 									<?php
-										$modifyURL = Yii::app()->createUrl('consegne/update').'&id='.crypt::Encrypt($model->id_archive);
-										$deliveryURL = Yii::app()->createUrl('consegne/delivery').'&id='.crypt::Encrypt($model->id_archive);
+										$modifyURL = Yii::app()->createUrl('consegne/update',array("id"=>crypt::Encrypt($model->id_archive),"tag"=>$tag));
+										$deliveryURL = Yii::app()->createUrl('consegne/delivery',array("id"=>crypt::Encrypt($model->id_archive)));
 
 									?>
 									<a href="<?php echo $modifyURL;?>">

@@ -2,7 +2,9 @@
 /* @var $this StoresController */
 /* @var $model Stores */
 /* @var $form CActiveForm */
+
 ?>
+<?php include ('js_checkCF.php'); ?>
 
 <div class="form">
 
@@ -14,9 +16,7 @@
 	// See class documentation of CActiveForm for details on this.
 	'enableAjaxValidation'=>false,
 ));
-if ($model->isNewRecord){
-	$model->data = date('d/m/Y',time());
-}
+$model->data = date('d/m/Y',time());
 $adulti = [1=>1,2=>2,3=>3,4=>4,5=>5,6=>6,7=>7,8=>8,9=>9,10=>10];
 $bambini = [0,1,2,3,4,5,6,7,8,9,10];
 ?>
@@ -29,8 +29,9 @@ $bambini = [0,1,2,3,4,5,6,7,8,9,10];
 
 	<div class="form-group">
 		<?php echo $form->labelEx($model,'codfisc'); ?>
-		<?php echo $form->textField($model,'codfisc',array('style' => 'text-transform: uppercase','size'=>16,'maxlength'=>16,'placeholder'=>'Codice Fiscale','class'=>'form-control')); ?>
+		<?php echo $form->textField($model,'codfisc',array('style' => 'text-transform: uppercase','size'=>16,'maxlength'=>16,'placeholder'=>'Codice Fiscale','class'=>'form-control','onkeyup'=>"validateCF(this.value)")); ?>
 		<?php echo $form->error($model,'codfisc',array('class'=>'alert alert-danger')); ?>
+		<div id="cf_alert"></div>
 	</div>
 	<div class="form-group">
 		<?php echo $form->labelEx($model,'nome'); ?>
@@ -67,6 +68,8 @@ $bambini = [0,1,2,3,4,5,6,7,8,9,10];
 		<?php echo $form->error($model,'note',array('class'=>'alert alert-danger')); ?>
 	</div>
 
+	<?php echo $form->hiddenField($model,'trigger_alert',array('value'=>0)); ?>
+
 
 
 
@@ -74,6 +77,8 @@ $bambini = [0,1,2,3,4,5,6,7,8,9,10];
 	<div class="form-group">
 		<?php echo CHtml::submitButton(($model->isNewRecord ? 'Inserisci' : 'Modifica'), array('class' => 'btn btn-primary')); ?>
 	</div>
+
+
 
 <?php $this->endWidget(); ?>
 
