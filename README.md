@@ -1,16 +1,23 @@
-# dali
+# volontari covid
 Distribuzione Aiuti Volontari
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/napoliblockchain/dali/blob/master/LICENSE)
-[![GitHub commit](https://img.shields.io/github/last-commit/napoliblockchain/dali)](https://github.com/napoliblockchain/dali/commits/master)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/napoliblockchain/volontaricovid/blob/master/LICENSE) [![GitHub commit](https://img.shields.io/github/last-commit/napoliblockchain/volontaricovid)](https://github.com/napoliblockchain/volontaricovid/commits/master)
 
 
 ## Funzionamento
 - Il volontario effettua il login
-- Sulla dashboard vede le proprie consegne selezionate
-- dal menu ['Inserisci'] si caricano in archivio le consegne da effettuare
-- Cliccando sul [+] a destra, seleziona le consegne da effettuare
-- Selezionando la consegna dalla dashboard, il volontario può modificare o confermare la consegna
+- Sulla dashboard vengono visualizzate le proprie consegne selezionate da effettuare
+  - Cliccando sulla singola consegna ne vedo il 'Dettaglio' e ne posso confermare la Consegna
+
+
+- Sulla dashboard, cliccando sul pulsante [+] a destra, si selezionano le consegne da effettuare
+e non prese in carico da nessuno.
+
+- Dal menu ['Inserisci'] si caricano in archivio le consegne da effettuare
+  - In fase di inserimento, l'utente viene avvisato se nell'ultima settimana è già stato inserito lo stesso Codice Fiscale con un messaggio di allarme. Tuttavia è possibile comunque effettuare il salvataggio della richiesta.
+  - Dopo aver salvato, è possibile assegnare a se stessi la consegna inserita. Altrimenti sarà visibile a tutti.
+
+
 
 
 
