@@ -72,7 +72,7 @@ $bambini = [0,1,2,3,4,5,6,7,8,9,10];
 
 
 	<div class="form-group">
-		<?php echo CHtml::submitButton(($model->isNewRecord ? 'Inserisci' : 'Conferma consegna'), array('class' => 'btn btn-primary')); ?>
+		<?php echo CHtml::submitButton(($model->isNewRecord ? 'Inserisci' : 'Modifica'), array('class' => 'btn btn-primary')); ?>
 	</div>
 
 <?php $this->endWidget(); ?>
