@@ -15,7 +15,7 @@ $timeOutSeconds = 3600*24*30; // 1 mese
 //configurazione email
 $adminSiteweb = 'napoliblockchain.it';
 $adminEmail = 'info@napoliblockchain.it';
-$pwdEmail = 'naCPSTT18';
+$pwdEmail = '';
 $dominioEmail = 'https://webmail.register.it';
 $adminName = 'Napoli Blockchain ';
 $adminIndirizzo = "Piazza Municipio, 1\n80100 - Napoli\nP.Iva: 011233455667";
