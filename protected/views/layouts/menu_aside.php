@@ -24,7 +24,10 @@
 					<li class="active">
 						<a class="js-arrow" href="<?php echo Yii::app()->createUrl('site/index');?>"><i class="fas fa-tachometer-alt"></i>Dashboard</a>
 					</li>
-					<li style='display: <?php echo (Yii::app()->user->objUser["privilegi"] == 20) ? "" : "none" ?>;'>
+					<?php
+						$display = isset (Yii::app()->user->objUser["privilegi"]) ? (Yii::app()->user->objUser["privilegi"] == 20) ? "" : "none" : "none"; 
+					?>
+					<li style='display: <?php echo $display; ?>;'>
 						<a href="<?php echo Yii::app()->createUrl('users/index');?>">
 							<i class="fas fa-users"></i>Volontari</a>
 					</li>
