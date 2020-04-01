@@ -7,15 +7,18 @@ Distribuzione Aiuti Volontari
 ## Funzionamento
 - Il volontario effettua il login
 - Sulla dashboard vengono visualizzate le proprie consegne selezionate da effettuare
-  - Cliccando sulla singola consegna ne vedo il 'Dettaglio' e ne posso confermare la Consegna
+  - Cliccando sulla singola consegna ne vedo il `Dettaglio` e ne posso confermare la Consegna
 
 
-- Sulla dashboard, cliccando sul pulsante [+] a destra, si selezionano le consegne da effettuare
+- Sulla dashboard, cliccando sul pulsante [`+`] a destra, si selezionano le consegne da effettuare
 e non prese in carico da nessuno.
 
-- Dal menu ['Inserisci'] si caricano in archivio le consegne da effettuare
+- Dal menu [`Inserisci`] si caricano in archivio le consegne da effettuare
   - In fase di inserimento, l'utente viene avvisato se nell'ultima settimana è già stato inserito lo stesso Codice Fiscale con un messaggio di allarme. Tuttavia è possibile comunque effettuare il salvataggio della richiesta.
   - Dopo aver salvato, è possibile assegnare a se stessi la consegna inserita. Altrimenti sarà visibile a tutti.
+
+
+- Il Gestore può aggiungere, eliminare o modificare gli utenti dal menù [`Volontari`]
 
 
 
