@@ -10,9 +10,9 @@
 				<div class="au-card au-card--no-shadow au-card--no-pad m-b-40 bg-overlay--semitransparent">
 					<div class="card-header ">
 						<i class="fas fa-list"></i>
-						<span class="card-title">Lista Consegne</span>
+						<span class="card-title">Lista Pacchi in Consegna</span>
 						<div class="float-right">
-							<?php $actionURL = Yii::app()->createUrl('consegne/create'); ?>
+							<?php $actionURL = Yii::app()->createUrl('consegne/select'); ?>
 							<a href="<?php echo $actionURL;?>">
 								<button class="btn alert-primary text-light img-cir" style="padding:2.5px; width:30px; height:30px;">
 									<i class="fa fa-plus"></i></button>
@@ -28,24 +28,31 @@
 								'columns' => array(
 									// ),
 						 		array(
-										 'name'=>'Data',
-										 'type'=>'raw',
-							 		 'value'=> 'date("d/M/Y", $data->data)',
+									 'name'=>'Data',
+									 'type'=>'raw',
+									 'value' => 'CHtml::link(date("d/M/Y",$data->data), Yii::app()->createUrl("consegne/view",["id"=>crypt::Encrypt($data->id_archive),"tag"=>1]) )',
 								  ),
+
 									array(
-									   'name'=>'Codice Fiscale',
+									   'name'=>'Cognome',
 									   'type'=>'raw',
-									   'value' => '$data->codfisc',
+									   'value'=>'CHtml::link($data->cognome,Yii::app()->createUrl("consegne/view",["id"=>crypt::Encrypt($data->id_archive),"tag"=>1]) )',
 									),
-									// array(
-							    //    'name'=>'Indirizzo',
-									// 	'type'=>'raw',
-									// 	'value' => '$data->indirizzo',
-							    //      ),
-									 array(
-									   'name'=>'',
-									   'value' => '',
+									array(
+										 'name'=>'Nome',
+										 'type'=>'raw',
+										 'value'=>'CHtml::link($data->nome,Yii::app()->createUrl("consegne/view",["id"=>crypt::Encrypt($data->id_archive),"tag"=>1]) )',
 									),
+									array(
+										 'name'=>'Indirizzo',
+										 'type'=>'raw',
+										 'value'=>'CHtml::link($data->indirizzo,Yii::app()->createUrl("consegne/view",["id"=>crypt::Encrypt($data->id_archive),"tag"=>1]) )',
+									),
+									array(
+										'name' => '',
+										'value'=>'',
+									),
+
 								)
 							));
 							?>

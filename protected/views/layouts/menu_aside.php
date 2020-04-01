@@ -25,8 +25,8 @@
 						<a class="js-arrow" href="<?php echo Yii::app()->createUrl('site/index');?>"><i class="fas fa-tachometer-alt"></i>Dashboard</a>
 					</li>
 					<li>
-						<a class="js-arrow" href="<?php echo Yii::app()->createUrl('consegne/index');?>">
-							<i class="fas fa-tasks"></i>Consegne</a>
+						<a class="js-arrow" href="<?php echo Yii::app()->createUrl('consegne/create');?>">
+							<i class="fas fa-tasks"></i>Inserisci</a>
 					</li>
 					<li>
 						<a class="js-arrow" href="<?php echo Yii::app()->createUrl('site/logout');?>">

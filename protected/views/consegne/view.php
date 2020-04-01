@@ -3,6 +3,12 @@
 /* @var $model Stores */
 $viewName = 'Consegna';
 
+if (!(isset($_GET['tag'])))
+	$tag = 0;
+else
+	$tag = 1;
+
+
 ?>
 <div class='section__content section__content--p30'>
 <div class='container-fluid'>
@@ -20,13 +26,19 @@ $viewName = 'Consegna';
 							'data'=>$model,
 							'attributes'=>array(
 								array(
-									'label'=>'Data',
+									'label'=>'Data inserimento',
 									'value'=>date("d/m/Y",$model->data),
 								),
-								'codfisc',
+								array(
+									'label'=>'Codice Fiscale',
+									'value'=>$model->codfisc,
+								),
+								'nome',
+								'cognome',
+								'telefono',
+								'indirizzo',
 								'adulti',
 								'bambini',
-								'indirizzo'
 							),
 						));
 						?>
@@ -38,13 +50,18 @@ $viewName = 'Consegna';
 							<div class="overview-wrap">
 								<h2 class="title-1">
 									<?php
-									//	$modifyURL = Yii::app()->createUrl('assets/update').'&id='.crypt::Encrypt($model->id_asset);
-										//$deleteURL = Yii::app()->createUrl('assets/delete').'&id='.crypt::Encrypt($model->id_asset);
+										$modifyURL = Yii::app()->createUrl('consegne/update').'&id='.crypt::Encrypt($model->id_archive);
+										$deliveryURL = Yii::app()->createUrl('consegne/delivery').'&id='.crypt::Encrypt($model->id_archive);
+
 									?>
-									<!-- <a href="<?php //echo $modifyURL;?>">
+									<a href="<?php echo $modifyURL;?>">
 										<button type="button" class="btn btn-primary btn-warning">Modifica</button>
-									</a> -->
-									<!-- <button type="button" class="btn btn-primary btn-danger" data-toggle="modal" data-target="#mediumModal">Elimina</button> -->
+									</a>
+									<?php
+									if ($tag == 1){
+										?>
+									<button type="button" class="btn btn-primary btn-danger" data-toggle="modal" data-target="#mediumModal">Consegna</button>
+								<?php } ?>
 								</h2>
 							</div>
 						</div>
@@ -61,17 +78,17 @@ $viewName = 'Consegna';
 	<div class="modal-dialog modal-lg" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title" id="mediumModalLabel">Conferma Cancellazione</h5>
+				<h5 class="modal-title" id="mediumModalLabel">Conferma Consegna</h5>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">×</span>
 				</button>
 			</div>
 			<div class="modal-body">
-				<p>Sei sicuro di voler cancellare questo <?php echo $viewName;?>?</p>
+				<p>Sei sicuro di voler confermare questa <?php echo $viewName;?>?</p>
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-secondary" data-dismiss="modal">Annulla</button>
-				<a href="<?php //echo $deleteURL;?>">
+				<a href="<?php echo $deliveryURL;?>">
 					<button type="button" class="btn btn-primary btn-danger">Conferma</button>
 				</a>
 			</div>

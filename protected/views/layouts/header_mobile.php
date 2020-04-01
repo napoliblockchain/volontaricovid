@@ -33,8 +33,8 @@
 				</li>
 
 				<li>
-					<a class="js-arrow" href="<?php echo Yii::app()->createUrl('consegne/index');?>">
-						Consegne&nbsp;<i class="fas fa-tasks"></i></a>
+					<a class="js-arrow" href="<?php echo Yii::app()->createUrl('consegne/create');?>">
+						Inserisci&nbsp;<i class="fas fa-tasks"></i></a>
 				</li>
 				<li>
 					<a class="js-arrow" href="<?php echo Yii::app()->createUrl('site/logout');?>">

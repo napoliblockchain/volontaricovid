@@ -71,20 +71,22 @@ class SiteController extends Controller
 		if (!(isset(Yii::app()->user->objUser))) {
 			Yii::app()->user->logout();
 			$this->redirect(array('site/index'));
+		}else{
+			$this->redirect(array('consegne/index'));
 		}
 
-		// inizializzo i criteri di ricerca
-		$criteria=new CDbCriteria();
-		$criteria->compare('id_user',Yii::app()->user->objUser['id_user'],false);
-
-		// carico la lista delle transazioni bitcoin
-		$dataProvider=new CActiveDataProvider('Consegne', array(
-				'criteria'=>$criteria,
-		));
-
-		$this->render('index',array(
-			'dataProvider'=>$dataProvider,
-		));
+		// // inizializzo i criteri di ricerca
+		// $criteria=new CDbCriteria();
+		// $criteria->compare('id_user',Yii::app()->user->objUser['id_user'],false);
+		//
+		// // carico la lista delle transazioni bitcoin
+		// $dataProvider=new CActiveDataProvider('Consegne', array(
+		// 		'criteria'=>$criteria,
+		// ));
+		//
+		// $this->render('index',array(
+		// 	'dataProvider'=>$dataProvider,
+		// ));
 	}
 
 
