@@ -55,13 +55,8 @@ $form=$this->beginWidget('CActiveForm', array(
 										'htmlOptions'=>array('style'=>'vertical-align:middle;'),
 									),
 
-									array(
-							       'name'=>'Nome',
-									   'type' => 'raw',
-										'value'=>'CHtml::link($data->nome,Yii::app()->createUrl("consegne/view",["id"=>crypt::Encrypt($data->id_archive)]) )',
-										'htmlOptions'=>array('style'=>'vertical-align:middle;'),
 
-							        ),
+
 
 									array(
 							            'name'=>'Cognome',
@@ -69,6 +64,26 @@ $form=$this->beginWidget('CActiveForm', array(
 										'value'=>'CHtml::link($data->cognome,Yii::app()->createUrl("consegne/view",["id"=>crypt::Encrypt($data->id_archive)]) )',
 										'htmlOptions'=>array('style'=>'vertical-align:middle;'),
 							        ),
+
+                      array(
+    							       'name'=>'Nome',
+    									   'type' => 'raw',
+    										'value'=>'CHtml::link($data->nome,Yii::app()->createUrl("consegne/view",["id"=>crypt::Encrypt($data->id_archive)]) )',
+    										'htmlOptions'=>array('style'=>'vertical-align:middle;'),
+
+    							        ),
+                      array(
+    										 'name'=>'Indirizzo',
+    										 'type'=>'raw',
+    										 'value'=>'CHtml::link($data->indirizzo,Yii::app()->createUrl("consegne/view",["id"=>crypt::Encrypt($data->id_archive),"tag"=>1]) )',
+    									),
+                      array(
+                         'name'=>'Codice Fiscale',
+                         'type' => 'raw',
+                        'value'=>'CHtml::link($data->codfisc,Yii::app()->createUrl("consegne/view",["id"=>crypt::Encrypt($data->id_archive)]) )',
+                        'htmlOptions'=>array('style'=>'vertical-align:middle;'),
+
+                          ),
 
 
 								)

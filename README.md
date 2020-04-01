@@ -5,6 +5,14 @@ Distribuzione Aiuti Volontari
 [![GitHub commit](https://img.shields.io/github/last-commit/napoliblockchain/dali)](https://github.com/napoliblockchain/dali/commits/master)
 
 
+## Funzionamento
+- Il volontario effettua il login
+- Sulla dashboard vede le proprie consegne selezionate
+- dal menu ['Inserisci'] si caricano in archivio le consegne da effettuare
+- Cliccando sul [+] a destra, seleziona le consegne da effettuare
+- Selezionando la consegna dalla dashboard, il volontario può modificare o confermare la consegna
+
+
 
 ## Configurazioni
 Per configuare il db cambiare i parametri in protected/config/database.php
