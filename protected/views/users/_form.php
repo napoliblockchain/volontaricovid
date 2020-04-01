@@ -34,6 +34,14 @@ $type = [0=>'Volontario',20=>'Gestore'];
 			<?php echo $form->error($model,'surname',array('class'=>'alert alert-danger')); ?>
 		</div>
 
+		<?php if ($model->isNewRecord) : ?>
+		<div class="form-group">
+			<?php echo $form->labelEx($model,'password'); ?>
+			<?php echo $form->textField($model,'password',array('size'=>60,'maxlength'=>250,'class'=>'form-control')); ?>
+			<?php echo $form->error($model,'password',array('class'=>'alert alert-danger')); ?>
+		</div>
+		<?php endif ?>
+
 			<?php echo $form->hiddenField($model,'status_activation_code'); ?>
 
 

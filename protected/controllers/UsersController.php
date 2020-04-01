@@ -75,48 +75,21 @@ class UsersController extends Controller
 		if(isset($_POST['Users']))
 		{
 			$model->attributes=$_POST['Users'];
-			// echo "<pre>".print_r($model->attributes,true)."</pre>";
-			// exit;
-
-			// issue #41
-			// Quando creo utenti con carica Presidente, Vice Presidente, Tesoriere, Segretario, questi devono
-			// essere Amministratori, inoltre non possono essere commercianti.
-			// quindi:
-
-			if ($model->id_carica <=4)
-				$model->id_users_type = 3; // AMMINISTRATORE
-			else{
-				$model->id_users_type = 5; // (SOCIO)
-			}
-
 
 			$savedModel = $_POST['Users'];
 			$savedPassword = $model->password;
 			$model->password = CPasswordHelper::hashPassword($model->password);
+			$model->status_activation_code = 1;
 
-			//if ($_POST['Users']['send_mail'] == 1){
-				$model->activation_code = md5($model->password);
-			//	$model->status_activation_code = 0;
-			//}else{
-				//l'utente nasce già attivo se non c'è il flag alla mail
-			//	$model->activation_code = 0;
-				$model->status_activation_code = 0;
-			//}
-			//echo "<pre>".print_r($_POST,true)."</pre>";
-			// echo "<pre>".print_r($model->attributes,true)."</pre>";
-			// exit;
-
-			if($model->save()){
-				if ($_POST['Users']['send_mail'] == 1){
-					NMail::SendMail('users',crypt::Encrypt($model->id_user),$model->email,$savedPassword,$model->activation_code);
-				}
+			if($model->save())
 				$this->redirect(array('view','id'=>crypt::Encrypt($model->id_user)));
-			}
+			else
+				$model->password = $savedModel['password'];
+
 		}
 
 		$this->render('create',array(
 			'model'=>$model,
-			//'userSettings'=>$userSettings,
 		));
 	}
 

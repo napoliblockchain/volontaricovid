@@ -32,6 +32,14 @@
 					<a class="js-arrow" href="<?php echo Yii::app()->createUrl('site/index');?>">Dashboard <i class="fas fa-tachometer-alt"></i></a>
 				</li>
 
+				<?php
+					$display = isset (Yii::app()->user->objUser["privilegi"]) ? (Yii::app()->user->objUser["privilegi"] == 20) ? "" : "none" : "none";
+				?>
+				<li style='display: <?php echo $display; ?>;'>
+					<a href="<?php echo Yii::app()->createUrl('users/index');?>">
+						Volontari&nbsp;<i class="fas fa-users"></i></a>
+				</li>
+
 				<li>
 					<a class="js-arrow" href="<?php echo Yii::app()->createUrl('consegne/create');?>">
 						Inserisci&nbsp;<i class="fas fa-tasks"></i></a>
