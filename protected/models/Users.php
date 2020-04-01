@@ -16,8 +16,6 @@
  */
 class Users extends CActiveRecord
 {
-	public $ga_cod;
-
 
 	/**
 	 * @return string the associated database table name
@@ -36,9 +34,9 @@ class Users extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('email, password', 'required'),
-			array('email', 'unique',  'message'=>'La mail inserita è già presente in archivio.'),
+			array('email', 'unique',  'message'=>'Lo username inserito è già presente in archivio.'),
 			array('email, password, name, surname', 'length', 'max'=>255),
-			array('ga_secret_key', 'length', 'max'=>16),
+			array('type', 'numerical', 'integerOnly'=>true),
 			//array('password', 'allowEmpty'=>false, 'on' => 'update'),
 
 			// The following rule is used by search().
@@ -66,11 +64,11 @@ class Users extends CActiveRecord
 	{
 		return array(
 			'id_user' => 'Id User',
-			'email' => 'Email',
+			'email' => 'Username',
 			'password' => 'Password',
-			'ga_secret_key' => 'Google Authentication Code',
 			'name' => 'Nome',
 			'surname' => 'Cognome',
+			'type' => 'Tipo account',
 		);
 	}
 

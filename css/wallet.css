@@ -347,6 +347,10 @@ nav.navbar-mobile {
   top:-20px;
   left: 34px;
 }
+.menu-sidebar .logo {
+  background: transparent;
+}
+
 
 h1.logo-name {
     display: block;

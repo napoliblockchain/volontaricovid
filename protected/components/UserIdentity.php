@@ -54,6 +54,7 @@ class UserIdentity extends CUserIdentity
 				'name' => $record->name,
 				'surname' => $record->surname,
 				'email' => $record->email,
+				'privilegi' => $record->type,
 				'facade' => 'dashboard',
 			));
 		}
