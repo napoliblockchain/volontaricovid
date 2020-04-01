@@ -18,7 +18,7 @@ $form=$this->beginWidget('CActiveForm', array(
 				<div class="au-card au-card--no-shadow au-card--no-pad m-b-40 bg-ove rlay--semitransparent">
 					<div class="card-header ">
 						<i class="zmdi zmdi-comment-text"></i>
-						<span class="card-title"><?php echo Yii::t('lang','Consegne');?></span>
+						<span class="card-title"><?php echo Yii::t('lang','Consegne da prendere in carico');?></span>
 					</div>
 					<div class="card-body">
 						<div class="table-responsive table--no-card ">

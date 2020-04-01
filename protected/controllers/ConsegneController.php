@@ -141,6 +141,9 @@ class ConsegneController extends Controller
 	    		)
 	  		),
 		    'criteria'=>$criteria,
+				'pagination' => array(
+					'pageSize' => 20,
+					),
 		));
 		$this->render('select',array(
 			'dataProvider'=>$dataProvider,
