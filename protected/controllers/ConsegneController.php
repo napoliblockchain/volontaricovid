@@ -46,6 +46,7 @@ class ConsegneController extends Controller
 					'select', // elemento da selezionare per la consegna
 					'delivery', // elemento consegnato
 					'checkCF',	// verifica presenza del CODICE FISCALE entro i 7 giorni
+					'assign',	// assegna a se stessi la chiamata
 					//'delete'
 				),
 				'users'=>array('@'),
@@ -54,6 +55,18 @@ class ConsegneController extends Controller
 				'users'=>array('*'),
 			),
 		);
+	}
+	public function actionAssign($id){
+		$consegna = $this->loadModel(crypt::Decrypt($id));
+
+		$consegna->id_volontario = Yii::app()->user->objUser['id_user'];
+		$consegna->in_consegna = 1;
+		$consegna->time_inconsegna = time();
+
+		$consegna->update();
+
+		$this->redirect(array('index'));
+
 	}
 
 	public function actionCheckCF(){

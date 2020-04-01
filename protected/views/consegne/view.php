@@ -53,16 +53,23 @@ else
 									<?php
 										$modifyURL = Yii::app()->createUrl('consegne/update',array("id"=>crypt::Encrypt($model->id_archive),"tag"=>$tag));
 										$deliveryURL = Yii::app()->createUrl('consegne/delivery',array("id"=>crypt::Encrypt($model->id_archive)));
+										$assegnaURL = Yii::app()->createUrl('consegne/assign',array("id"=>crypt::Encrypt($model->id_archive)));
 
 									?>
 									<a href="<?php echo $modifyURL;?>">
-										<button type="button" class="btn btn-primary btn-warning">Modifica</button>
+										<button type="button" class="btn btn-secondary">Modifica</button>
 									</a>
 									<?php
 									if ($tag == 1){
 										?>
-									<button type="button" class="btn btn-primary btn-danger" data-toggle="modal" data-target="#mediumModal">Consegna</button>
-								<?php } ?>
+									<button type="button" class="btn btn-success" data-toggle="modal" data-target="#mediumModal">Consegna</button>
+								<?php }
+								if ($model->id_volontario == 0){
+									?>
+									<a href="<?php echo $assegnaURL;?>">
+										<button type="button" class="btn btn-warning">Assegna a me stesso</button>
+									</a>
+							<?php } ?>
 								</h2>
 							</div>
 						</div>
