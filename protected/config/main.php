@@ -1,13 +1,9 @@
 <?php
 $nomeApplicazione = 'Distribuzione Aiuti Alimentari';
-$shortName = 'DALI';
+$shortName = 'Volontari Covid';
 
 //Associazione
 $nomeAssociazione = 'Napoli Blockchain ETS';
-$logoAssociazione = '/css/images/logonapay.png';
-$logoAssociazionePrint = '/css/images/anb-trasparente-single2.png';
-$ibanAssociazione = 'xx xx x xxxxx xxxxx xxxxxxxxxxxxxxxxx';
-
 $logoApplicazione = '/css/images/logo.png';
 
 $timeOutSeconds = 3600*24*30; // 1 mese
@@ -124,6 +120,7 @@ return array(
 		// funzioni di napay
 		// 'WebApp'=>require(dirname(__FILE__).'../../extensions/WebApp.php'),
 		'NMail'=>require(dirname(__FILE__).'../../extensions/NMail.php'),
+		'PHPExcel'=>require(dirname(__FILE__).'../../extensions/PHPExcel.php'),
 
 		// database settings are configured in database.php
 		'db'=>require(dirname(__FILE__).'/database.php'),
@@ -162,17 +159,13 @@ return array(
 		'indirizzo'=>$adminIndirizzo,
 		'website'=>'https://napoliblockchain.it', // per il link sul logo
 
-		'ibanAssociazione'=>$ibanAssociazione,
 		'nomeAssociazione'=>$nomeAssociazione,
-		'logoAssociazione'=>$logoAssociazione,
-		'logoAssociazionePrint'=>$logoAssociazionePrint,
 		'logoApplicazione'=>$logoApplicazione,
 
 		'timeOutSeconds'=>$timeOutSeconds,
 		'shortName'=>$shortName,
 		'blockchainCheck'=>$blockchainCheck,
 		//
-		'vat'=>$vat,
 	),
 
 );

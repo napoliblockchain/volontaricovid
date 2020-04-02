@@ -47,6 +47,7 @@ class ConsegneController extends Controller
 					'delivery', // elemento consegnato
 					'checkCF',	// verifica presenza del CODICE FISCALE entro i 7 giorni
 					'assign',	// assegna a se stessi la chiamata
+					'export', 	// esporta la lista delle consegne in formato xls
 					//'delete'
 				),
 				'users'=>array('@'),
@@ -56,17 +57,14 @@ class ConsegneController extends Controller
 			),
 		);
 	}
+
 	public function actionAssign($id){
 		$consegna = $this->loadModel(crypt::Decrypt($id));
-
 		$consegna->id_volontario = Yii::app()->user->objUser['id_user'];
 		$consegna->in_consegna = 1;
 		$consegna->time_inconsegna = time();
-
 		$consegna->update();
-
 		$this->redirect(array('index'));
-
 	}
 
 	public function actionCheckCF(){
@@ -75,24 +73,20 @@ class ConsegneController extends Controller
 
 		$tmp = explode("/",$_POST['data']);
 		$time = strtotime($tmp[2].'-'.$tmp[1].'-'.$tmp[0]);
-
 		$settimana = 60 * 60 * 24 * 7;
 		$limite = $time - $settimana;
 
 		$criteria->addCondition('data > '.$limite);
-
 		$dataProvider=new CActiveDataProvider('Consegne', array(
 				'criteria'=>$criteria,
 		));
 
 		$totaleCodici = $dataProvider->totalItemCount;
-
 		if ($totaleCodici >0 ){
 			$result = true;
 		}else{
 			$result = false;
 		}
-
 		echo CJSON::encode(['success'=>$result],true);
 	}
 
@@ -121,28 +115,24 @@ class ConsegneController extends Controller
 		if(isset($_POST['Consegne']))
 		{
 			$model->attributes=$_POST['Consegne'];
-			//echo "<pre>".print_r($_POST,true)."</pre>";
-				$tmp = explode("/",$model->data);
-				$model->data = strtotime($tmp[2].'-'.$tmp[1].'-'.$tmp[0]);
-				$model->id_user = Yii::app()->user->objUser['id_user'];
-				$model->codfisc = strtoupper($model->codfisc);
-				$model->nome = strtoupper($model->nome);
-				$model->cognome = strtoupper($model->cognome);
-				$model->indirizzo = strtoupper($model->indirizzo);
-				$model->note = strtoupper($model->note);
 
-				// PRIMO INSERIMENTO
-				$model->id_volontario = 0;
-				$model->in_consegna = 0;
-				$model->consegnato = 0;
-				$model->time_inconsegna = 0;
-				$model->time_consegnato = 0;
+			$tmp = explode("/",$model->data);
+			$model->data = strtotime($tmp[2].'-'.$tmp[1].'-'.$tmp[0]);
+			$model->id_user = Yii::app()->user->objUser['id_user'];
+			$model->codfisc = strtoupper($model->codfisc);
+			$model->nome = strtoupper($model->nome);
+			$model->cognome = strtoupper($model->cognome);
+			$model->indirizzo = strtoupper($model->indirizzo);
+			$model->note = strtoupper($model->note);
 
-
-			 // echo "<pre>".print_r($model->attributes,true)."</pre>";
-			 // exit;
+			// PRIMO INSERIMENTO
+			$model->id_volontario = 0;
+			$model->in_consegna = 0;
+			$model->consegnato = 0;
+			$model->time_inconsegna = 0;
+			$model->time_consegnato = 0;
 			if($model->save())
-					$this->redirect(array('view','id'=>crypt::Encrypt($model->id_archive)));
+				$this->redirect(array('view','id'=>crypt::Encrypt($model->id_archive)));
 		}
 
 		$this->render('create',array(
@@ -163,12 +153,8 @@ class ConsegneController extends Controller
 				$consegna->time_inconsegna = time();
 
 				$consegna->update();
-
-				// echo "<pre>".print_r($consegna->attributes,true)."</pre>";
 			}
-			// exit;
 			$this->redirect(array('index'));
-
 		}
 
 		$criteria = new CDbCriteria();
@@ -228,11 +214,9 @@ class ConsegneController extends Controller
 	public function actionDelivery($id)
 	{
 		$consegna = $this->loadModel(crypt::Decrypt($id));
-
 		$consegna->consegnato = 1;
 		$consegna->time_consegnato = time();
 		$consegna->update();
-
 		$this->redirect(array('index'));
 	}
 
@@ -251,6 +235,116 @@ class ConsegneController extends Controller
 	}
 
 	/**
+	 * esporta in un foglio excel l'archivio consegne
+ 	 */
+ 	public function actionExport()
+	{
+
+		$dataProvider=new CActiveDataProvider('Consegne', array(
+			'sort'=>array(
+	    		'defaultOrder'=>array(
+	      			'id_archive'=>false
+	    		)
+	  		),
+		));
+
+		$Creator = Yii::app()->params['nomeAssociazione'];
+		$LastModifiedBy = "Sergio Casizzone";
+		$Title = "Office 2007 XLSX Test Document";
+		$Subject = "Office 2007 XLSX Test Document";
+		$Description = "Estrazione dati per Office 2007 XLSX, generated using PHP classes.";
+		$Keywords = "office 2007 openxml php";
+		$Category = "export";
+
+		// Create new PHPExcel object
+		$objPHPExcel = new PHPExcel();
+		// Set document properties
+		$objPHPExcel->getProperties()->setCreator($Creator)
+									 ->setLastModifiedBy($LastModifiedBy)
+									 ->setTitle($Title)
+									 ->setSubject($Subject)
+									 ->setDescription($Description)
+									 ->setKeywords($Keywords)
+									 ->setCategory($Category);
+
+		// Add header
+		$colonne = array('a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q');
+		$intestazione = array(
+			"#",
+			"Data Inserimento",
+			"ID User che inserisce",
+			"Codice Fiscale",
+			"Nome",
+			"Cognome",
+			"Telefono",
+			"Adulti",
+			"Neonati",
+			"Indirizzo",
+			"Alert se < 7gg",
+			"ID Volontario in consegna",
+			"Pacco in consegna",
+			"Data presa in carico",
+			"Consegnato",
+			"Data consegna",
+			"Note"
+		);
+
+		foreach ($colonne as $n => $l){
+			$objPHPExcel->setActiveSheetIndex(0)
+						->setCellValue($l.'1', $intestazione[$n]);
+		}
+		$transactions = new CDataProviderIterator($dataProvider);
+		$riga = 2;
+		$Rows = $transactions->totalItemCount;
+
+		foreach($transactions as $item) {
+			// Miscellaneous glyphs, UTF-8
+			$objPHPExcel->setActiveSheetIndex(0)
+			            ->setCellValue('A'.$riga, $Rows)
+			            ->setCellValue('B'.$riga, date("d/m/Y",$item->data))
+						->setCellValue('C'.$riga, $item->id_user)
+						->setCellValue('D'.$riga, $item->codfisc)
+						->setCellValue('E'.$riga, $item->nome)
+						->setCellValue('F'.$riga, $item->cognome)
+						->setCellValue('G'.$riga, $item->telefono)
+						->setCellValue('H'.$riga, $item->adulti)
+						->setCellValue('I'.$riga, $item->bambini)
+						->setCellValue('J'.$riga, $item->indirizzo)
+						->setCellValue('K'.$riga, $item->trigger_alert)
+						->setCellValue('L'.$riga, $item->id_volontario)
+						->setCellValue('M'.$riga, $item->in_consegna)
+						->setCellValue('N'.$riga, ($item->time_inconsegna == 0) ? '' : date("d/m/Y H:i:s",$item->time_inconsegna))
+						->setCellValue('O'.$riga, $item->consegnato)
+						->setCellValue('P'.$riga, ($item->time_consegnato == 0) ? '' : date("d/m/Y H:i:s",$item->time_consegnato))
+						->setCellValue('Q'.$riga, $item->note);
+
+			$riga++;
+			$Rows--;
+		}
+
+		// Rename worksheet
+		$objPHPExcel->getActiveSheet()->setTitle('export');
+		// Set active sheet index to the first sheet, so Excel opens this as the first sheet
+		$objPHPExcel->setActiveSheetIndex(0);
+		// Redirect output to a client’s web browser (Excel5)
+		$time = time();
+		$date = date('Y/m/d H:i:s', $time);
+		header('Content-Type: application/vnd.ms-excel');
+		header('Content-Disposition: attachment;filename="'.$date.'-export.xls"');
+		header('Cache-Control: max-age=0');
+		// If you're serving to IE 9, then the following may be needed
+		header('Cache-Control: max-age=1');
+		// If you're serving to IE over SSL, then the following may be needed
+		header ('Expires: Mon, 26 Jul 1997 05:00:00 GMT'); // Date in the past
+		header ('Last-Modified: '.gmdate('D, d M Y H:i:s').' GMT'); // always modified
+		header ('Cache-Control: cache, must-revalidate'); // HTTP/1.1
+		header ('Pragma: public'); // HTTP/1.0
+		$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
+		$objWriter->save('php://output');
+	}
+
+
+	/**
 	 * Lists all models.
 	 */
 	public function actionIndex()
@@ -264,7 +358,6 @@ class ConsegneController extends Controller
 		$dataProvider=new CActiveDataProvider('Consegne', array(
 				'criteria'=>$criteria,
 		));
-
 
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,

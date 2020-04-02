@@ -33,11 +33,19 @@
 				</li>
 
 				<?php
-					$display = isset (Yii::app()->user->objUser["privilegi"]) ? (Yii::app()->user->objUser["privilegi"] == 20) ? "" : "none" : "none";
+					$visible = isset (Yii::app()->user->objUser["privilegi"]) ? (Yii::app()->user->objUser["privilegi"] == 20) ? "" : "none" : "none";
 				?>
-				<li style='display: <?php echo $display; ?>;'>
-					<a href="<?php echo Yii::app()->createUrl('users/index');?>">
-						Volontari&nbsp;<i class="fas fa-users"></i></a>
+				<li class="has-sub" style='display: <?php echo $visible; ?>;'>
+					<a class="js-arrow" href="#">
+						Amministr.&nbsp;<i class="fa fa-archive"></i></a>
+					<ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
+						<li>
+							<a href="<?php echo Yii::app()->createUrl('users/index');?>">Volontari&nbsp;<i class="fas fa-users"></i></a>
+						</li>
+						<li>
+							<a target="_blank" href="<?php echo Yii::app()->createUrl('consegne/export');?>">Esporta CSV&nbsp;<i class="fa fa-download"></i></a>
+						</li>
+					</ul>
 				</li>
 
 				<li>

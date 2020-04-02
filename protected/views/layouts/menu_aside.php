@@ -25,11 +25,19 @@
 						<a class="js-arrow" href="<?php echo Yii::app()->createUrl('site/index');?>"><i class="fas fa-tachometer-alt"></i>Dashboard</a>
 					</li>
 					<?php
-						$display = isset (Yii::app()->user->objUser["privilegi"]) ? (Yii::app()->user->objUser["privilegi"] == 20) ? "" : "none" : "none"; 
+						$visible = isset (Yii::app()->user->objUser["privilegi"]) ? (Yii::app()->user->objUser["privilegi"] == 20) ? "" : "none" : "none";
 					?>
-					<li style='display: <?php echo $display; ?>;'>
-						<a href="<?php echo Yii::app()->createUrl('users/index');?>">
-							<i class="fas fa-users"></i>Volontari</a>
+					<li class="has-sub" style='display: <?php echo $visible; ?>;'>
+						<a class="js-arrow" href="#">
+							<i class="fa fa-archive"></i>Amministrazione</a>
+						<ul class="list-unstyled navbar__sub-list js-sub-list">
+							<li>
+								<a href="<?php echo Yii::app()->createUrl('users/index');?>"><i class="fas fa-users"></i>Volontari</a>
+							</li>
+							<li>
+								<a target="_blank" href="<?php echo Yii::app()->createUrl('consegne/export');?>"><i class="fa fa-download"></i>Esporta CSV</a>
+							</li>
+						</ul>
 					</li>
 
 					<li>

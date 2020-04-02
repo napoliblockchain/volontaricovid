@@ -140,10 +140,7 @@ Aggiunte da btcpayserver.css
 .login-wrap{
     padding-top: 15px 0;
 }
-.login-content{
-    padding: 15px 15px 15px 15px;
-    margin: 0px 0px 0px 0px;
-}
+
 #wallet-form{
     min-width: 320px;
 }
