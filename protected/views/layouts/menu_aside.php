@@ -35,7 +35,7 @@
 								<a href="<?php echo Yii::app()->createUrl('users/index');?>"><i class="fas fa-users"></i>Volontari</a>
 							</li>
 							<li>
-								<a target="_blank" href="<?php echo Yii::app()->createUrl('consegne/export');?>"><i class="fa fa-download"></i>Esporta CSV</a>
+								<a target="_blank" href="<?php echo Yii::app()->createUrl('consegne/export');?>"><i class="fa fa-download"></i>Esporta</a>
 							</li>
 						</ul>
 					</li>

@@ -1,5 +1,5 @@
-# volontari covid
-Distribuzione Aiuti Volontari
+# Volontari Covid-19
+Distribuzione Aiuti Alimentari
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/napoliblockchain/volontaricovid/blob/master/LICENSE) [![GitHub commit](https://img.shields.io/github/last-commit/napoliblockchain/volontaricovid)](https://github.com/napoliblockchain/volontaricovid/commits/master)
 
@@ -18,7 +18,9 @@ e non prese in carico da nessuno.
   - Dopo aver salvato, è possibile assegnare a se stessi la consegna inserita. Altrimenti sarà visibile a tutti.
 
 
-- Il Gestore può aggiungere, eliminare o modificare gli utenti dal menù [`Volontari`]
+- Il Gestore può:
+    - aggiungere, eliminare o modificare gli utenti dal menù [`Amministrazione/Volontari`]
+    - scaricare in formato .xls l'archivio dal menù [`Amministrazione/Esporta`]
 
 
 
