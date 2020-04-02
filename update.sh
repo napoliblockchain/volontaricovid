@@ -18,3 +18,5 @@ chmod +x /var/www/volontaricovid.napoliblockchain.it/update.sh
 echo Versioning...
 git rev-parse HEAD>version.txt
 echo Done!
+
+nano /var/www/volontaricovid.napoliblockchain.it/protected/config/database.php
