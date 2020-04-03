@@ -369,7 +369,7 @@ class ConsegneController extends Controller
 		// Add header
 		$colonne = array('a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q');
 		$intestazione = array(
-			"#",
+			"ID",
 			"Data Inserimento",
 			"ID User che inserisce",
 			"Codice Fiscale",
@@ -394,12 +394,12 @@ class ConsegneController extends Controller
 		}
 		$transactions = new CDataProviderIterator($dataProvider);
 		$riga = 2;
-		$Rows = $transactions->totalItemCount;
+		$Rows = 1; //$transactions->totalItemCount;
 
 		foreach($transactions as $item) {
 			// Miscellaneous glyphs, UTF-8
 			$objPHPExcel->setActiveSheetIndex(0)
-			            ->setCellValue('A'.$riga, $Rows)
+			            ->setCellValue('A'.$riga, $item->id_archive)
 			            ->setCellValue('B'.$riga, date("d/m/Y",$item->data))
 						->setCellValue('C'.$riga, $item->id_user)
 						->setCellValue('D'.$riga, $item->codfisc)
@@ -418,7 +418,7 @@ class ConsegneController extends Controller
 						->setCellValue('Q'.$riga, $item->note);
 
 			$riga++;
-			$Rows--;
+			$Rows++;
 		}
 
 		// Rename worksheet
