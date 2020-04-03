@@ -5,9 +5,10 @@ Distribuzione Aiuti Alimentari
 
 
 ## Funzionamento
-- Il volontario effettua il login
-- Sulla dashboard vengono visualizzate le proprie consegne selezionate da effettuare
+- Il volontario effettua il login se ha selezionato il flag sull'informativa dei dati personali trattati.
+- Sulla dashboard vengono visualizzate le proprie consegne selezionate da effettuare:
   - Cliccando sulla singola consegna ne vedo il `Dettaglio` e ne posso confermare la Consegna
+  - Cliccando sul punsante `Stampa lista di consegna` ottengo una lista con i codici da scrivere a vista sui pacchi (per garantirne l'anonimato) a cui corrispondono i nominativi per le consegne.
 
 
 - Sulla dashboard, cliccando sul pulsante [`+`] a destra, si selezionano le consegne da effettuare
