@@ -1,6 +1,8 @@
 <?php
 /* @var $this MerchantsController */
 /* @var $dataProvider CActiveDataProvider */
+$actionURL = Yii::app()->createUrl('consegne/select');
+$printURL = Yii::app()->createUrl('consegne/print');
 ?>
 
 <div class='section__content section__content--p30'>
@@ -12,7 +14,6 @@
 						<i class="fas fa-list"></i>
 						<span class="card-title">Lista Pacchi in Consegna</span>
 						<div class="float-right">
-							<?php $actionURL = Yii::app()->createUrl('consegne/select'); ?>
 							<a href="<?php echo $actionURL;?>">
 								<button class="btn alert-primary text-light img-cir" style="padding:2.5px; width:30px; height:30px;">
 									<i class="fa fa-plus"></i></button>
@@ -20,13 +21,12 @@
 						</div>
 					</div>
 					<div class="card-body">
-						<div class="table-responsive table--no-card m-b-40">
+						<div class="table-responsive table--no-card">
 
 							<?php $this->widget('zii.widgets.grid.CGridView', array(
 								'htmlOptions' => array('class' => 'table table-wallet'),
 							    'dataProvider'=>$dataProvider,
 								'columns' => array(
-									// ),
 						 		array(
 									 'name'=>'Data',
 									 'type'=>'raw',
@@ -57,6 +57,11 @@
 							));
 							?>
 						</div>
+					</div>
+					<div class="card-footer">
+						<a href="<?php echo $printURL;?>" target="_blank">
+							<button type="button" class="btn btn-primary">Stampa lista di consegna</button>
+						</a>
 					</div>
 				</div>
 			</div>

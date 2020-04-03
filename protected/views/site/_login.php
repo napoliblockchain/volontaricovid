@@ -16,9 +16,17 @@ $settings = Settings::load();
 $reCaptcha2PublicKey = $settings->reCaptcha2PublicKey;
 
 $iscriviti = <<<JS
-	$(".informativa_contenitore").click(function(){
+	$(".informativa_link").click(function(){
 		$( ".informativa" ).toggle(750);
 	});
+
+	$("#LoginForm_informativa_trigger").click(function(){
+		if ( $( "#LoginForm_informativa_trigger" ).prop( "checked" ) )
+			$( "#LoginForm_informativa_trigger" ).val(1);
+		else
+			$( "#LoginForm_informativa_trigger" ).val(0);
+	});
+
 
 	// chiede di installare la webapop sul desktop
 	var accediButton = document.querySelector('#accedi-button');
@@ -103,14 +111,10 @@ Yii::app()->clientScript->registerScript('iscriviti', $iscriviti);
 
 				<div class="form-group">
 					<div class="informativa_contenitore">
-	                    Prima di proseguire, leggere l'<span class="text-success">Informativa per gli utenti.</span>
+						<?php echo $form->checkBox($model,'informativa_trigger',array('value'=>0,'checked'=>'')); ?>
+	                    Confermo di aver letto l'<span class="informativa_link text-danger">Informativa per gli utenti.</span>
 						<div class="informativa text-primary" style="display:none;">
-						<p>L'utilizzo delle banche dati può avvenire solo ed esclusivamente per finalità istituzionali e per ragioni strettamente connesse alla propria attività di servizio. L'operatore, procedendo nel collegamento, dichiara di conoscere le vigenti norme a tutela della riservatezza delle informazioni contenute nella banca dati, e di essere pienamente consapevole delle responsabilità connesse all'accesso ai dati illegittimo o non autorizzato o non determinato da ragioni di servizio, e alla comunicazione dei dati o al loro utilizzo indebito.</p>
-
-						<p><b>Ogni operazione effettuata viene memorizzata dal sistema informativo.</b></p>
-
-						<p>Accedendo al sistema l’utente dichiara di aver preso visione dell’informativa generale sul trattamento dei dati personali del dipendente resa ai sensi degli articoli 13 e 14 del Regolamento UE n. 2016/679.
-						</p>
+						<?php include ('informativa.html'); ?>
 						</div>
 					</div>
 				</div>

@@ -25,6 +25,7 @@ class UserIdentity extends CUserIdentity
 		// $hash = CPasswordHelper::hashPassword($this->password);
 		// echo $hash;
 		// exit;
+
 		$save = new Save;
 
 		//Creo la query

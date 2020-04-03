@@ -5,6 +5,7 @@ $shortName = 'Volontari Covid';
 //Associazione
 $nomeAssociazione = 'Napoli Blockchain ETS';
 $logoApplicazione = '/css/images/logo.png';
+$logoAssociazionePrint = '/css/images/anb-trasparente-single2.png';
 
 $timeOutSeconds = 3600*24*30; // 1 mese
 
@@ -121,6 +122,7 @@ return array(
 		// 'WebApp'=>require(dirname(__FILE__).'../../extensions/WebApp.php'),
 		'NMail'=>require(dirname(__FILE__).'../../extensions/NMail.php'),
 		'PHPExcel'=>require(dirname(__FILE__).'../../extensions/PHPExcel.php'),
+		'MYPDF'=>require(dirname(__FILE__).'../../extensions/MYPDF.php'),
 
 		// database settings are configured in database.php
 		'db'=>require(dirname(__FILE__).'/database.php'),
@@ -161,6 +163,7 @@ return array(
 
 		'nomeAssociazione'=>$nomeAssociazione,
 		'logoApplicazione'=>$logoApplicazione,
+		'logoAssociazionePrint'=>$logoAssociazionePrint,
 
 		'timeOutSeconds'=>$timeOutSeconds,
 		'shortName'=>$shortName,

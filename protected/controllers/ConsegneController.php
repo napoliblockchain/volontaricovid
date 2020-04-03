@@ -48,6 +48,7 @@ class ConsegneController extends Controller
 					'checkCF',	// verifica presenza del CODICE FISCALE entro i 7 giorni
 					'assign',	// assegna a se stessi la chiamata
 					'export', 	// esporta la lista delle consegne in formato xls
+					'print', 	// stampa la lista di consegna dei pacchi
 					//'delete'
 				),
 				'users'=>array('@'),
@@ -56,6 +57,104 @@ class ConsegneController extends Controller
 				'users'=>array('*'),
 			),
 		);
+	}
+
+	public function actionPrint()
+	{
+		//carico i SETTINGS della WebApp
+		$settingsWebApp = Settings::load();
+
+		//carico l'estensione pdf
+		Yii::import('application.extensions.MYPDF.*');
+
+		// create new PDF document
+		$pdf = new MYPDF('L', PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+
+		// set document information
+		$pdf->SetCreator(Yii::app()->params['adminName']);
+		$pdf->SetAuthor(Yii::app()->params['shortName']);
+		$pdf->SetTitle("Lista di consegna");
+		$pdf->SetSubject('Lista di consegna');
+
+		// set default header data
+		$pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE, PDF_HEADER_STRING);
+
+		$pdf->SetHeaderData(
+			Yii::app()->basePath.'../../'.Yii::app()->params['logoAssociazionePrint'],
+			21,
+			date('d M Y - H:i',time()),
+			"\r\nID Volontario: ".Yii::app()->user->objUser['id_user']
+		);
+
+		// set header and footer fonts
+		$pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
+		$pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
+
+		// set default monospaced font
+		$pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
+
+		// set margins
+		$pdf->SetMargins(10, PDF_MARGIN_TOP, 10);
+		$pdf->SetHeaderMargin(PDF_MARGIN_HEADER);
+		$pdf->SetFooterMargin(PDF_MARGIN_FOOTER);
+
+		// set auto page breaks
+		$pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
+
+		// set image scale factor
+		$pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
+		// set some language-dependent strings (optional)
+		if (@file_exists(dirname(__FILE__).'/lang/eng.php')) {
+			require_once(dirname(__FILE__).'/lang/eng.php');
+			$pdf->setLanguageArray($l);
+		}
+		// ---------------------------------------------------------
+
+		// inizializzo i criteri di ricerca
+		$criteria=new CDbCriteria();
+		$criteria->compare('id_volontario',Yii::app()->user->objUser['id_user'],false);
+		$criteria->compare('consegnato',0,false);
+
+		// carico la lista delle transazioni bitcoin
+		$dataProvider=new CActiveDataProvider('Consegne', array(
+			'criteria'=>$criteria,
+			'sort'=>array(
+				'defaultOrder'=>array(
+					'id_archive'=>false,
+				)
+			),
+		));
+
+		$iterator = new CDataProviderIterator($dataProvider);
+		$x = 0;
+		foreach($iterator as $data) {
+			$loadData[$x][] = $data->id_archive;
+			$loadData[$x][] = $data->cognome . " " . $data->nome;
+			$loadData[$x][] = $data->telefono;
+			$loadData[$x][] = $data->indirizzo;
+			$loadData[$x][] = $data->note;
+
+			$x++;
+		}
+
+		if (!isset($loadData)){
+			echo "No data found!";
+			die();
+		}
+
+		$header['head'] = array('ID', 'Nome', 'Tel.', 'Indirizzo');
+		$header['title'] = 'Lista di consegna';
+
+		// print colored table
+		$pdf->ColoredTable($header, $loadData);
+		// reset pointer to the last page
+		$pdf->lastPage();
+
+		//Close and output PDF document
+		ob_end_clean();
+
+		//Close and output PDF document
+		$pdf->Output('listadiconsegna.pdf', 'I');
 	}
 
 	public function actionAssign($id){
@@ -356,7 +455,8 @@ class ConsegneController extends Controller
 
 		// carico la lista delle transazioni bitcoin
 		$dataProvider=new CActiveDataProvider('Consegne', array(
-				'criteria'=>$criteria,
+			'criteria'=>$criteria,
+
 		));
 
 		$this->render('index',array(

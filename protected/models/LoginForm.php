@@ -13,6 +13,8 @@ class LoginForm extends CFormModel
 
 	private $_identity;
 
+	public $informativa_trigger;
+
 	/**
 	 * Declares the validation rules.
 	 * The rules state that username and password are required,
@@ -24,6 +26,8 @@ class LoginForm extends CFormModel
 			return array(
 				// username and password are required
 				array('username, password', 'required'),
+
+				array('informativa_trigger', 'checkInformativa'),
 
 				// password needs to be authenticated
 				array('password', 'authenticate'),
@@ -38,6 +42,8 @@ class LoginForm extends CFormModel
 			return array(
 				// username and password are required
 				array('username, password', 'required'),
+
+				array('informativa_trigger', 'checkInformativa'),
 
 				// password needs to be authenticated
 				array('password', 'authenticate'),
@@ -55,13 +61,23 @@ class LoginForm extends CFormModel
 	}
 
 	/**
+	 * check if the user checked Informativa
+	 */
+	public function checkInformativa($attribute,$params)
+	{
+	    if ($this->informativa_trigger == 0)
+	    	$this->addError('informativa_trigger', 'Devi confermare di aver letto l\'informativa.');
+	}
+
+	/**
 	 * Declares attribute labels.
 	 */
 	public function attributeLabels()
 	{
 		return array(
 			'username'=>'Username',
-			'password'=>'Password'
+			'password'=>'Password',
+			'informativa_trigger' => 'Informativa',
 		);
 	}
 
@@ -91,6 +107,10 @@ class LoginForm extends CFormModel
 				case UserIdentity::ERROR_USERNAME_NOT_ACTIVE:
 					$this->addError('password','L\'utente non è abilitato.');
 					break;
+
+				// case UserIdentity::ERROR_TERMS_NOT_CHECKED:
+				// 	$this->addError('username','Devi confermare di aver letto l\'informativa.');
+				// 	break;
 
 			}
 		}
