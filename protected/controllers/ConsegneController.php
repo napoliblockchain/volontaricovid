@@ -142,8 +142,8 @@ class ConsegneController extends Controller
 			die();
 		}
 
-		$header['head'] = array('ID', 'Nome', 'Tel.', 'Indirizzo');
-		$header['title'] = 'Lista di consegna';
+		$header['head'] = array('Codice', 'Nome', 'Tel.', 'Indirizzo');
+		$header['title'] = 'CONSEGNE PRONTE';
 
 		// print colored table
 		$pdf->ColoredTable($header, $loadData);
