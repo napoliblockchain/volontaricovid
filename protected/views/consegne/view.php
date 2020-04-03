@@ -6,7 +6,12 @@ $viewName = 'Consegna';
 if (!(isset($_GET['tag'])))
 	$tag = 0;
 else
-	$tag = 1;
+	$tag = $_GET['tag'];
+
+$modifyURL = Yii::app()->createUrl('consegne/update',array("id"=>crypt::Encrypt($model->id_archive),"tag"=>$tag));
+$deliveryURL = Yii::app()->createUrl('consegne/delivery',array("id"=>crypt::Encrypt($model->id_archive)));
+$assegnaURL = Yii::app()->createUrl('consegne/assign',array("id"=>crypt::Encrypt($model->id_archive)));
+$restituisciURL = Yii::app()->createUrl('consegne/restituisci',array("id"=>crypt::Encrypt($model->id_archive)));
 
 
 ?>
@@ -50,22 +55,18 @@ else
 						<div class="col-md-6">
 							<div class="overview-wrap">
 								<h2 class="title-1">
-									<?php
-										$modifyURL = Yii::app()->createUrl('consegne/update',array("id"=>crypt::Encrypt($model->id_archive),"tag"=>$tag));
-										$deliveryURL = Yii::app()->createUrl('consegne/delivery',array("id"=>crypt::Encrypt($model->id_archive)));
-										$assegnaURL = Yii::app()->createUrl('consegne/assign',array("id"=>crypt::Encrypt($model->id_archive)));
-
-									?>
 									<a href="<?php echo $modifyURL;?>">
 										<button type="button" class="btn btn-secondary">Modifica</button>
 									</a>
-									<?php
-									if ($tag == 1){
-										?>
+									<?php	if ($tag == 1){	?>
 									<button type="button" class="btn btn-success" data-toggle="modal" data-target="#mediumModal">Consegna</button>
-								<?php }
-								if ($model->id_volontario == 0){
-									?>
+									<?php } ?>
+									<?php	if ($tag == 2){	?>
+										<a href="<?php echo $restituisciURL;?>">
+									<button type="button" class="btn btn-warning">Rimetti in lista</button>
+									</a>
+								<?php } ?>
+								<?php if ($model->id_volontario == 0 && $tag <>2){	?>
 									<a href="<?php echo $assegnaURL;?>">
 										<button type="button" class="btn btn-warning">Assegna a me stesso</button>
 									</a>
@@ -82,6 +83,7 @@ else
 	<?php echo Logo::footer(); ?>
 </div>
 </div>
+
 <div class="modal fade" id="mediumModal" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" aria-hidden="true" style="display: none;">
 	<div class="modal-dialog modal-lg" role="document">
 		<div class="modal-content">

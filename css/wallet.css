@@ -20,6 +20,9 @@
     padding-right: 0px;
     padding-left: 0px;
 }
+.header-desktop{
+  background: rgba(0,43,54,0.75);
+}
 /* @media only screen and (max-width: 415px) {
     #content { */
         /* background-color: red; */

@@ -127,7 +127,15 @@ class Consegne extends CActiveRecord
         $criteria->compare('note',$this->note);
 
         return new CActiveDataProvider($this, array(
-            'criteria'=>$criteria,
+          'criteria'=>$criteria,
+          'sort'=>array(
+            'defaultOrder'=>array(
+              'id_archive'=>false,
+            )
+          ),
+          'pagination' => array(
+            'pageSize' => 20,
+            ),
         ));
     }
 

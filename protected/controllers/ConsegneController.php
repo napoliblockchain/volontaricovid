@@ -47,8 +47,10 @@ class ConsegneController extends Controller
 					'delivery', // elemento consegnato
 					'checkCF',	// verifica presenza del CODICE FISCALE entro i 7 giorni
 					'assign',	// assegna a se stessi la chiamata
+					'restituisci', // restituisci la consegna nel calderone
 					'export', 	// esporta la lista delle consegne in formato xls
 					'print', 	// stampa la lista di consegna dei pacchi
+					'tutti', 	// considera consegnati tutti i pacchi nello stato 2 (in consegna)
 					//'delete'
 				),
 				'users'=>array('@'),
@@ -134,6 +136,11 @@ class ConsegneController extends Controller
 			$loadData[$x][] = $data->indirizzo;
 			$loadData[$x][] = $data->note;
 
+			// mentre preparo il pdf aggiorno lo stato della consegna a 2
+			$consegna = $this->loadModel($data->id_archive);
+			$consegna->in_consegna = 2;
+			$consegna->update();
+
 			$x++;
 		}
 
@@ -162,6 +169,15 @@ class ConsegneController extends Controller
 		$consegna->id_volontario = Yii::app()->user->objUser['id_user'];
 		$consegna->in_consegna = 1;
 		$consegna->time_inconsegna = time();
+		$consegna->update();
+		$this->redirect(array('index'));
+	}
+
+	public function actionRestituisci($id){
+		$consegna = $this->loadModel(crypt::Decrypt($id));
+		$consegna->id_volontario = 0;
+		$consegna->in_consegna = 0;
+		$consegna->time_inconsegna = 0;
 		$consegna->update();
 		$this->redirect(array('index'));
 	}
@@ -256,23 +272,33 @@ class ConsegneController extends Controller
 			$this->redirect(array('index'));
 		}
 
-		$criteria = new CDbCriteria();
-		$criteria->compare('id_volontario',0,false);
+		$model=new Consegne('search');
+		$model->unsetAttributes();
 
-		$dataProvider=new CActiveDataProvider('Consegne', array(
-			'sort'=>array(
-	    		'defaultOrder'=>array(
-	      			'data'=>false // viene prima la più recente
-	    		)
-	  		),
-		    'criteria'=>$criteria,
-				'pagination' => array(
-					'pageSize' => 20,
-					),
-		));
+		if(isset($_GET['Consegne']))
+			$model->attributes=$_GET['Consegne'];
+
 		$this->render('select',array(
-			'dataProvider'=>$dataProvider,
+			'model'=>$model,
 		));
+
+		// $criteria = new CDbCriteria();
+		// $criteria->compare('id_volontario',0,false);
+		//
+		// $dataProvider=new CActiveDataProvider('Consegne', array(
+		// 	'sort'=>array(
+	  //   		'defaultOrder'=>array(
+	  //     			'data'=>false // viene prima la più recente
+	  //   		)
+	  // 		),
+		//     'criteria'=>$criteria,
+		// 		'pagination' => array(
+		// 			'pageSize' => 20,
+		// 			),
+		// ));
+		// $this->render('select',array(
+		// 	'dataProvider'=>$dataProvider,
+		// ));
 	}
 
 
@@ -315,6 +341,7 @@ class ConsegneController extends Controller
 		$consegna = $this->loadModel(crypt::Decrypt($id));
 		$consegna->consegnato = 1;
 		$consegna->time_consegnato = time();
+		$consegna->in_consegna = 3;
 		$consegna->update();
 		$this->redirect(array('index'));
 	}
@@ -450,18 +477,51 @@ class ConsegneController extends Controller
 	{
 		// inizializzo i criteri di ricerca
 		$criteria=new CDbCriteria();
+		// se è loggato il Volontario, questo filtro viene utilizzato
+		//if (Yii::app()->user->objUser['privilegi'] == 0)
 		$criteria->compare('id_volontario',Yii::app()->user->objUser['id_user'],false);
-		$criteria->compare('consegnato',0,false);
+		$criteria->compare('in_consegna',1,false);
 
-		// carico la lista delle transazioni bitcoin
+		// carico la lista delle consegne
 		$dataProvider=new CActiveDataProvider('Consegne', array(
 			'criteria'=>$criteria,
+		));
 
+		$criteria2=new CDbCriteria();
+		// se è loggato il Volontario, questo filtro viene utilizzato
+		//if (Yii::app()->user->objUser['privilegi'] == 0)
+		$criteria2->compare('id_volontario',Yii::app()->user->objUser['id_user'],false);
+		$criteria2->compare('in_consegna',2,false);
+		// carico la lista delle consegne
+		$dataSpedite=new CActiveDataProvider('Consegne', array(
+			'criteria'=>$criteria2,
 		));
 
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
+			'dataSpedite'=>$dataSpedite,
 		));
+	}
+
+	public function actionTutti(){
+		$criteria2=new CDbCriteria();
+		$criteria2->compare('id_volontario',Yii::app()->user->objUser['id_user'],false);
+		$criteria2->compare('in_consegna',2,false);
+		// carico la lista delle consegne
+		$dataProvider=new CActiveDataProvider('Consegne', array(
+			'criteria'=>$criteria2,
+		));
+
+		$iterator = new CDataProviderIterator($dataProvider);
+
+		foreach($iterator as $item) {
+			$consegna = $this->loadModel($item->id_archive);
+			$consegna->consegnato = 1;
+			$consegna->time_consegnato = time();
+			$consegna->in_consegna = 3;
+			$consegna->update();
+		}
+		$this->redirect(array('index'));
 	}
 
 
