@@ -16,11 +16,8 @@ $settings = Settings::load();
 $reCaptcha2PublicKey = $settings->reCaptcha2PublicKey;
 
 $iscriviti = <<<JS
-	$(".button-show-items").click(function(){
-		$( ".line-items" ).toggle(750);
-		$( ".mostra-scelte" ).toggle(50);
-		$( ".nascondi-scelte" ).toggle(50);
-
+	$(".informativa_contenitore").click(function(){
+		$( ".informativa" ).toggle(750);
 	});
 
 	// chiede di installare la webapop sul desktop
@@ -104,8 +101,21 @@ Yii::app()->clientScript->registerScript('iscriviti', $iscriviti);
 				</div>
 
 
-				<?php echo CHtml::submitButton('Accedi', array('class' => 'au-btn au-btn--block au-btn--blue m-b-20','id'=>'accedi-button')); ?>
+				<div class="form-group">
+					<div class="informativa_contenitore">
+	                    Prima di proseguire, leggere l'<span class="text-success">Informativa per gli utenti.</span>
+						<div class="informativa text-primary" style="display:none;">
+						<p>L'utilizzo delle banche dati può avvenire solo ed esclusivamente per finalità istituzionali e per ragioni strettamente connesse alla propria attività di servizio. L'operatore, procedendo nel collegamento, dichiara di conoscere le vigenti norme a tutela della riservatezza delle informazioni contenute nella banca dati, e di essere pienamente consapevole delle responsabilità connesse all'accesso ai dati illegittimo o non autorizzato o non determinato da ragioni di servizio, e alla comunicazione dei dati o al loro utilizzo indebito.</p>
 
+						<p><b>Ogni operazione effettuata viene memorizzata dal sistema informativo.</b></p>
+
+						<p>Accedendo al sistema l’utente dichiara di aver preso visione dell’informativa generale sul trattamento dei dati personali del dipendente resa ai sensi degli articoli 13 e 14 del Regolamento UE n. 2016/679.
+						</p>
+						</div>
+					</div>
+				</div>
+
+				<?php echo CHtml::submitButton('Accedi', array('class' => 'au-btn au-btn--block au-btn--blue m-b-20','id'=>'accedi-button')); ?>
 
 
 				<div class="row">

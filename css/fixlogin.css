@@ -10,3 +10,12 @@
     padding: 15px 15px 15px 15px;
     margin: 0px 0px 0px 0px;
 }
+
+
+.informativa_contenitore{
+    font-size: 0.9em;
+}
+.informativa_contenitore span{
+    text-decoration: underline;
+    cursor: pointer;
+}
