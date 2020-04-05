@@ -481,6 +481,7 @@ class ConsegneController extends Controller
 		//if (Yii::app()->user->objUser['privilegi'] == 0)
 		$criteria->compare('id_volontario',Yii::app()->user->objUser['id_user'],false);
 		$criteria->compare('in_consegna',1,false);
+		$criteria->compare('consegnato',0,false);
 
 		// carico la lista delle consegne
 		$dataProvider=new CActiveDataProvider('Consegne', array(
@@ -492,6 +493,7 @@ class ConsegneController extends Controller
 		//if (Yii::app()->user->objUser['privilegi'] == 0)
 		$criteria2->compare('id_volontario',Yii::app()->user->objUser['id_user'],false);
 		$criteria2->compare('in_consegna',2,false);
+		$criteria2->compare('consegnato',0,false);
 		// carico la lista delle consegne
 		$dataSpedite=new CActiveDataProvider('Consegne', array(
 			'criteria'=>$criteria2,
@@ -513,14 +515,21 @@ class ConsegneController extends Controller
 		));
 
 		$iterator = new CDataProviderIterator($dataProvider);
-
-		foreach($iterator as $item) {
-			$consegna = $this->loadModel($item->id_archive);
-			$consegna->consegnato = 1;
-			$consegna->time_consegnato = time();
-			$consegna->in_consegna = 3;
-			$consegna->update();
+		if (isset($iterator)){
+			foreach($iterator as $item) {
+					$idlist[] = $item->id_archive;
+			}
+			if (isset($idlist)){
+				foreach ($idlist as $id){
+					$model = $this->loadModel($id);
+					$model->consegnato = 1;
+					$model->time_consegnato = time();
+					$model->in_consegna = 3;
+					$model->update();
+				}
+			}
 		}
+
 		$this->redirect(array('index'));
 	}
 
