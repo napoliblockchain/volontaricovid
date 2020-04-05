@@ -6,13 +6,17 @@ Distribuzione Aiuti Alimentari
 
 ## Funzionamento
 - Il volontario effettua il login se ha selezionato il flag sull'informativa dei dati personali trattati.
-- Sulla dashboard vengono visualizzate le proprie consegne selezionate da effettuare:
-  - Cliccando sulla singola consegna ne vedo il `Dettaglio` e ne posso confermare la Consegna
-  - Cliccando sul punsante `Stampa lista di consegna` ottengo una lista con i codici da scrivere a vista sui pacchi (per garantirne l'anonimato) a cui corrispondono i nominativi per le consegne.
+- Sulla dashboard vengono visualizzate le proprie consegne selezionate  in carico e da effettuare:
+  - Nella tabella Pacchi in carico:
+    - Cliccando sulla singola consegna ne vedo il `Dettaglio` e la posso modificare o rimettere nella disponibiltà di un altro volontario
+    - Cliccando sul punsante `Stampa lista di consegna`, metto nello stato di consegna tutti i pacchi in carico e predispongo un pdf con una lista di codici da scrivere a vista sui pacchi (per garantirne l'anonimato) a cui corrispondono i nominativi per le consegne.
+
+  - Nella tabella Pacchi in consegna:
+    - Cliccando sulla singola consegna ne vedo il `Dettaglio` e ne posso confermare la Consegna
+    - Cliccando sul punsante `Consegna tutti`, considero effettuata la consegna di tutti i pacchi visualizzati.  
 
 
-- Sulla dashboard, cliccando sul pulsante [`+`] a destra, si selezionano le consegne da effettuare
-e non prese in carico da nessuno.
+- Sulla dashboard, cliccando sul pulsante [`+`] a destra, si selezionano le consegne da effettuare e non prese in carico da nessuno.
 
 - Dal menu [`Inserisci`] si caricano in archivio le consegne da effettuare
   - In fase di inserimento, l'utente viene avvisato se nell'ultima settimana è già stato inserito lo stesso Codice Fiscale con un messaggio di allarme. Tuttavia è possibile comunque effettuare il salvataggio della richiesta.

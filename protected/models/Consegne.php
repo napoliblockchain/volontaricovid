@@ -120,14 +120,26 @@ class Consegne extends CActiveRecord
         $criteria->compare('indirizzo',$this->indirizzo,true);
         $criteria->compare('trigger_alert',$this->trigger_alert);
         $criteria->compare('id_volontario',$this->id_volontario);
-        $criteria->compare('in_consegna',$this->in_consegna);
-        $criteria->compare('consegnato',$this->consegnato);
+        //$criteria->compare('in_consegna',$this->in_consegna);
+        //$criteria->compare('consegnato',$this->consegnato);
         $criteria->compare('time_inconsegna',$this->time_inconsegna);
         $criteria->compare('time_consegnato',$this->time_consegnato);
         $criteria->compare('note',$this->note);
 
+        $criteria->compare('in_consegna',0,false);
+        $criteria->compare('consegnato',0,false);
+
+
         return new CActiveDataProvider($this, array(
-            'criteria'=>$criteria,
+          'criteria'=>$criteria,
+          'sort'=>array(
+            'defaultOrder'=>array(
+              'id_archive'=>false,
+            )
+          ),
+          'pagination' => array(
+            'pageSize' => 20,
+            ),
         ));
     }
 
