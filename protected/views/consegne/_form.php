@@ -5,6 +5,7 @@
 
 ?>
 <?php include ('js_checkCF.php'); ?>
+<?php include ('js_checkAddress.php'); ?>
 
 <div class="form">
 
@@ -59,9 +60,19 @@ $bambini = [0,1,2,3,4,5,6,7,8,9,10];
 	</div>
 	<div class="form-group">
 		<?php echo $form->labelEx($model,'indirizzo'); ?>
-		<?php echo $form->textField($model,'indirizzo',array('style' => 'text-transform: uppercase','size'=>60,'maxlength'=>500,'placeholder'=>'Indirizzo','class'=>'form-control')); ?>
+		<?php echo $form->textField($model,'indirizzo',array('style' => 'text-transform: uppercase','size'=>60,'maxlength'=>500,'placeholder'=>'Indirizzo','class'=>'form-control','onKeyPress'=>"validateAddress(event,this.value)")); ?>
 		<?php echo $form->error($model,'indirizzo',array('class'=>'alert alert-danger')); ?>
+		<?php echo "<div id='warningIndirizzo' class='alert alert-warning' style='display:none;'></div>"; ?>
 	</div>
+	<div class="form-group">
+		<?php echo $form->labelEx($model,'quartiere'); ?>
+		<?php echo $form->textField($model,'quartiere',array('class'=>'form-control','readonly'=>'true')); ?>
+	</div>
+	<div class="form-group">
+		<?php echo $form->labelEx($model,'municipalita'); ?>
+		<?php echo $form->textField($model,'municipalita',array('class'=>'form-control','readonly'=>'true')); ?>
+	</div>
+
 	<div class="form-group">
 		<?php echo $form->labelEx($model,'note'); ?>
 		<?php echo $form->textField($model,'note',array('style' => 'text-transform: uppercase','size'=>60,'maxlength'=>500,'placeholder'=>'Note','class'=>'form-control')); ?>

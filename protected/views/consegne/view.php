@@ -42,6 +42,8 @@ $restituisciURL = Yii::app()->createUrl('consegne/restituisci',array("id"=>crypt
 								'cognome',
 								'telefono',
 								'indirizzo',
+								'quartiere',
+								'municipalita',
 								'note',
 								'adulti',
 								'bambini',
