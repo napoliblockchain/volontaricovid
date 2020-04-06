@@ -32,13 +32,13 @@ $consegnaURL = Yii::app()->createUrl('consegne/tutti');
 								'id'=>'incarico',
 							    'dataProvider'=>$dataProvider,
 								'columns' => array(
-									array(
-									 'name'=>'Operatore',
- 									 'type'=>'raw',
-									 'value'=>'Users::model()->findByPk($data->id_volontario)->email',
-									 'visible' => $visible,
-
-									),
+									// array(
+									//  'name'=>'Operatore',
+ 									//  'type'=>'raw',
+									//  'value'=>'Users::model()->findByPk($data->id_volontario)->email',
+									//  'visible' => $visible,
+									//
+									// ),
 						 		array(
 									 'name'=>'Data',
 									 'type'=>'raw',
@@ -94,13 +94,13 @@ $consegnaURL = Yii::app()->createUrl('consegne/tutti');
 								'id'=>'inconsegna',
 							    'dataProvider'=>$dataSpedite,
 								'columns' => array(
-									array(
-									 'name'=>'Operatore',
-									 'type'=>'raw',
-									 'value'=>'Users::model()->findByPk($data->id_volontario)->email',
-									 'visible' => $visible,
-
-									),
+									// array(
+									//  'name'=>'Operatore',
+									//  'type'=>'raw',
+									//  'value'=>'Users::model()->findByPk($data->id_volontario)->email',
+									//  'visible' => $visible,
+									//
+									// ),
 						 		array(
 									 'name'=>'Data',
 									 'type'=>'raw',

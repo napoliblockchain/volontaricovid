@@ -126,13 +126,11 @@
 
 <?php
 
-//include ('js_backend.php'); // backend notify
+include ('js_backend.php'); // backend notify
 include ('js_sw.php');  // service worker
-//include ('js_validatepassword.php'); // validate password
 
 
 ?>
-<!-- <input type='hidden' id='countedNews' value='<?php //echo (isset($countedNews)) ? $countedNews : 0; ?>'> -->
 </body>
 </html>
 <!-- end document-->
