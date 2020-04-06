@@ -527,7 +527,7 @@ class ConsegneController extends Controller
 		// inizializzo i criteri di ricerca
 		$criteria=new CDbCriteria();
 		// se è loggato il Volontario, questo filtro viene utilizzato
-		if (Yii::app()->user->objUser['privilegi'] == 0)
+		//if (Yii::app()->user->objUser['privilegi'] == 0)
 			$criteria->compare('id_volontario',Yii::app()->user->objUser['id_user'],false);
 		$criteria->compare('in_consegna',1,false);
 		$criteria->compare('consegnato',0,false);
