@@ -389,3 +389,13 @@ h1 small.logo-descri {
 .checkSelectedAddress{
   cursor: pointer;
 }
+#consegne-grid-gestore .filters {
+  background: gray;
+  color:yellow;
+}
+#consegne-grid-gestore table.items a {
+  color: darkblue;
+}
+#consegne-grid-gestore a:selected {
+  color: blue;
+}

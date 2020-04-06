@@ -32,10 +32,13 @@
 							<i class="fa fa-archive"></i>Amministrazione</a>
 						<ul class="list-unstyled navbar__sub-list js-sub-list">
 							<li>
-								<a href="<?php echo Yii::app()->createUrl('users/index');?>"><i class="fas fa-users"></i>Volontari</a>
+								<a href="<?php echo Yii::app()->createUrl('users/index');?>"><i class="fas fa-users"></i>Operatori</a>
 							</li>
 							<li>
 								<a target="_blank" href="<?php echo Yii::app()->createUrl('consegne/export');?>"><i class="fa fa-download"></i>Esporta</a>
+							</li>
+							<li>
+								<a href="<?php echo Yii::app()->createUrl('consegne/manage');?>"><i class="fa fa-shopping-cart"></i>Consegne</a>
 							</li>
 						</ul>
 					</li>

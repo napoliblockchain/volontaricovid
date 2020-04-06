@@ -52,6 +52,7 @@ class ConsegneController extends Controller
 					'print', 	// stampa la lista di consegna dei pacchi
 					'tutti', 	// considera consegnati tutti i pacchi nello stato 2 (in consegna)
 					'checkAddress', // carica gli indirizzi in base all'input inserito
+					'manage', //	Il gestore gestisce le consegne
 					//'delete'
 				),
 				'users'=>array('@'),
@@ -526,8 +527,8 @@ class ConsegneController extends Controller
 		// inizializzo i criteri di ricerca
 		$criteria=new CDbCriteria();
 		// se è loggato il Volontario, questo filtro viene utilizzato
-		//if (Yii::app()->user->objUser['privilegi'] == 0)
-		$criteria->compare('id_volontario',Yii::app()->user->objUser['id_user'],false);
+		if (Yii::app()->user->objUser['privilegi'] == 0)
+			$criteria->compare('id_volontario',Yii::app()->user->objUser['id_user'],false);
 		$criteria->compare('in_consegna',1,false);
 		$criteria->compare('consegnato',0,false);
 
@@ -608,5 +609,22 @@ class ConsegneController extends Controller
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
 		}
+	}
+
+	/**
+	 * Lists all models per il GEstore
+	 */
+	public function actionManage()
+	{
+		$model=new Consegne('search');
+		$model->unsetAttributes();
+
+		if(isset($_GET['Consegne']))
+			$model->attributes=$_GET['Consegne'];
+
+		$this->render('manage',array(
+			'model'=>$model,
+		));
+
 	}
 }

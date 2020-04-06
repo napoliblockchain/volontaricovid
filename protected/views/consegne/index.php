@@ -95,7 +95,7 @@ $consegnaURL = Yii::app()->createUrl('consegne/tutti');
 							    'dataProvider'=>$dataSpedite,
 								'columns' => array(
 									array(
-									 'name'=>'Volontario',
+									 'name'=>'Operatore',
  									 'type'=>'raw',
 									 'value'=>'Users::model()->findByPk($data->id_user)->email',
 									 'visible' => $visible,
