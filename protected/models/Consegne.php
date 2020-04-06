@@ -14,6 +14,8 @@
  * @property integer $adulti
  * @property integer $bambini
  * @property string $indirizzo
+ * @property string $quartiere
+ * @property string $municipalita
  * @property integer $trigger_alert
  * @property integer $id_volontario
  * @property integer $in_consegna
@@ -47,9 +49,11 @@ class Consegne extends CActiveRecord
             array('nome, cognome', 'length', 'max'=>100),
             array('indirizzo', 'length', 'max'=>500),
             array('note', 'length', 'max'=>250),
+            array('quartiere', 'length', 'max'=>100),
+            array('municipalita', 'length', 'max'=>10),
             // The following rule is used by search().
             // @todo Please remove those attributes that should not be searched.
-            array('id_archive, id_user, codfisc, nome, cognome, telefono, data, adulti, bambini, indirizzo, trigger_alert, id_volontario, in_consegna, consegnato, time_inconsegna, time_consegnato', 'safe', 'on'=>'search'),
+            array('id_archive, id_user, codfisc, nome, cognome, telefono, data, adulti, bambini, indirizzo, trigger_alert, id_volontario, in_consegna, consegnato, time_inconsegna, time_consegnato, quartiere, municipalita', 'safe', 'on'=>'search'),
         );
     }
 
@@ -87,6 +91,8 @@ class Consegne extends CActiveRecord
             'time_inconsegna' => 'Data di presa in carico',
             'time_consegnato' => 'Data di Consegna',
             'note' => 'Note',
+            'quartiere' => 'Quartiere',
+            'municipalita' => 'Municipalità',
         );
     }
 
@@ -126,9 +132,11 @@ class Consegne extends CActiveRecord
         $criteria->compare('time_consegnato',$this->time_consegnato);
         $criteria->compare('note',$this->note);
 
+        $criteria->compare('quartiere',$this->quartiere);
+        $criteria->compare('municipalita',$this->municipalita);
+
         $criteria->compare('in_consegna',0,false);
         $criteria->compare('consegnato',0,false);
-
 
         return new CActiveDataProvider($this, array(
           'criteria'=>$criteria,

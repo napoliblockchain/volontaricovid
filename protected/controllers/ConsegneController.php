@@ -51,6 +51,7 @@ class ConsegneController extends Controller
 					'export', 	// esporta la lista delle consegne in formato xls
 					'print', 	// stampa la lista di consegna dei pacchi
 					'tutti', 	// considera consegnati tutti i pacchi nello stato 2 (in consegna)
+					'checkAddress', // carica gli indirizzi in base all'input inserito
 					//'delete'
 				),
 				'users'=>array('@'),
@@ -134,6 +135,8 @@ class ConsegneController extends Controller
 			$loadData[$x][] = $data->cognome . " " . $data->nome;
 			$loadData[$x][] = $data->telefono;
 			$loadData[$x][] = $data->indirizzo;
+			$loadData[$x][] = $data->quartiere;
+			$loadData[$x][] = $data->municipalita;
 			$loadData[$x][] = $data->note;
 
 			// mentre preparo il pdf aggiorno lo stato della consegna a 2
@@ -149,7 +152,7 @@ class ConsegneController extends Controller
 			die();
 		}
 
-		$header['head'] = array('Codice', 'Nome', 'Tel.', 'Indirizzo');
+		$header['head'] = array('Codice', 'Nome', 'Tel.', 'Indirizzo','Quartiere','Mn.');
 		$header['title'] = 'CONSEGNE PRONTE';
 
 		// print colored table
@@ -180,6 +183,33 @@ class ConsegneController extends Controller
 		$consegna->time_inconsegna = 0;
 		$consegna->update();
 		$this->redirect(array('index'));
+	}
+
+	public function actionCheckAddress(){
+		$criteria=new CDbCriteria;
+		$criteria->compare('via',$_POST['address'],true);
+
+		$dataProvider=  new CActiveDataProvider('Stradario', array(
+			'criteria'=>$criteria,
+		));
+
+		$iterator = new CDataProviderIterator($dataProvider);
+		if (isset($iterator)){
+			foreach($iterator as $item) {
+					$lista[] = $item;
+			}
+		}
+
+		if (isset($lista) && count($lista) > 100)
+				$result = false;
+		else{
+			$result = true;
+		}
+
+		echo CJSON::encode([
+			'success'=>$result,
+			'list'=>(isset($lista) ? $lista : []),
+		],true);
 	}
 
 	public function actionCheckCF(){
@@ -246,12 +276,30 @@ class ConsegneController extends Controller
 			$model->consegnato = 0;
 			$model->time_inconsegna = 0;
 			$model->time_consegnato = 0;
+
+			// echo "<pre>".print_r($_POST,true)."</pre>";
+			// echo "<pre>".print_r($model->attributes,true)."</pre>";
+			// exit;
+
 			if($model->save())
 				$this->redirect(array('view','id'=>crypt::Encrypt($model->id_archive)));
 		}
 
+		// creo un criteria falso per un dataprovider vuoto
+		$criteria = new CDbCriteria();
+		$criteria->compare('id_stradario',0,false);
+		$dataProvider=new CActiveDataProvider('Stradario', array(
+			'sort'=>array(
+		  		'defaultOrder'=>array(
+		    			'via'=>false // viene prima la più recente
+		  		)
+				),
+		    'criteria'=>$criteria,
+		));
+
 		$this->render('create',array(
 			'model'=>$model,
+			'dataProvider'=>$dataProvider
 		));
 	}
 

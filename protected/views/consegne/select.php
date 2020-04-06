@@ -42,18 +42,20 @@ $form=$this->beginWidget('CActiveForm', array(
 										'value' => 'CHtml::link(date("d/M/Y",$data->data), Yii::app()->createUrl("consegne/view",["id"=>crypt::Encrypt($data->id_archive)]) )',
 										'htmlOptions'=>array('style'=>'vertical-align:middle;'),
 									),
-									array(
-							      'name'=>'cognome',
-										'type' => 'raw',
-										'value'=>'CHtml::link($data->cognome,Yii::app()->createUrl("consegne/view",["id"=>crypt::Encrypt($data->id_archive)]) )',
-										'htmlOptions'=>array('style'=>'vertical-align:middle;'),
-							    ),
-                  array(
-							    	'name'=>'nome',
-									  'type' => 'raw',
-										'value'=>'CHtml::link($data->nome,Yii::app()->createUrl("consegne/view",["id"=>crypt::Encrypt($data->id_archive)]) )',
-    								'htmlOptions'=>array('style'=>'vertical-align:middle;'),
-					        ),
+									// array(
+							    //   'name'=>'cognome',
+									// 	'type' => 'raw',
+									// 	'value'=>'CHtml::link($data->cognome,Yii::app()->createUrl("consegne/view",["id"=>crypt::Encrypt($data->id_archive)]) )',
+									// 	'htmlOptions'=>array('style'=>'vertical-align:middle;'),
+							    // ),
+                  // array(
+							    // 	'name'=>'nome',
+									//   'type' => 'raw',
+									// 	'value'=>'CHtml::link($data->nome,Yii::app()->createUrl("consegne/view",["id"=>crypt::Encrypt($data->id_archive)]) )',
+    							// 	'htmlOptions'=>array('style'=>'vertical-align:middle;'),
+					        // ),
+									'quartiere',
+									'municipalita',
                   array(
     								'name'=>'indirizzo',
     								'type'=>'raw',

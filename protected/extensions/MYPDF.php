@@ -3,7 +3,7 @@
 require_once (dirname(__FILE__).'/tcpdf/tcpdf.php');
 // Extend the TCPDF class to create custom Header and Footer
 class MYPDF extends TCPDF {
-    protected $lung_consegna = array(15, 70, 50, 142); // tot: 277
+    protected $lung_consegna = array(15, 70, 50, 95, 37, 10); // tot: 277
 
     protected $headerColor = [36,125,212];
     protected $drawColor = [0,125,212];
@@ -54,9 +54,13 @@ class MYPDF extends TCPDF {
 			$this->Cell($this->lung[1], 4, $row[1], 'LR', 0, 'L', $fill);
 			$this->Cell($this->lung[2], 4, $row[2], 'LR', 0, 'L', $fill);
 			$this->Cell($this->lung[3], 4, $row[3], 'LR', 0, 'L', $fill);
-            $this->Ln();
-            $this->Cell($this->lung[0], 4, ' ', 'LR', 0, 'L', $fill);
-            $this->Cell(262, 4, 'Note: '.$row[4], 'LR', 0, 'L', $fill);
+      $this->Cell($this->lung[4], 4, $row[4], 'LR', 0, 'L', $fill);
+      $this->Cell($this->lung[5], 4, $row[5], 'LR', 0, 'C', $fill);
+
+      // NOTE
+      $this->Ln();
+      $this->Cell($this->lung[0], 4, ' ', 'LR', 0, 'L', $fill);
+      $this->Cell(262, 4, 'Note: '.$row[6], 'LR', 0, 'L', $fill);
 
 			$this->Ln();
 			$fill=!$fill;
@@ -70,7 +74,7 @@ class MYPDF extends TCPDF {
         $this->AddPage();
         $this->SetTextColor(80,80,80);
 		$this->SetFont('dejavusans', '', 13);
-        $this->writeHTML('<h2>'.$header['title'].'</h2>', true, false, true, false, '');
+    $this->writeHTML('<h2>'.$header['title'].'</h2>', true, false, true, false, '');
 
         // Colors, line width and bold font
 		$this->SetFillColor($this->headerColor[0],$this->headerColor[1],$this->headerColor[2]);

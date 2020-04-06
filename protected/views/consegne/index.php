@@ -33,7 +33,7 @@ $consegnaURL = Yii::app()->createUrl('consegne/tutti');
 							    'dataProvider'=>$dataProvider,
 								'columns' => array(
 									array(
-									 'name'=>'Volontario',
+									 'name'=>'Operatore',
  									 'type'=>'raw',
 									 'value'=>'Users::model()->findByPk($data->id_user)->email',
 									 'visible' => $visible,
@@ -44,17 +44,19 @@ $consegnaURL = Yii::app()->createUrl('consegne/tutti');
 									 'type'=>'raw',
 									 'value' => 'CHtml::link(date("d/M/Y",$data->data), Yii::app()->createUrl("consegne/view",["id"=>crypt::Encrypt($data->id_archive),"tag"=>2]) )',
 								  ),
+									'quartiere',
+									'municipalita',
 
-									array(
-									   'name'=>'Cognome',
-									   'type'=>'raw',
-									   'value'=>'CHtml::link($data->cognome,Yii::app()->createUrl("consegne/view",["id"=>crypt::Encrypt($data->id_archive),"tag"=>2]) )',
-									),
-									array(
-										 'name'=>'Nome',
-										 'type'=>'raw',
-										 'value'=>'CHtml::link($data->nome,Yii::app()->createUrl("consegne/view",["id"=>crypt::Encrypt($data->id_archive),"tag"=>2]) )',
-									),
+									// array(
+									//    'name'=>'Cognome',
+									//    'type'=>'raw',
+									//    'value'=>'CHtml::link($data->cognome,Yii::app()->createUrl("consegne/view",["id"=>crypt::Encrypt($data->id_archive),"tag"=>2]) )',
+									// ),
+									// array(
+									// 	 'name'=>'Nome',
+									// 	 'type'=>'raw',
+									// 	 'value'=>'CHtml::link($data->nome,Yii::app()->createUrl("consegne/view",["id"=>crypt::Encrypt($data->id_archive),"tag"=>2]) )',
+									// ),
 									array(
 										 'name'=>'Indirizzo',
 										 'type'=>'raw',
@@ -105,16 +107,18 @@ $consegnaURL = Yii::app()->createUrl('consegne/tutti');
 									 'value' => 'CHtml::link(date("d/M/Y",$data->data), Yii::app()->createUrl("consegne/view",["id"=>crypt::Encrypt($data->id_archive),"tag"=>1]) )',
 								  ),
 
-									array(
-									   'name'=>'Cognome',
-									   'type'=>'raw',
-									   'value'=>'CHtml::link($data->cognome,Yii::app()->createUrl("consegne/view",["id"=>crypt::Encrypt($data->id_archive),"tag"=>1]) )',
-									),
-									array(
-										 'name'=>'Nome',
-										 'type'=>'raw',
-										 'value'=>'CHtml::link($data->nome,Yii::app()->createUrl("consegne/view",["id"=>crypt::Encrypt($data->id_archive),"tag"=>1]) )',
-									),
+									// array(
+									//    'name'=>'Cognome',
+									//    'type'=>'raw',
+									//    'value'=>'CHtml::link($data->cognome,Yii::app()->createUrl("consegne/view",["id"=>crypt::Encrypt($data->id_archive),"tag"=>1]) )',
+									// ),
+									// array(
+									// 	 'name'=>'Nome',
+									// 	 'type'=>'raw',
+									// 	 'value'=>'CHtml::link($data->nome,Yii::app()->createUrl("consegne/view",["id"=>crypt::Encrypt($data->id_archive),"tag"=>1]) )',
+									// ),
+									'quartiere',
+									'municipalita',
 									array(
 										 'name'=>'Indirizzo',
 										 'type'=>'raw',
