@@ -35,7 +35,7 @@ $consegnaURL = Yii::app()->createUrl('consegne/tutti');
 									array(
 									 'name'=>'Operatore',
  									 'type'=>'raw',
-									 'value'=>'Users::model()->findByPk($data->id_user)->email',
+									 'value'=>'Users::model()->findByPk($data->id_volontario)->email',
 									 'visible' => $visible,
 
 									),
@@ -96,8 +96,8 @@ $consegnaURL = Yii::app()->createUrl('consegne/tutti');
 								'columns' => array(
 									array(
 									 'name'=>'Operatore',
- 									 'type'=>'raw',
-									 'value'=>'Users::model()->findByPk($data->id_user)->email',
+									 'type'=>'raw',
+									 'value'=>'Users::model()->findByPk($data->id_volontario)->email',
 									 'visible' => $visible,
 
 									),

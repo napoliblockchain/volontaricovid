@@ -9,6 +9,49 @@ $form=$this->beginWidget('CActiveForm', array(
 	'enableAjaxValidation'=>false,
 ));
 
+$url = Yii::app()->createUrl('consegne/manage');
+
+$myList = <<<JS
+    lista = {
+		cambia: function(val){
+            var url = '{$url}' + "&typelist="+val;
+
+           lista.btnClass(val);
+           // AGGIORNA yiiGridView in ajax
+           $.fn.yiiGridView.update('consegne-grid-gestore', {
+               type: 'GET',
+               url: url,
+               success: function() {
+                   $('#consegne-grid-gestore').yiiGridView('update',{
+                       url: url
+                   });
+               }
+           });
+       },
+       btnClass: function(val){
+           $('.btn').removeClass("active");
+           $('.btn-'+val).addClass("active");
+       }
+	}
+
+
+JS;
+Yii::app()->clientScript->registerScript('myList', $myList);
+
+$activeButton = [
+    0 => '',    // consegnati
+    1 => '',    // in consegna
+    2 => '',    // in carico
+    3 => '',    // tutti
+
+];
+
+
+$activeButton[0] = 'active';
+
+if (isset($_GET['typelist']))
+    $activeButton[$_GET['typelist']] = 'active';
+
 
 ?>
 <div class='section__content section__content--p30'>
@@ -21,6 +64,12 @@ $form=$this->beginWidget('CActiveForm', array(
 						<span class="card-title"><?php echo Yii::t('lang','Gestione Consegne');?></span>
 					</div>
 					<div class="card-body">
+						<span>
+								<button title='Consegnati' type='button' class='btn-0 btn btn-outline-info btn-sm <?php echo $activeButton[0]; ?>' onclick='lista.cambia(0);'>Consegnati</button>
+								<button title='In consegna' type='button' class='btn-1 btn btn-outline-info btn-sm <?php echo $activeButton[1]; ?>' onclick='lista.cambia(1);'>In consegna</button>
+								<button title='In carico' type='button' class='btn-2 btn btn-outline-info btn-sm <?php echo $activeButton[2]; ?>' onclick='lista.cambia(2);'>In carico</button>
+								<button title='Tutti' type='button' class='btn-3 btn btn-outline-info btn-sm <?php echo $activeButton[3]; ?>' onclick='lista.cambia(3);'>Tutti</button>
+						</span>
 						<div class="table-responsive table--no-card ">
 							<?php
 							$this->widget('ext.selgridview.SelGridView', array(
@@ -92,13 +141,7 @@ $form=$this->beginWidget('CActiveForm', array(
 						</div>
 
 					</div>
-					<div class="card-footer">
-						<?php if ($model->search()->totalItemCount >0) { ?>
-						<div class="form-group">
-							<?php echo CHtml::submitButton(Yii::t('lang','Prendi in carico'), array('class' => 'btn btn-primary ')); ?>
-						</div>
-						<?php } ?>
-					</div>
+
 				</div>
 			</div>
 		</div>

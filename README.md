@@ -29,7 +29,7 @@ Distribuzione Aiuti Alimentari
 - Il Gestore può:
     - aggiungere, eliminare o modificare gli utenti dal menù [`Amministrazione/Volontari`]
     - scaricare in formato .xls l'archivio dal menù [`Amministrazione/Esporta`]
-    - visualizzare lo stato di ciascuna consegna e filtrarle per stato.
+    - dal menù [`Amministrazione/Consegne`] visualizzare lo stato di ciascuna consegna e filtrarle per stato, operatore ed altri campi di ricerca.
 
 
 

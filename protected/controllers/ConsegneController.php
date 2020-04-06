@@ -616,11 +616,11 @@ class ConsegneController extends Controller
 	 */
 	public function actionManage()
 	{
-		$model=new Consegne('search');
+		$model=new ConsegneMan('search');
 		$model->unsetAttributes();
 
-		if(isset($_GET['Consegne']))
-			$model->attributes=$_GET['Consegne'];
+		if(isset($_GET['ConsegneMan']))
+			$model->attributes=$_GET['ConsegneMan'];
 
 		$this->render('manage',array(
 			'model'=>$model,
