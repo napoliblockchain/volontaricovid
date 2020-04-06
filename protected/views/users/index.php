@@ -17,7 +17,7 @@ function type($type){
                 <div class="au-card au-card--no-shadow au-card--no-pad m-b-40 bg-overlay--semitransparent">
 					<div class="card-header ">
 						<i class="fas fa-users"></i>
-						<span class="card-title">Lista Volontari</span>
+						<span class="card-title">Lista Operatori</span>
               <div class="float-right">
 							<?php $actionURL = Yii::app()->createUrl('users/create'); ?>
 							<a href="<?php echo $actionURL;?>">

@@ -9,7 +9,7 @@
 			<div class="col-lg-12">
 				<div class="card">
 					<div class="card-header">
-						<h2 class='title-1 m-b-25'><small>Modifica</small> <strong>Volontario</strong></h2>
+						<h2 class='title-1 m-b-25'><small>Modifica</small> <strong>Operatore</strong></h2>
 					</div>
 					<div class="card-body card-block">
 						<?php $this->renderPartial('_form', array('model'=>$model)); ?>

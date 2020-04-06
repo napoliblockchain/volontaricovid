@@ -61,6 +61,7 @@ $bambini = [0,1,2,3,4,5,6,7,8,9,10];
 	<div class="form-group">
 		<?php echo $form->labelEx($model,'indirizzo'); ?>
 		<?php echo $form->textField($model,'indirizzo',array('style' => 'text-transform: uppercase','size'=>60,'maxlength'=>500,'placeholder'=>'Indirizzo','class'=>'form-control','onKeyPress'=>"validateAddress(event,this.value)")); ?>
+		<p class="text-primary"><i>Premere il tasto [`INVIO`] per la lista degli indirizzi. Digitare almeno 4 caratteri.</i></p>
 		<?php echo $form->error($model,'indirizzo',array('class'=>'alert alert-danger')); ?>
 		<?php echo "<div id='warningIndirizzo' class='alert alert-warning' style='display:none;'></div>"; ?>
 	</div>

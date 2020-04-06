@@ -60,7 +60,7 @@ if (isset($_GET['typelist']))
 			<div class="col-lg-12">
 				<div class="au-card au-card--no-shadow au-card--no-pad m-b-40 bg-ove rlay--semitransparent">
 					<div class="card-header ">
-						<i class="zmdi zmdi-comment-text"></i>
+						<i class="fa fa-truck"></i>
 						<span class="card-title"><?php echo Yii::t('lang','Gestione Consegne');?></span>
 					</div>
 					<div class="card-body">

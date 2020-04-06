@@ -15,7 +15,7 @@ $consegnaURL = Yii::app()->createUrl('consegne/tutti');
 			<div class="col-lg-12">
 				<div class="au-card au-card--no-shadow au-card--no-pad m-b-40 bg-overlay--semitransparent">
 					<div class="card-header ">
-						<i class="fas fa-list"></i>
+						<i class="fa fa-inbox"></i>
 						<span class="card-title">Pacchi presi in carico</span>
 						<div class="float-right">
 							<a href="<?php echo $actionURL;?>">
@@ -83,7 +83,7 @@ $consegnaURL = Yii::app()->createUrl('consegne/tutti');
 			<div class="col-lg-12">
 				<div class="au-card au-card--no-shadow au-card--no-pad m-b-40 bg-overlay--semitransparent">
 					<div class="card-header ">
-						<i class="fas fa-list"></i>
+						<i class="fa fa-truck"></i>
 						<span class="card-title">Pacchi in consegna</span>
 					</div>
 					<div class="card-body">

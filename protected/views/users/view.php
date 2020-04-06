@@ -1,5 +1,5 @@
 <?php
-$viewName = 'Volontario';
+$viewName = 'Operatore';
 
 $idUserCrypted = crypt::Encrypt($model->id_user);
 
@@ -14,7 +14,7 @@ $deleteURL = Yii::app()->createUrl('users/delete').'&id='.$idUserCrypted;
 			<div class="au-card au-card--no-shadow au-card--no-pad m-b-40 bg-overlay--semitransparent">
 				<div class="card-header ">
 					<i class="fas fa-users"></i>
-					<span class="card-title">Dettagli Volontario</span>
+					<span class="card-title">Dettagli Operatore</span>
 				</div>
 				<div class="card-body">
 
