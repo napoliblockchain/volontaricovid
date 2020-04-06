@@ -24,7 +24,7 @@
  * @property integer $time_consegnato
  * @property string $note
  */
-class Consegne extends CActiveRecord
+class ConsegneMan extends CActiveRecord
 {
     /**
      * @return string the associated database table name
@@ -110,13 +110,7 @@ class Consegne extends CActiveRecord
      */
     public function search()
     {
-        // @todo Please modify the following code to remove attributes that should not be searched.
-
-       //  echo "<pre>".print_r($_POST,true)."</pre>";
-       // echo "<pre>".print_r($_GET,true)."</pre>";
-       // echo "<pre>".print_r($this->attributes,true)."</pre>";
-       // exit;
-
+      // @todo Please modify the following code to remove attributes that should not be searched.
 
 
         $criteria=new CDbCriteria;
@@ -133,8 +127,8 @@ class Consegne extends CActiveRecord
         $criteria->compare('indirizzo',$this->indirizzo,true);
         $criteria->compare('trigger_alert',$this->trigger_alert);
         $criteria->compare('id_volontario',$this->id_volontario);
-        //$criteria->compare('in_consegna',$this->in_consegna);
-        //$criteria->compare('consegnato',$this->consegnato);
+      //  $criteria->compare('in_consegna',$this->in_consegna);
+      //  $criteria->compare('consegnato',$this->consegnato);
         $criteria->compare('time_inconsegna',$this->time_inconsegna);
         $criteria->compare('time_consegnato',$this->time_consegnato);
         $criteria->compare('note',$this->note);
@@ -142,8 +136,25 @@ class Consegne extends CActiveRecord
         $criteria->compare('quartiere',$this->quartiere);
         $criteria->compare('municipalita',$this->municipalita);
 
-        $criteria->compare('in_consegna',0,false);
-        $criteria->compare('consegnato',0,false);
+        if (!isset($_GET['typelist'])){
+          $criteria->compare('consegnato',1,false);
+          $criteria->compare('in_consegna',3,false);
+        }else if ($_GET['typelist'] == 0){
+          $criteria->compare('consegnato',1,false);
+          $criteria->compare('in_consegna',3,false);
+        }else if ($_GET['typelist'] == 1){
+          $criteria->compare('consegnato',0,false);
+          $criteria->compare('in_consegna',2,false);
+        }else if ($_GET['typelist'] == 2){
+          $criteria->compare('consegnato',0,false);
+          $criteria->compare('in_consegna',1,false);
+        }else if ($_GET['typelist'] == 3){
+          //$criteria->compare('consegnato',0,false);
+          //$criteria->compare('in_consegna',1,false);
+        }
+
+        // $criteria->compare('in_consegna',0,false);
+        // $criteria->compare('consegnato',0,false);
 
         return new CActiveDataProvider($this, array(
           'criteria'=>$criteria,

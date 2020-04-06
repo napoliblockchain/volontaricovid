@@ -5,15 +5,14 @@ Distribuzione Aiuti Alimentari
 
 
 ## Funzionamento
-- Il volontario effettua il login se ha selezionato il flag sull'informativa dei dati personali trattati.
+- L'operatore/volontario effettua il login se ha selezionato il flag sull'informativa dei dati personali trattati.
 
-- Sulla dashboard, cliccando sul pulsante [`+`] a destra, si selezionano le consegne da effettuare e non prese in carico da nessuno. Si possono filtrare ed ordinare in base alle proprie esigenze per Cognome, Nome, Municipalità e Quartiere
-
+- Sulla dashboard, cliccando sul pulsante [`+`] a destra, si selezionano le consegne da effettuare e non prese in carico da nessuno. Si possono filtrare ed ordinare in base alle proprie esigenze per Data, Municipalità e Quartiere
 
 - Sulla dashboard vengono visualizzate le proprie consegne selezionate  in carico e da effettuare:
   - Nella tabella `Pacchi presi in carico`:
-    - Cliccando sulla singola consegna ne vedo il `Dettaglio` e la posso modificare o rimettere nella disponibiltà di un altro volontario
-    - Cliccando sul punsante `Stampa lista di consegna`, metto nello stato di consegna tutti i pacchi in carico e predispongo un pdf con una lista di codici da scrivere a vista sui pacchi (per garantirne l'anonimato) a cui corrispondono i nominativi per le consegne. Per tornare al programma premere il tasto "indietro"
+    - Cliccando sulla singola consegna ne vedo il `Dettaglio` e la posso modificare o rimettere nella disponibiltà di un altro volontario/operatore
+    - Cliccando sul pulsante `Stampa lista di consegna`, metto nello stato di consegna tutti i pacchi in carico e predispongo un pdf con una lista di codici da scrivere a vista sui pacchi (per garantirne l'anonimato) a cui corrispondono i nominativi per le consegne. Per tornare al programma premere il tasto `[Indietro]` del browser.
 
   - Nella tabella `Pacchi in consegna`:
     - Cliccando sulla singola consegna ne vedo il `Dettaglio` e ne posso confermare la Consegna singolarmente
@@ -30,6 +29,7 @@ Distribuzione Aiuti Alimentari
 - Il Gestore può:
     - aggiungere, eliminare o modificare gli utenti dal menù [`Amministrazione/Volontari`]
     - scaricare in formato .xls l'archivio dal menù [`Amministrazione/Esporta`]
+    - dal menù [`Amministrazione/Consegne`] visualizzare lo stato di ciascuna consegna e filtrarle per stato, operatore ed altri campi di ricerca.
 
 
 
