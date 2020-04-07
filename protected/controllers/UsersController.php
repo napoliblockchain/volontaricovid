@@ -5,8 +5,12 @@ class UsersController extends Controller
 	public function init()
 	{
 		if (isset(Yii::app()->user->objUser) && Yii::app()->user->objUser['facade'] != 'dashboard'){
-			Yii::app()->user->logout();
-			$this->redirect(Yii::app()->homeUrl);
+			if (!isset(Yii::app()->user->objUser['privilegi'])){
+				Yii::app()->user->logout();
+				$this->redirect(Yii::app()->homeUrl);
+
+			}
+
 		}
 	}
 	/**
