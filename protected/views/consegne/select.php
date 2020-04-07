@@ -36,6 +36,7 @@ $form=$this->beginWidget('CActiveForm', array(
 									   'class'=>'CCheckBoxColumn',
 									   'htmlOptions'=>array('style'=>'padding:0px 0px 0px 0px; margin:0px 0px 0px 0px;vertical-align:middle;'),
 								  ),
+									'id_archive',
 									array(
 										'name'=>Yii::t('lang','data'),
 										'type'=>'raw',

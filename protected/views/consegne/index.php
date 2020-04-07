@@ -39,6 +39,7 @@ $consegnaURL = Yii::app()->createUrl('consegne/tutti');
 									//  'visible' => $visible,
 									//
 									// ),
+									'id_archive',
 						 		array(
 									 'name'=>'Data',
 									 'type'=>'raw',
@@ -102,6 +103,7 @@ $consegnaURL = Yii::app()->createUrl('consegne/tutti');
 									//  'visible' => $visible,
 									//
 									// ),
+									'id_archive',
 						 		array(
 									 'name'=>'Data',
 									 'type'=>'raw',
