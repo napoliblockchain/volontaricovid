@@ -2,8 +2,8 @@
 $serviceWorker = <<<JS
 
     // quando cambi questi valori modificali anche in sw.js
-    var CACHE_STATIC_NAME = 'napay-static-v103';
-    var CACHE_DYNAMIC_NAME = 'napay-dynamic-v103';
+    var CACHE_STATIC_NAME = 'dali-static-v01';
+    var CACHE_DYNAMIC_NAME = 'dali-dynamic-v01';
 
     function trimCache(cacheName, maxItems) {
     	caches.open(cacheName)

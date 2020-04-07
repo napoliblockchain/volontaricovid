@@ -3,14 +3,34 @@ importScripts('src/js/idb.js');
 importScripts('src/js/utility.js');
 
 // quando cambi questi valori modificali anche in view/layouts/js_sw.php
-var CACHE_STATIC_NAME = 'napay-static-v103';
-var CACHE_DYNAMIC_NAME = 'napay-dynamic-v103';
+var CACHE_STATIC_NAME = 'dali-static-v01';
+var CACHE_DYNAMIC_NAME = 'dali-dynamic-v01';
 var STATIC_FILES = [
 	'/',
 	'index.php',
 	'offline.php',
 ];
 
+
+// Funzione Fix per apache
+function cleanResponse(response) {
+	const clonedResponse = response.clone();
+
+	// Not all browsers support the Response.body stream, so fall back to reading
+	// the entire body into memory as a blob.
+	const bodyPromise = 'body' in clonedResponse ?
+	  Promise.resolve(clonedResponse.body) :
+	  clonedResponse.blob();
+
+	return bodyPromise.then((body) => {
+	  // new Response() is happy when passed either a stream or a Blob.
+	  return new Response(body, {
+			headers: clonedResponse.headers,
+			status: clonedResponse.status,
+			statusText: clonedResponse.statusText,
+	  });
+	});
+}
 
 
 function trimCache(cacheName, maxItems) {
@@ -96,7 +116,13 @@ self.addEventListener('fetch', function (event) {
 			caches.match(event.request)
 				.then(function(response) {
 					if (response) {
-						return response;
+						// Inizio Fix per apache
+						if(response.redirected) {
+							return cleanResponse(response);
+						} else {
+							return response;
+						}
+						// END Fix per apache
 					} else {
 						return fetch(event.request)
 							.then(function(res) {
