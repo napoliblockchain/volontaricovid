@@ -36,11 +36,12 @@ class UsersController extends Controller
 		return array(
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
 				'actions'=>array(
-					'index', // mostra elenco soci
-					'view', //visualizza dettagli socio
-					'create', //crea manualmente un socio
-					'update', //modifica socio
-					'disable', //disattiva socio
+					'index', // mostra elenco operatore
+					'view', //visualizza dettagli operatore
+					'create', //crea manualmente un operatore
+					'update', //modifica operatore
+					'disable', //disattiva operatore
+					'changepwd', // cambia la password
 				),
 				'users'=>array('@'),
 			),
@@ -60,6 +61,14 @@ class UsersController extends Controller
 		$this->render('view',array(
 			'model'=>$this->loadModel(crypt::Decrypt($id)),
 		));
+	}
+
+	public function actionDisable($id)
+	{
+		$user = $this->loadModel(crypt::Decrypt($id));
+		$user->status_activation_code = 0;
+		$user->update();
+		$this->redirect(array('index'));
 	}
 
 	/**
@@ -89,6 +98,32 @@ class UsersController extends Controller
 		}
 
 		$this->render('create',array(
+			'model'=>$model,
+		));
+	}
+
+	/**
+	 * Updates a particular model.
+	 * If update is successful, the browser will be redirected to the 'view' page.
+	 * @param integer $id the ID of the model to be updated
+	 */
+	public function actionChangepwd($id)
+	{
+		$model=$this->loadModel(crypt::Decrypt($id));
+		#echo "<pre>".print_r($_POST,true)."</pre>";
+		#exit;
+
+		if(isset($_POST['Users']))
+		{
+			$model->attributes=$_POST['Users'];
+			$model->password = CPasswordHelper::hashPassword($model->password);
+
+			if($model->save()){
+				$this->redirect(array('view','id'=>crypt::Encrypt($model->id_user)));
+			}
+		}
+
+		$this->render('changepwd',array(
 			'model'=>$model,
 		));
 	}

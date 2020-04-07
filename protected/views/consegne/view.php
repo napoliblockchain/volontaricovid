@@ -47,6 +47,10 @@ $restituisciURL = Yii::app()->createUrl('consegne/restituisci',array("id"=>crypt
 								'note',
 								'adulti',
 								'bambini',
+								array(
+									'label'=>'Data consegna',
+									'value'=>date("d/m/Y",$model->time_consegnato),
+								),
 							),
 						));
 						?>
@@ -57,22 +61,24 @@ $restituisciURL = Yii::app()->createUrl('consegne/restituisci',array("id"=>crypt
 						<div class="col-md-6">
 							<div class="overview-wrap">
 								<h2 class="title-1">
-									<a href="<?php echo $modifyURL;?>">
-										<button type="button" class="btn btn-secondary">Modifica</button>
-									</a>
-									<?php	if ($tag == 1){	?>
-									<button type="button" class="btn btn-success" data-toggle="modal" data-target="#mediumModal">Consegna</button>
-									<?php } ?>
-									<?php	if ($tag == 2){	?>
+									<?php	if ($tag == 0):	?>
+										<a href="<?php echo $modifyURL;?>">
+											<button type="button" class="btn btn-secondary">Modifica</button>
+										</a>
+									<?php endif ?>
+									<?php	if ($tag == 1):	?>
+										<button type="button" class="btn btn-success" data-toggle="modal" data-target="#mediumModal">Consegna</button>
+									<?php endif ?>
+									<?php	if ($tag == 2):	?>
 										<a href="<?php echo $restituisciURL;?>">
-									<button type="button" class="btn btn-warning">Rimetti in lista</button>
-									</a>
-								<?php } ?>
-								<?php if ($model->id_volontario == 0 && $tag <>2){	?>
-									<a href="<?php echo $assegnaURL;?>">
-										<button type="button" class="btn btn-warning">Assegna a me stesso</button>
-									</a>
-							<?php } ?>
+											<button type="button" class="btn btn-warning">Rimetti in lista</button>
+										</a>
+									<?php endif ?>
+									<?php if ($model->id_volontario == 0 && $tag <>2){	?>
+										<a href="<?php echo $assegnaURL;?>">
+											<button type="button" class="btn btn-warning">Assegna a me stesso</button>
+										</a>
+									<?php } ?>
 								</h2>
 							</div>
 						</div>

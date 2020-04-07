@@ -59,14 +59,18 @@ $form=$this->beginWidget('CActiveForm', array(
                   array(
     								'name'=>'indirizzo',
     								'type'=>'raw',
-    								'value'=>'CHtml::link($data->indirizzo,Yii::app()->createUrl("consegne/view",["id"=>crypt::Encrypt($data->id_archive),"tag"=>1]) )',
+    								//'value'=>'CHtml::link($data->indirizzo,Yii::app()->createUrl("consegne/view",["id"=>crypt::Encrypt($data->id_archive),"tag"=>1]) )',
+										'value'=> 'Yii::app()->controller->maskAddress($data->indirizzo,$data->id_archive,1)',
     							),
-                  array(
-                    'name'=>'codfisc',
-                    'type' => 'raw',
-                    'value'=>'CHtml::link($data->codfisc,Yii::app()->createUrl("consegne/view",["id"=>crypt::Encrypt($data->id_archive)]) )',
-                    'htmlOptions'=>array('style'=>'vertical-align:middle;'),
-                  ),
+                  // array(
+                  //   'name'=>'codfisc',
+                  //   'type' => 'raw',
+                  //   'value'=>'CHtml::link($data->codfisc,Yii::app()->createUrl("consegne/view",["id"=>crypt::Encrypt($data->id_archive)]) )',
+                  //   'htmlOptions'=>array('style'=>'vertical-align:middle;'),
+                  // ),
+									array(
+										'value'=>'',
+									),
 								)
 							));
 							?>

@@ -399,3 +399,40 @@ h1 small.logo-descri {
 #consegne-grid-gestore a:selected {
   color: blue;
 }
+
+a.tipaddress {
+    /* border-bottom: 1px dashed; */
+    text-decoration: none
+
+
+}
+a.tipaddress:hover {
+    cursor: help;
+    position: relative
+}
+a.tipaddress span {
+    display: none
+}
+a.tipaddress:hover span {
+    padding: 5px 20px 5px 20px;
+    display: block;
+    z-index: 100;
+
+    left: -100px;
+    margin: 10px;
+    width: 250px;
+    position: absolute;
+    top: -50px;
+    text-decoration: none
+
+
+    border: 1px solid darkblue;
+    background: #666;
+    color: yellow;
+
+    -moz-border-radius:6px;
+    -khtml-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border-radius:6px;
+
+}

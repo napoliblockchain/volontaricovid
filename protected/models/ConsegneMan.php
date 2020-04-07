@@ -115,13 +115,13 @@ class ConsegneMan extends CActiveRecord
 
         $criteria=new CDbCriteria;
 
-        $criteria->compare('id_archive',$this->id_archive);
-        $criteria->compare('id_user',$this->id_user);
+        //$criteria->compare('id_archive',$this->id_archive);
+        //$criteria->compare('id_user',$this->id_user);
         $criteria->compare('codfisc',$this->codfisc,true);
         $criteria->compare('nome',$this->nome,true);
         $criteria->compare('cognome',$this->cognome,true);
         $criteria->compare('telefono',$this->telefono,true);
-        $criteria->compare('data',$this->data);
+        //$criteria->compare('data',$this->data);
         $criteria->compare('adulti',$this->adulti);
         $criteria->compare('bambini',$this->bambini);
         $criteria->compare('indirizzo',$this->indirizzo,true);
@@ -160,7 +160,7 @@ class ConsegneMan extends CActiveRecord
           'criteria'=>$criteria,
           'sort'=>array(
             'defaultOrder'=>array(
-              'id_archive'=>false,
+              'id_archive'=>true,
             )
           ),
           'pagination' => array(

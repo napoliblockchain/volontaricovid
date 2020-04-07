@@ -4,7 +4,8 @@ $viewName = 'Operatore';
 $idUserCrypted = crypt::Encrypt($model->id_user);
 
 $modifyURL = Yii::app()->createUrl('users/update').'&id='.$idUserCrypted;
-$deleteURL = Yii::app()->createUrl('users/delete').'&id='.$idUserCrypted;
+$pwdchangeURL = Yii::app()->createUrl('users/changepwd').'&id='.$idUserCrypted;
+$deleteURL = Yii::app()->createUrl('users/disable').'&id='.$idUserCrypted;
 
 ?>
 <div class='section__content section__content--p30'>
@@ -26,12 +27,6 @@ $deleteURL = Yii::app()->createUrl('users/delete').'&id='.$idUserCrypted;
 								'surname',
 								'name',
 								'email',
-
-
-
-
-
-
 							),
 						));
 						?>
@@ -42,6 +37,9 @@ $deleteURL = Yii::app()->createUrl('users/delete').'&id='.$idUserCrypted;
 						<div class="col-md-6">
 							<a href="<?php echo $modifyURL;?>">
 								<button type="button" class="btn btn-secondary">Modifica</button>
+							</a>
+							<a href="<?php echo $pwdchangeURL;?>">
+								<button type="button" class="btn btn-warning">Cambia password</button>
 							</a>
 							<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#scrollmodalModello">Elimina</button>
 
