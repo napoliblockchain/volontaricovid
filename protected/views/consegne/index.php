@@ -60,7 +60,8 @@ $consegnaURL = Yii::app()->createUrl('consegne/tutti');
 									array(
 										 'name'=>'Indirizzo',
 										 'type'=>'raw',
-										 'value'=>'CHtml::link($data->indirizzo,Yii::app()->createUrl("consegne/view",["id"=>crypt::Encrypt($data->id_archive),"tag"=>2]) )',
+										 //'value'=>'CHtml::link($data->indirizzo,Yii::app()->createUrl("consegne/view",["id"=>crypt::Encrypt($data->id_archive),"tag"=>2]) )',
+										 'value'=> 'Yii::app()->controller->maskAddress($data->indirizzo,$data->id_archive,2)',
 									),
 									array(
 										'name' => '',
@@ -122,7 +123,8 @@ $consegnaURL = Yii::app()->createUrl('consegne/tutti');
 									array(
 										 'name'=>'Indirizzo',
 										 'type'=>'raw',
-										 'value'=>'CHtml::link($data->indirizzo,Yii::app()->createUrl("consegne/view",["id"=>crypt::Encrypt($data->id_archive),"tag"=>1]) )',
+										 //'value'=>'CHtml::link($data->indirizzo,Yii::app()->createUrl("consegne/view",["id"=>crypt::Encrypt($data->id_archive),"tag"=>1]) )',
+										 'value'=> 'Yii::app()->controller->maskAddress($data->indirizzo,$data->id_archive,1)',
 									),
 									array(
 										'name' => '',

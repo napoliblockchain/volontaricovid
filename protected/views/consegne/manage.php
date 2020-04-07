@@ -43,15 +43,24 @@ $activeButton = [
     1 => '',    // in consegna
     2 => '',    // in carico
     3 => '',    // tutti
-
 ];
 
 
 $activeButton[0] = 'active';
 
-if (isset($_GET['typelist']))
-    $activeButton[$_GET['typelist']] = 'active';
+$get = 0;
+if (isset($_GET['typelist'])){
+	$get = $_GET['typelist'];
+	$activeButton[$get] = 'active';
+}
 
+
+$tag = [
+	0 => 3,
+	1 => 1,
+	2 => 2,
+	3 => 0
+];
 
 ?>
 <div class='section__content section__content--p30'>
@@ -85,6 +94,15 @@ if (isset($_GET['typelist']))
 									//    'htmlOptions'=>array('style'=>'padding:0px 0px 0px 0px; margin:0px 0px 0px 0px;vertical-align:middle;'),
 								  // ),
 									array(
+
+										'name'=>Yii::t('lang','data'),
+										'type'=>'raw',
+										'value' => 'CHtml::link(date("d/M/Y",$data->data), Yii::app()->createUrl("consegne/view",["id"=>crypt::Encrypt($data->id_archive),"tag"=>'.$tag[$get].']) )',
+										'htmlOptions'=>array('style'=>'vertical-align:middle;'),
+										'filter'=>false,
+									),
+
+									array(
 									 'name'=>'id_volontario',
 									 'type'=>'raw',
 									 'value'=>'($data->id_volontario <> 0 ) ? Users::model()->findByPk($data->id_volontario)->email : ""',
@@ -93,14 +111,7 @@ if (isset($_GET['typelist']))
 									 })
 
 									),
-									array(
 
-										'name'=>Yii::t('lang','data'),
-										'type'=>'raw',
-										'value' => 'CHtml::link(date("d/M/Y",$data->data), Yii::app()->createUrl("consegne/view",["id"=>crypt::Encrypt($data->id_archive)]) )',
-										'htmlOptions'=>array('style'=>'vertical-align:middle;'),
-										'filter'=>false,
-									),
 									'quartiere',
 									'municipalita',
 									'indirizzo',

@@ -443,11 +443,12 @@ class ConsegneController extends Controller
 									 ->setCategory($Category);
 
 		// Add header
-		$colonne = array('a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q');
+		$colonne = array('a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u');
 		$intestazione = array(
 			"ID",
 			"Data Inserimento",
 			"ID User che inserisce",
+			"Nome User che inserisce",
 			"Codice Fiscale",
 			"Nome",
 			"Cognome",
@@ -455,8 +456,11 @@ class ConsegneController extends Controller
 			"Adulti",
 			"Neonati",
 			"Indirizzo",
+			"Quartiere",
+			"Municipalità",
 			"Alert se < 7gg",
-			"ID Volontario in consegna",
+			"ID User in consegna",
+			"Nome User in consegna",
 			"Pacco in consegna",
 			"Data presa in carico",
 			"Consegnato",
@@ -475,23 +479,27 @@ class ConsegneController extends Controller
 		foreach($transactions as $item) {
 			// Miscellaneous glyphs, UTF-8
 			$objPHPExcel->setActiveSheetIndex(0)
-			            ->setCellValue('A'.$riga, $item->id_archive)
-			            ->setCellValue('B'.$riga, date("d/m/Y",$item->data))
+			      ->setCellValue('A'.$riga, $item->id_archive)
+			      ->setCellValue('B'.$riga, date("d/m/Y",$item->data))
 						->setCellValue('C'.$riga, $item->id_user)
-						->setCellValue('D'.$riga, $item->codfisc)
-						->setCellValue('E'.$riga, $item->nome)
-						->setCellValue('F'.$riga, $item->cognome)
-						->setCellValue('G'.$riga, $item->telefono)
-						->setCellValue('H'.$riga, $item->adulti)
-						->setCellValue('I'.$riga, $item->bambini)
-						->setCellValue('J'.$riga, $item->indirizzo)
-						->setCellValue('K'.$riga, $item->trigger_alert)
-						->setCellValue('L'.$riga, $item->id_volontario)
-						->setCellValue('M'.$riga, $item->in_consegna)
-						->setCellValue('N'.$riga, ($item->time_inconsegna == 0) ? '' : date("d/m/Y H:i:s",$item->time_inconsegna))
-						->setCellValue('O'.$riga, $item->consegnato)
-						->setCellValue('P'.$riga, ($item->time_consegnato == 0) ? '' : date("d/m/Y H:i:s",$item->time_consegnato))
-						->setCellValue('Q'.$riga, $item->note);
+						->setCellValue('D'.$riga, Users::model()->findByPk($item->id_user)->email)
+						->setCellValue('E'.$riga, $item->codfisc)
+						->setCellValue('F'.$riga, $item->nome)
+						->setCellValue('G'.$riga, $item->cognome)
+						->setCellValue('H'.$riga, $item->telefono)
+						->setCellValue('I'.$riga, $item->adulti)
+						->setCellValue('J'.$riga, $item->bambini)
+						->setCellValue('K'.$riga, $item->indirizzo)
+						->setCellValue('L'.$riga, $item->quartiere)
+						->setCellValue('M'.$riga, $item->municipalita)
+						->setCellValue('N'.$riga, $item->trigger_alert)
+						->setCellValue('O'.$riga, $item->id_volontario)
+						->setCellValue('P'.$riga, ($item->id_volontario == 0) ? '' : Users::model()->findByPk($item->id_volontario)->email)
+						->setCellValue('Q'.$riga, $item->in_consegna)
+						->setCellValue('R'.$riga, ($item->time_inconsegna == 0) ? '' : date("d/m/Y H:i:s",$item->time_inconsegna))
+						->setCellValue('S'.$riga, $item->consegnato)
+						->setCellValue('T'.$riga, ($item->time_consegnato == 0) ? '' : date("d/m/Y H:i:s",$item->time_consegnato))
+						->setCellValue('U'.$riga, $item->note);
 
 			$riga++;
 			$Rows++;
