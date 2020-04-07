@@ -63,6 +63,14 @@ class UsersController extends Controller
 		));
 	}
 
+	public function actionDisable($id)
+	{
+		$user = $this->loadModel(crypt::Decrypt($id));
+		$user->status_activation_code = 0;
+		$user->update();
+		$this->redirect(array('index'));
+	}
+
 	/**
 	 * Creates a new model.
 	 * If creation is successful, the browser will be redirected to the 'view' page.

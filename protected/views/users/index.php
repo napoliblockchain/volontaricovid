@@ -31,26 +31,26 @@ function type($type){
         				<div class="table-responsive table--no-card m-t-40">
         					<?php
         					$this->widget('zii.widgets.grid.CGridView', array(
-                          'id'=>'soci-grid',
-                          'htmlOptions' => array('class' => 'table table-wallet '),
-        					        'dataProvider'=>$dataProvider,
-                          'id'=>'users-grid',
-                          'enablePagination'  => true,
+                    'id'=>'soci-grid',
+                    'htmlOptions' => array('class' => 'table table-wallet '),
+        					  'dataProvider'=>$dataProvider,
+                    'id'=>'users-grid',
+                    'enablePagination'  => true,
         						'columns' => array(
 
         							array(
         								'type'=> 'raw',
         					      'name'=>'name',
                         'header'=>'Nome',
-        								'value' => 'CHtml::link(CHtml::encode(strtoupper(Users::model()->findByPk($data->id_user)->surname).chr(32).Users::model()->findByPk($data->id_user)->name), Yii::app()->createUrl("users/view")."&id=".CHtml::encode(crypt::Encrypt($data->id_user)))',
-                                        'filter' => CHtml::listData(Users::model()->findAll(array('order'=>'surname ASC, name ASC')), 'surname', function($items) {
-                                        	 return $items->surname.' '.$items->name;
-                                        })
+        								'value' => '($data->status_activation_code == 0) ? strtoupper(Users::model()->findByPk($data->id_user)->surname).chr(32).Users::model()->findByPk($data->id_user)->name : CHtml::link(CHtml::encode(strtoupper(Users::model()->findByPk($data->id_user)->surname).chr(32).Users::model()->findByPk($data->id_user)->name), Yii::app()->createUrl("users/view")."&id=".CHtml::encode(crypt::Encrypt($data->id_user)))',
+                        'filter' => CHtml::listData(Users::model()->findAll(array('order'=>'surname ASC, name ASC')), 'surname', function($items) {
+                                  	   return $items->surname.' '.$items->name;
+                                    })
         					      ),
         							array(
         					      'name'=>'email',
         								'type'=>'raw',
-        								'value' => 'CHtml::link(CHtml::encode($data->email), Yii::app()->createUrl("users/view")."&id=".CHtml::encode(crypt::Encrypt($data->id_user)))',
+        								'value' => '($data->status_activation_code == 0) ? CHtml::encode($data->email) : CHtml::link(CHtml::encode($data->email), Yii::app()->createUrl("users/view")."&id=".CHtml::encode(crypt::Encrypt($data->id_user)))',
         					        ),
 
 
