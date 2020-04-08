@@ -58,7 +58,7 @@ $tag = [
 				<div class="au-card au-card--no-shadow au-card--no-pad m-b-40 bg-ove rlay--semitransparent">
 					<div class="card-header ">
 						<i class="fa fa-truck"></i>
-						<span class="card-title"><?php echo Yii::t('lang','Gestione Consegne');?></span>
+						<span class="card-title"><?php echo Yii::t('lang','Presa in carico ordini');?></span>
 					</div>
 					<div class="card-body">
 						<row>
@@ -90,7 +90,7 @@ $tag = [
 									array(
 										'name'=>'id_archive',
 										'value'=>'$data->id_archive',
-										'htmlOptions'=>array('style'=>'text-align:center;'),
+										'htmlOptions'=>array('style'=>'text-align:center;width:60px;'),
 									),
 									array(
 										'name'=>Yii::t('lang','data'),
@@ -107,6 +107,7 @@ $tag = [
 										'value'=>'"A:".$data->adulti." / N:".$data->bambini',
 										'htmlOptions'=>array('style'=>'text-align:center;'),
 									),
+									'municipalita',
 									array(
 										'name'=>'quartiere',
 										//'header'=>'Qta',
@@ -115,7 +116,7 @@ $tag = [
 										'filter' => CHtml::listData(Quartieri::model()->findAll(array('order'=>'descrizione ASC')), 'descrizione', 'descrizione')
 
 									),
-									'municipalita',
+
 									array(
     									'name'=>'indirizzo',
     									'type'=>'raw',

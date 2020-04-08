@@ -16,7 +16,7 @@ $consegnaURL = Yii::app()->createUrl('consegne/tutti');
 				<div class="au-card au-card--no-shadow au-card--no-pad m-b-40 bg-overlay--semitransparent">
 					<div class="card-header ">
 						<i class="fa fa-inbox"></i>
-						<span class="card-title">Pacchi presi in carico</span>
+						<span class="card-title">Ordini presi in carico</span>
 						<div class="float-right">
 							<a href="<?php echo $actionURL;?>">
 								<button class="btn alert-primary text-light img-cir" style="padding:2.5px; width:30px; height:30px;">
@@ -43,6 +43,7 @@ $consegnaURL = Yii::app()->createUrl('consegne/tutti');
 									// array(
 									//
 									// ),
+
 									'id_archive',
 						 			array(
 										'name'=>'data',
@@ -56,8 +57,9 @@ $consegnaURL = Yii::app()->createUrl('consegne/tutti');
 										'type'=>'raw',
 										'value'=>'"A:".$data->adulti." / N:".$data->bambini'
 									),
-									'quartiere',
+
 									'municipalita',
+									'quartiere',
 
 									array(
 										 'name'=>'indirizzo',
@@ -77,7 +79,7 @@ $consegnaURL = Yii::app()->createUrl('consegne/tutti');
 					</div>
 					<div class="card-footer">
 						<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#mediumModal">
-							<i class="fa fa-print"></i> <?php echo Yii::t('lang','Stampa lista di consegna');?>
+							<i class="fa fa-print"></i> <?php echo Yii::t('lang','CREA BOLLA');?>
 						</button>
 					</div>
 				</div>
@@ -87,7 +89,7 @@ $consegnaURL = Yii::app()->createUrl('consegne/tutti');
 				<div class="au-card au-card--no-shadow au-card--no-pad m-b-40 bg-overlay--semitransparent">
 					<div class="card-header ">
 						<i class="fa fa-truck"></i>
-						<span class="card-title">Pacchi in consegna</span>
+						<span class="card-title">Ordini in consegna</span>
 					</div>
 					<div class="card-body">
 						<div class="table-responsive table--no-card">
@@ -111,8 +113,8 @@ $consegnaURL = Yii::app()->createUrl('consegne/tutti');
 										'type'=>'raw',
 										'value'=>'"A:".$data->adulti." / N:".$data->bambini'
 								  	),
-									'quartiere',
 									'municipalita',
+									'quartiere',
 									array(
 										 'name'=>'indirizzo',
 										 'header'=>'Indirizzo',
