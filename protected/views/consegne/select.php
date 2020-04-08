@@ -61,20 +61,20 @@ $tag = [
 						<span class="card-title"><?php echo Yii::t('lang','Presa in carico ordini');?></span>
 					</div>
 					<div class="card-body">
-						<row>
-							<div class="col col-sm-3">
+						<div class="row">
+							<div class="col">
 								<select name="Consegna[quartiere]">
 									<option value></option>
 								<?php foreach ($listaQuartieri as $descri){	echo "<option value='".$descri."'>".$descri."</option>"; }						?>
 								</select>
 							</div>
-							<div class="col col-sm-3">
+							<div class="col">
 								<select name="Consegna[quartiere]">
 									<option value></option>
 								<?php foreach ($listaMun as $mun){	echo "<option value='".$mun."'>".$mun."</option>"; }						?>
 								</select>
 							</div>
-						</row>
+						</div>
 						<div class="table-responsive table--no-card ">
 							<?php
 							$this->widget('ext.selgridview.SelGridView', array(
