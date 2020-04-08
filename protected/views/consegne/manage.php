@@ -104,6 +104,12 @@ $tag = [
 											return $items->email;
 										})
 									),
+									array(
+										'name'=>'adulti',
+										'header'=>'Qta',
+										'type'=>'raw',
+										'value'=>'"A:".$data->adulti." / N:".$data->bambini'
+									),
 									'quartiere',
 									'municipalita',
 									'indirizzo',
