@@ -49,7 +49,7 @@ $restituisciURL = Yii::app()->createUrl('consegne/restituisci',array("id"=>crypt
 								'bambini',
 								array(
 									'label'=>'Data consegna',
-									'value'=>date("d/m/Y",$model->time_consegnato),
+									'value'=>($model->time_consegnato <> 0) ? date("d/m/Y",$model->time_consegnato) : "",
 								),
 							),
 						));

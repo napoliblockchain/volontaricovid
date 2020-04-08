@@ -42,7 +42,7 @@ class Consegne extends CActiveRecord
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('id_user, codfisc, nome, cognome, data, adulti, bambini, indirizzo, telefono', 'required'),
+            array('id_user, codfisc, nome, cognome, data, adulti, bambini, indirizzo, telefono, quartiere, municipalita', 'required'),
             array('id_user, data, adulti, bambini, trigger_alert, id_volontario, in_consegna, consegnato, time_inconsegna, time_consegnato', 'numerical', 'integerOnly'=>true),
             array('codfisc', 'length', 'max'=>16),
             array('telefono', 'length', 'max'=>50),

@@ -68,10 +68,12 @@ $bambini = [0,1,2,3,4,5,6,7,8,9,10];
 	<div class="form-group">
 		<?php echo $form->labelEx($model,'quartiere'); ?>
 		<?php echo $form->textField($model,'quartiere',array('class'=>'form-control','readonly'=>'true')); ?>
+		<?php echo $form->error($model,'quartiere',array('class'=>'alert alert-danger')); ?>
 	</div>
 	<div class="form-group">
 		<?php echo $form->labelEx($model,'municipalita'); ?>
 		<?php echo $form->textField($model,'municipalita',array('class'=>'form-control','readonly'=>'true')); ?>
+		<?php echo $form->error($model,'municipalita',array('class'=>'alert alert-danger')); ?>
 	</div>
 
 	<div class="form-group">

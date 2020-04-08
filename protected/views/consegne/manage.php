@@ -74,27 +74,21 @@ $tag = [
 					</div>
 					<div class="card-body">
 						<span>
-								<button title='Consegnati' type='button' class='btn-0 btn btn-outline-info btn-sm <?php echo $activeButton[0]; ?>' onclick='lista.cambia(0);'>Consegnati</button>
-								<button title='In consegna' type='button' class='btn-1 btn btn-outline-info btn-sm <?php echo $activeButton[1]; ?>' onclick='lista.cambia(1);'>In consegna</button>
-								<button title='In carico' type='button' class='btn-2 btn btn-outline-info btn-sm <?php echo $activeButton[2]; ?>' onclick='lista.cambia(2);'>In carico</button>
-								<button title='Tutti' type='button' class='btn-3 btn btn-outline-info btn-sm <?php echo $activeButton[3]; ?>' onclick='lista.cambia(3);'>Tutti</button>
+							<button title='Consegnati' type='button' class='btn-0 btn btn-outline-info btn-sm <?php echo $activeButton[0]; ?>' onclick='lista.cambia(0);'>Consegnati</button>
+							<button title='In consegna' type='button' class='btn-1 btn btn-outline-info btn-sm <?php echo $activeButton[1]; ?>' onclick='lista.cambia(1);'>In consegna</button>
+							<button title='In carico' type='button' class='btn-2 btn btn-outline-info btn-sm <?php echo $activeButton[2]; ?>' onclick='lista.cambia(2);'>In carico</button>
+							<button title='Tutti' type='button' class='btn-3 btn btn-outline-info btn-sm <?php echo $activeButton[3]; ?>' onclick='lista.cambia(3);'>Tutti</button>
 						</span>
 						<div class="table-responsive table--no-card ">
 							<?php
 							$this->widget('ext.selgridview.SelGridView', array(
 								'id'=>'consegne-grid-gestore',
 								'selectableRows' => 0, // valori sono 0,1,2
-								//'htmlOptions' => array('class' => 'table table-borderless table-data3'),
 								'dataProvider'=>$model->search(),
 	 							'filter'=>$model,
 								'columns' => array(
-									// array(
-									//    'id'=>'consegneSelezionate',
-									//    'class'=>'CCheckBoxColumn',
-									//    'htmlOptions'=>array('style'=>'padding:0px 0px 0px 0px; margin:0px 0px 0px 0px;vertical-align:middle;'),
-								  // ),
+								  	'id_archive',
 									array(
-
 										'name'=>Yii::t('lang','data'),
 										'type'=>'raw',
 										'value' => 'CHtml::link(date("d/M/Y",$data->data), Yii::app()->createUrl("consegne/view",["id"=>crypt::Encrypt($data->id_archive),"tag"=>'.$tag[$get].']) )',
@@ -103,48 +97,19 @@ $tag = [
 									),
 
 									array(
-									 'name'=>'id_volontario',
-									 'type'=>'raw',
-									 'value'=>'($data->id_volontario <> 0 ) ? Users::model()->findByPk($data->id_volontario)->email : ""',
-									 'filter' => CHtml::listData(Users::model()->findAll(array('order'=>'email ASC')), 'id_user', function($items) {
+										'name'=>'id_volontario',
+										'type'=>'raw',
+										'value'=>'($data->id_volontario <> 0 ) ? (isset(Users::model()->findByPk($data->id_volontario)->email)) ? Users::model()->findByPk($data->id_volontario)->email : "Not Found" : ""',
+										'filter' => CHtml::listData(Users::model()->findAll(array('order'=>'email ASC')), 'id_user', function($items) {
 											return $items->email;
-									 })
-
+										})
 									),
-
 									'quartiere',
 									'municipalita',
 									'indirizzo',
 									'codfisc',
 									'cognome',
 									'nome',
-                  // array(
-    							// 	'name'=>'indirizzo',
-    							// 	'type'=>'raw',
-    							// 	'value'=>'CHtml::link($data->indirizzo,Yii::app()->createUrl("consegne/view",["id"=>crypt::Encrypt($data->id_archive),"tag"=>1]) )',
-									// 	  'filter'=>$model->search(),
-    							// ),
-                  // array(
-                  //   'name'=>'codfisc',
-                  //   'type' => 'raw',
-                  //   'value'=>'CHtml::link($data->codfisc,Yii::app()->createUrl("consegne/view",["id"=>crypt::Encrypt($data->id_archive)]) )',
-                  //   'htmlOptions'=>array('style'=>'vertical-align:middle;'),
-									// 	  'filter'=>true
-                  // ),
-									// array(
-							    //   'name'=>'cognome',
-									// 	'type' => 'raw',
-									// 	'value'=>'CHtml::link($data->cognome,Yii::app()->createUrl("consegne/view",["id"=>crypt::Encrypt($data->id_archive)]) )',
-									// 	'htmlOptions'=>array('style'=>'vertical-align:middle;'),
-									// 	 'filter'=>true
-							    // ),
-                  // array(
-							    // 	'name'=>'nome',
-									//   'type' => 'raw',
-									// 	'value'=>'CHtml::link($data->nome,Yii::app()->createUrl("consegne/view",["id"=>crypt::Encrypt($data->id_archive)]) )',
-    							// 	'htmlOptions'=>array('style'=>'vertical-align:middle;'),
-									// 	  'filter'=>true
-					        // ),
 								)
 							));
 							?>
@@ -156,14 +121,8 @@ $tag = [
 				</div>
 			</div>
 		</div>
-			<?php echo Logo::footer(); ?>
+		<?php echo Logo::footer(); ?>
 	</div>
 </div>
-
-
-
-
-
-
 <?php $this->endWidget(); ?>
 </div><!-- form -->
