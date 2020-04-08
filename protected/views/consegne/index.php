@@ -31,6 +31,7 @@ $consegnaURL = Yii::app()->createUrl('consegne/tutti');
 								'htmlOptions' => array('class' => 'table table-wallet'),
 								'id'=>'incarico',
 							    'dataProvider'=>$dataProvider,
+								//'filter'=>$model,
 								'columns' => array(
 									// array(
 									//  'name'=>'Operatore',
@@ -44,12 +45,14 @@ $consegnaURL = Yii::app()->createUrl('consegne/tutti');
 									// ),
 									'id_archive',
 						 			array(
-										'name'=>'Data',
+										'name'=>'data',
+										'header'=>'Data',
 										'type'=>'raw',
 										'value' => 'CHtml::link(date("d/M/Y",$data->data), Yii::app()->createUrl("consegne/view",["id"=>crypt::Encrypt($data->id_archive),"tag"=>2]) )',
 								  	),
 									array(
-										'name'=>'Qta',
+										'name'=>'adulti',
+										'header'=>'Qta',
 										'type'=>'raw',
 										'value'=>'"A:".$data->adulti." / N:".$data->bambini'
 									),
@@ -57,12 +60,13 @@ $consegnaURL = Yii::app()->createUrl('consegne/tutti');
 									'municipalita',
 
 									array(
-										 'name'=>'Indirizzo',
+										 'name'=>'indirizzo',
+										 'header'=>'Indirizzo',
 										 'type'=>'raw',
 										 'value'=> 'Yii::app()->controller->maskAddress($data->indirizzo,$data->id_archive,2)',
 									),
 									array(
-										'name' => '',
+										//'name' => '',
 										'value'=>'',
 									),
 
@@ -92,27 +96,31 @@ $consegnaURL = Yii::app()->createUrl('consegne/tutti');
 								'htmlOptions' => array('class' => 'table table-wallet'),
 								'id'=>'inconsegna',
 							    'dataProvider'=>$dataSpedite,
+								//'filter'=>$model,
 								'columns' => array(
 									'id_archive',
 						 			array(
-										'name'=>'Data',
+										'name'=>'data',
+										'header'=>'Data',
 										'type'=>'raw',
 										'value' => 'CHtml::link(date("d/M/Y",$data->data), Yii::app()->createUrl("consegne/view",["id"=>crypt::Encrypt($data->id_archive),"tag"=>1]) )',
 								  	),
 								  	array(
-										'name'=>'Qta',
+										'name'=>'adulti',
+										'header'=>'Qta',
 										'type'=>'raw',
 										'value'=>'"A:".$data->adulti." / N:".$data->bambini'
 								  	),
 									'quartiere',
 									'municipalita',
 									array(
-										 'name'=>'Indirizzo',
+										 'name'=>'indirizzo',
+										 'header'=>'Indirizzo',
 										 'type'=>'raw',
 										 'value'=> 'Yii::app()->controller->maskAddress($data->indirizzo,$data->id_archive,1)',
 									),
 									array(
-										'name' => '',
+										//'name' => '',
 										'value'=>'',
 									),
 

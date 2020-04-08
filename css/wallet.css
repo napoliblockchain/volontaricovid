@@ -55,6 +55,16 @@
   width: inherit;
 }
 
+.table-wallet table.items tr.filters{
+    background: lightgray;
+}
+.table-wallet table.items tr.filters input{
+    background: gray;
+    color: #f0f0f0;
+}
+
+
+
 
 
 

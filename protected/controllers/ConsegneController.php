@@ -560,9 +560,16 @@ class ConsegneController extends Controller
 			'criteria'=>$criteria2,
 		));
 
+		// carico il model per i filtri
+		$model=new Consegne('search');
+		$model->unsetAttributes();
+		if(isset($_GET['Consegne']))
+			$model->attributes=$_GET['Consegne'];
+
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 			'dataSpedite'=>$dataSpedite,
+			'model'=>$model
 		));
 	}
 
