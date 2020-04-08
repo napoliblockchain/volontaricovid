@@ -1,7 +1,7 @@
 <div class="form">
 <?php
 $form=$this->beginWidget('CActiveForm', array(
-	'id'=>'consegne-form',
+	'id'=>'manage-form',
 	// Please note: When you enable ajax validation, make sure the corresponding
 	// controller action is handling ajax validation correctly.
 	// There is a call to performAjaxValidation() commented in generated controller code.
@@ -110,7 +110,14 @@ $tag = [
 										'type'=>'raw',
 										'value'=>'"A:".$data->adulti." / N:".$data->bambini'
 									),
-									'quartiere',
+									array(
+										'name'=>'quartiere',
+										//'header'=>'Qta',
+										'type'=>'raw',
+										'value'=>'$data->quartiere',
+										'filter' => CHtml::listData(Quartieri::model()->findAll(array('order'=>'descrizione ASC')), 'descrizione', 'descrizione')
+
+									),
 									'municipalita',
 									'indirizzo',
 									'codfisc',

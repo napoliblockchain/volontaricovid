@@ -309,8 +309,8 @@ class ConsegneController extends Controller
 
 	public function actionSelect()
 	{
-		// echo "<pre>".print_r($_POST,true)."</pre>";
-		// exit;
+		 // echo "<pre>".print_r($_POST,true)."</pre>";
+		 // exit;
 		if(isset($_POST['consegneSelezionate'])){
 			foreach ($_POST['consegneSelezionate'] as $x => $id_consegna){
 				// echo "<br>".$id_consegna;
@@ -327,30 +327,12 @@ class ConsegneController extends Controller
 		$model=new Consegne('search');
 		$model->unsetAttributes();
 
-		if(isset($_GET['Consegne']))
-			$model->attributes=$_GET['Consegne'];
+		if(isset($_POST['Consegne']))
+			$model->attributes=$_POST['Consegne'];
 
 		$this->render('select',array(
 			'model'=>$model,
 		));
-
-		// $criteria = new CDbCriteria();
-		// $criteria->compare('id_volontario',0,false);
-		//
-		// $dataProvider=new CActiveDataProvider('Consegne', array(
-		// 	'sort'=>array(
-	  //   		'defaultOrder'=>array(
-	  //     			'data'=>false // viene prima la più recente
-	  //   		)
-	  // 		),
-		//     'criteria'=>$criteria,
-		// 		'pagination' => array(
-		// 			'pageSize' => 20,
-		// 			),
-		// ));
-		// $this->render('select',array(
-		// 	'dataProvider'=>$dataProvider,
-		// ));
 	}
 
 

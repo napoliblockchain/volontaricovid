@@ -46,7 +46,7 @@ $consegnaURL = Yii::app()->createUrl('consegne/tutti');
 									'id_archive',
 						 			array(
 										'name'=>'data',
-										'header'=>'Data',
+										//'header'=>'Data',
 										'type'=>'raw',
 										'value' => 'CHtml::link(date("d/M/Y",$data->data), Yii::app()->createUrl("consegne/view",["id"=>crypt::Encrypt($data->id_archive),"tag"=>2]) )',
 								  	),
@@ -101,7 +101,7 @@ $consegnaURL = Yii::app()->createUrl('consegne/tutti');
 									'id_archive',
 						 			array(
 										'name'=>'data',
-										'header'=>'Data',
+										//'header'=>'Data',
 										'type'=>'raw',
 										'value' => 'CHtml::link(date("d/M/Y",$data->data), Yii::app()->createUrl("consegne/view",["id"=>crypt::Encrypt($data->id_archive),"tag"=>1]) )',
 								  	),
