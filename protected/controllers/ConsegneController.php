@@ -554,6 +554,7 @@ class ConsegneController extends Controller
 		$criteria2->compare('id_volontario',Yii::app()->user->objUser['id_user'],false);
 		$criteria2->compare('in_consegna',2,false);
 		$criteria2->compare('consegnato',0,false);
+
 		// carico la lista delle consegne
 		$dataSpedite=new CActiveDataProvider('Consegne', array(
 			'criteria'=>$criteria2,

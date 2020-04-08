@@ -36,7 +36,7 @@ class BackendController extends Controller
 		return array(
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
 				'actions'=>array(
-					'consegne', // leggo e creo html per le consegne
+					'index', // leggo e creo html per le consegne
 				),
 				'users'=>array('@'),
 			),
@@ -51,7 +51,7 @@ class BackendController extends Controller
 	 * This is the default 'index' action that is invoked
 	 * when an action is not explicitly requested by users.
 	 */
-	public function actionConsegne()
+	public function actionIndex()
 	{
 
 		$criteria = new CDbCriteria();

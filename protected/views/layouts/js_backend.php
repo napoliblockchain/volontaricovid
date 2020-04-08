@@ -1,6 +1,6 @@
 <?php
 
-$urlBackend = Yii::app()->createUrl('backend/consegne');
+$urlBackend = Yii::app()->createUrl('backend/index');
 
 $myBackendScript = <<<JS
 
