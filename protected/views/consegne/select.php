@@ -9,9 +9,13 @@ $form=$this->beginWidget('CActiveForm', array(
 	'enableAjaxValidation'=>false,
 ));
 
-//CARICO PROVINCE E COMUNI
+// genero array
 $listaQuartieri = CHtml::listData(Quartieri::model()->findAll(array('order'=>'descrizione ASC')), 'descrizione', 'descrizione');
+$listaQuartieri[''] = '';
+asort($listaQuartieri);
+
 $listaMun = [
+	'' => '',
 	1 => 1,
 	2 => 2,
 	3 => 3,
@@ -24,6 +28,8 @@ $listaMun = [
 	10 =>10
 ];
 
+
+$listaDate = Yii::app()->controller->setDateArray(time());
 
 $activeButton = [
     0 => '',    // consegnati
@@ -49,6 +55,27 @@ $tag = [
 	3 => 0
 ];
 
+$url = Yii::app()->createUrl('consegne/select');
+
+$myList = <<<JS
+    lista = {
+		cambia: function(){
+			var data = $('#Consegne_data').val();
+			var quartiere = $('#Consegne_quartiere').val();
+			var municipalita = $('#Consegne_municipalita').val();
+
+			var url = '{$url}' + "&Consegne[data]="+data+"&Consegne[quartiere]="+quartiere+"&Consegne[municipalita]="+municipalita;
+
+			console.log(url);
+
+			window.location.href = url;
+
+	}
+
+
+JS;
+Yii::app()->clientScript->registerScript('myList', $myList);
+
 
 ?>
 <div class='section__content section__content--p30'>
@@ -61,18 +88,18 @@ $tag = [
 						<span class="card-title"><?php echo Yii::t('lang','Presa in carico ordini');?></span>
 					</div>
 					<div class="card-body">
-						<div class="row">
-							<div class="col">
-								<select name="Consegna[quartiere]">
-									<option value></option>
-								<?php foreach ($listaQuartieri as $descri){	echo "<option value='".$descri."'>".$descri."</option>"; }						?>
-								</select>
+						<div class="row form-group ">
+							<div class="col col-sm-4">
+								<?php echo $form->labelEx($model,'Data'); ?>
+								<?php echo $form->dropDownList($model,'data',$listaDate,array('class'=>'form-control-sm','onchange'=>'lista.cambia();'));	?>
 							</div>
-							<div class="col">
-								<select name="Consegna[quartiere]">
-									<option value></option>
-								<?php foreach ($listaMun as $mun){	echo "<option value='".$mun."'>".$mun."</option>"; }						?>
-								</select>
+							<div class="col col-sm-4">
+								<?php echo $form->labelEx($model,'Municipalit&agrave;'); ?>
+								<?php echo $form->dropDownList($model,'municipalita',$listaMun,array('class'=>'form-control-sm','onchange'=>'lista.cambia();'));	?>
+							</div>
+							<div class="col col-sm-4">
+								<?php echo $form->labelEx($model,'Quartiere'); ?>
+								<?php echo $form->dropDownList($model,'quartiere',$listaQuartieri,array('class'=>'form-control-sm','onchange'=>'lista.cambia();'));	?>
 							</div>
 						</div>
 						<div class="table-responsive table--no-card ">
@@ -95,11 +122,23 @@ $tag = [
 									array(
 										'name'=>Yii::t('lang','data'),
 										'type'=>'raw',
-										'value' => 'CHtml::link(date("d/M/Y",$data->data), Yii::app()->createUrl("consegne/view",["id"=>crypt::Encrypt($data->id_archive),"tag"=>'.$tag[$get].']) )',
+										'value' => 'CHtml::link(date("d M Y",$data->data), Yii::app()->createUrl("consegne/view",["id"=>crypt::Encrypt($data->id_archive),"tag"=>'.$tag[$get].']) )',
 										'htmlOptions'=>array('style'=>'text-align:center;'),
 									),
-
-
+									array(
+										'name'=>'municipalita',
+										//'header'=>'Qta',
+										'type'=>'raw',
+										'value'=>'$data->municipalita',
+										'htmlOptions'=>array('style'=>'text-align:center;'),
+									),
+									array(
+										'name'=>'quartiere',
+										//'header'=>'Qta',
+										'type'=>'raw',
+										'value'=>'$data->quartiere',
+										'htmlOptions'=>array('style'=>'text-align:center;'),
+									),
 									array(
 										'name'=>'adulti',
 										'header'=>'Qta',
@@ -107,20 +146,12 @@ $tag = [
 										'value'=>'"A:".$data->adulti." / N:".$data->bambini',
 										'htmlOptions'=>array('style'=>'text-align:center;'),
 									),
-									'municipalita',
-									array(
-										'name'=>'quartiere',
-										//'header'=>'Qta',
-										'type'=>'raw',
-										'value'=>'$data->quartiere',
-										'filter' => CHtml::listData(Quartieri::model()->findAll(array('order'=>'descrizione ASC')), 'descrizione', 'descrizione')
-
-									),
 
 									array(
     									'name'=>'indirizzo',
     									'type'=>'raw',
     									'value'=> 'Yii::app()->controller->maskAddress($data->indirizzo,$data->id_archive,1)',
+										'htmlOptions'=>array('style'=>'text-align:center;'),
     								),
 								)
 							));

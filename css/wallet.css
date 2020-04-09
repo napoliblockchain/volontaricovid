@@ -399,6 +399,7 @@ h1 small.logo-descri {
 .checkSelectedAddress{
   cursor: pointer;
 }
+
 #consegne-grid-gestore .filters {
   background: gray;
   color:yellow;
@@ -407,6 +408,16 @@ h1 small.logo-descri {
   color: darkblue;
 }
 #consegne-grid-gestore a:selected {
+  color: blue;
+}
+#consegne-grid-incarico .filters {
+  background: gray;
+  color:yellow;
+}
+#consegne-grid-incarico table.items a {
+  color: darkblue;
+}
+#consegne-grid-incarico a:selected {
   color: blue;
 }
 

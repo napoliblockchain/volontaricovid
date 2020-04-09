@@ -309,8 +309,9 @@ class ConsegneController extends Controller
 
 	public function actionSelect()
 	{
-		 // echo "<pre>".print_r($_POST,true)."</pre>";
-		 // exit;
+		  // echo "<pre>".print_r($_POST,true)."</pre>";
+		  // echo "<pre>".print_r($_GET,true)."</pre>";
+		  // exit;
 		if(isset($_POST['consegneSelezionate'])){
 			foreach ($_POST['consegneSelezionate'] as $x => $id_consegna){
 				// echo "<br>".$id_consegna;
@@ -325,10 +326,10 @@ class ConsegneController extends Controller
 		}
 
 		$model=new Consegne('search');
-		$model->unsetAttributes();
+		//$model->unsetAttributes();
 
-		if(isset($_POST['Consegne']))
-			$model->attributes=$_POST['Consegne'];
+		if(isset($_GET['Consegne']))
+			$model->attributes=$_GET['Consegne'];
 
 		$this->render('select',array(
 			'model'=>$model,

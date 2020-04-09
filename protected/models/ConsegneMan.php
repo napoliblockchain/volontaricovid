@@ -74,7 +74,7 @@ class ConsegneMan extends CActiveRecord
     public function attributeLabels()
     {
         return array(
-            'id_archive' => 'Id Ordine',
+            'id_archive' => 'ID Ord.',
             'id_user' => 'Id User',
             'codfisc' => 'Codice Fiscale del capo-famiglia',
             'data' => 'Data ordine',

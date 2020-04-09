@@ -74,7 +74,7 @@ class Consegne extends CActiveRecord
     public function attributeLabels()
     {
         return array(
-            'id_archive' => '# Ord.',
+            'id_archive' => 'ID Ord.',
             'id_user' => 'Id User',
             'codfisc' => 'Codice Fiscale del capo-famiglia',
             'data' => 'Data ordine',

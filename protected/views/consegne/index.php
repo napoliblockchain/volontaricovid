@@ -28,8 +28,10 @@ $consegnaURL = Yii::app()->createUrl('consegne/tutti');
 						<div class="table-responsive table--no-card">
 
 							<?php $this->widget('zii.widgets.grid.CGridView', array(
-								'htmlOptions' => array('class' => 'table table-wallet'),
-								'id'=>'incarico',
+								//'htmlOptions' => array('class' => 'table table-wallet'),
+								//'id'=>'incarico',
+								'id'=>'consegne-grid-incarico',
+
 							    'dataProvider'=>$dataProvider,
 								//'filter'=>$model,
 								'columns' => array(
@@ -44,33 +46,47 @@ $consegnaURL = Yii::app()->createUrl('consegne/tutti');
 									//
 									// ),
 
-									'id_archive',
+									array(
+										'name'=>'id_archive',
+										'value'=>'$data->id_archive',
+										'htmlOptions'=>array('style'=>'text-align:center;width:60px;'),
+									),
 						 			array(
 										'name'=>'data',
-										//'header'=>'Data',
 										'type'=>'raw',
 										'value' => 'CHtml::link(date("d/M/Y",$data->data), Yii::app()->createUrl("consegne/view",["id"=>crypt::Encrypt($data->id_archive),"tag"=>2]) )',
+										'htmlOptions'=>array('style'=>'text-align:center;'),
 								  	),
+									array(
+										'name'=>'municipalita',
+										'type'=>'raw',
+										'value'=>'$data->municipalita',
+										'htmlOptions'=>array('style'=>'text-align:center;'),
+									),
+									array(
+										'name'=>'quartiere',
+										'type'=>'raw',
+										'value'=>'$data->quartiere',
+										'htmlOptions'=>array('style'=>'text-align:center;'),
+									),
 									array(
 										'name'=>'adulti',
 										'header'=>'Qta',
 										'type'=>'raw',
-										'value'=>'"A:".$data->adulti." / N:".$data->bambini'
+										'value'=>'"A:".$data->adulti." / N:".$data->bambini',
+										'htmlOptions'=>array('style'=>'text-align:center;'),
 									),
-
-									'municipalita',
-									'quartiere',
-
 									array(
 										 'name'=>'indirizzo',
 										 'header'=>'Indirizzo',
 										 'type'=>'raw',
 										 'value'=> 'Yii::app()->controller->maskAddress($data->indirizzo,$data->id_archive,2)',
+										 'htmlOptions'=>array('style'=>'text-align:center;'),
 									),
-									array(
-										//'name' => '',
-										'value'=>'',
-									),
+									// array(
+									// 	//'name' => '',
+									// 	'value'=>'',
+									// ),
 
 								)
 							));
@@ -95,36 +111,54 @@ $consegnaURL = Yii::app()->createUrl('consegne/tutti');
 						<div class="table-responsive table--no-card">
 
 							<?php $this->widget('zii.widgets.grid.CGridView', array(
-								'htmlOptions' => array('class' => 'table table-wallet'),
-								'id'=>'inconsegna',
+								//'htmlOptions' => array('class' => 'table table-wallet'),
+								//'id'=>'inconsegna',
+								'id'=>'consegne-grid-gestore',
 							    'dataProvider'=>$dataSpedite,
 								//'filter'=>$model,
 								'columns' => array(
-									'id_archive',
+									array(
+										'name'=>'id_archive',
+										'value'=>'$data->id_archive',
+										'htmlOptions'=>array('style'=>'text-align:center;width:60px;'),
+									),
 						 			array(
 										'name'=>'data',
-										//'header'=>'Data',
 										'type'=>'raw',
 										'value' => 'CHtml::link(date("d/M/Y",$data->data), Yii::app()->createUrl("consegne/view",["id"=>crypt::Encrypt($data->id_archive),"tag"=>1]) )',
+										'htmlOptions'=>array('style'=>'text-align:center;'),
 								  	),
-								  	array(
-										'name'=>'adulti',
-										'header'=>'Qta',
+
+									array(
+										'name'=>'municipalita',
 										'type'=>'raw',
-										'value'=>'"A:".$data->adulti." / N:".$data->bambini'
-								  	),
-									'municipalita',
-									'quartiere',
+										'value'=>'$data->municipalita',
+										'htmlOptions'=>array('style'=>'text-align:center;'),
+									),
+									array(
+										'name'=>'quartiere',
+										'type'=>'raw',
+										'value'=>'$data->quartiere',
+										'htmlOptions'=>array('style'=>'text-align:center;'),
+									),
+									array(
+									'name'=>'adulti',
+									'header'=>'Qta',
+									'type'=>'raw',
+									'value'=>'"A:".$data->adulti." / N:".$data->bambini',
+									'htmlOptions'=>array('style'=>'text-align:center;'),
+								),
 									array(
 										 'name'=>'indirizzo',
 										 'header'=>'Indirizzo',
 										 'type'=>'raw',
 										 'value'=> 'Yii::app()->controller->maskAddress($data->indirizzo,$data->id_archive,1)',
+										 'htmlOptions'=>array('style'=>'text-align:center;'),
 									),
-									array(
-										//'name' => '',
-										'value'=>'',
-									),
+									// array(
+									// 	//'name' => '',
+									// 	'value'=>'',
+									// ),
 
 								)
 							));

@@ -87,7 +87,11 @@ $tag = [
 								'dataProvider'=>$model->search(),
 	 							'filter'=>$model,
 								'columns' => array(
-								  	'id_archive',
+									array(
+										'name'=>'id_archive',
+										'value'=>'$data->id_archive',
+										'htmlOptions'=>array('style'=>'text-align:center;width:60px;'),
+									),
 									array(
 										'name'=>Yii::t('lang','data'),
 										'type'=>'raw',
@@ -104,21 +108,27 @@ $tag = [
 											return $items->email;
 										})
 									),
+
+
+									array(
+										'name'=>'municipalita',
+										'type'=>'raw',
+										'value'=>'$data->municipalita',
+										'htmlOptions'=>array('style'=>'text-align:center;'),
+									),
+									array(
+										'name'=>'quartiere',
+										'type'=>'raw',
+										'value'=>'$data->quartiere',
+										'filter' => CHtml::listData(Quartieri::model()->findAll(array('order'=>'descrizione ASC')), 'descrizione', 'descrizione')
+
+									),
 									array(
 										'name'=>'adulti',
 										'header'=>'Qta',
 										'type'=>'raw',
 										'value'=>'"A:".$data->adulti." / N:".$data->bambini'
 									),
-									array(
-										'name'=>'quartiere',
-										//'header'=>'Qta',
-										'type'=>'raw',
-										'value'=>'$data->quartiere',
-										'filter' => CHtml::listData(Quartieri::model()->findAll(array('order'=>'descrizione ASC')), 'descrizione', 'descrizione')
-
-									),
-									'municipalita',
 									'indirizzo',
 									'codfisc',
 									'cognome',
