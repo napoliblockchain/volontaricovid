@@ -31,30 +31,6 @@ $listaMun = [
 
 $listaDate = Yii::app()->controller->setDateArray(time());
 
-$activeButton = [
-    0 => '',    // consegnati
-    1 => '',    // in consegna
-    2 => '',    // in carico
-    3 => '',    // tutti
-];
-
-
-$activeButton[0] = 'active';
-
-$get = 0;
-if (isset($_GET['typelist'])){
-	$get = $_GET['typelist'];
-	$activeButton[$get] = 'active';
-}
-
-
-$tag = [
-	0 => 3,
-	1 => 1,
-	2 => 2,
-	3 => 0
-];
-
 include ('js_select.php');
 ?>
 
@@ -102,7 +78,7 @@ include ('js_select.php');
 									array(
 										'name'=>Yii::t('lang','data'),
 										'type'=>'raw',
-										'value' => 'CHtml::link(date("d M Y",$data->data), Yii::app()->createUrl("consegne/view",["id"=>crypt::Encrypt($data->id_archive),"tag"=>'.$tag[$get].']) )',
+										'value' => 'CHtml::link(date("d M Y",$data->data), Yii::app()->createUrl("consegne/view",["id"=>crypt::Encrypt($data->id_archive),"tag"=>0]) )',
 										'htmlOptions'=>array('style'=>'text-align:center;'),
 									),
 									array(
