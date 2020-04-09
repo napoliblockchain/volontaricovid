@@ -17,20 +17,27 @@
 	// See class documentation of CActiveForm for details on this.
 	'enableAjaxValidation'=>false,
 ));
-$model->data = date('d/m/Y',time());
+
+if ($model->data == ''){
+	$model->data = date('d/m/Y',time());
+}else{
+	$model->data = date('d/m/Y',$model->data);
+}
+
+
 $adulti = [1=>1,2=>2,3=>3,4=>4,5=>5,6=>6,7=>7,8=>8,9=>9,10=>10];
 $bambini = [0,1,2,3,4,5,6,7,8,9,10];
 ?>
 
 <div class="form-group">
 	<?php echo $form->labelEx($model,'data'); ?>
-	<?php echo $form->textField($model,'data',array('size'=>20,'maxlength'=>20,'placeholder'=>'Data','class'=>'form-control')); ?>
+	<?php echo $form->textField($model,'data',array('size'=>20,'maxlength'=>20,'placeholder'=>'Data','class'=>'form-control','readonly'=>!$model->isNewRecord)); ?>
 	<?php echo $form->error($model,'data',array('class'=>'alert alert-danger')); ?>
 </div>
 
 	<div class="form-group">
 		<?php echo $form->labelEx($model,'codfisc'); ?>
-		<?php echo $form->textField($model,'codfisc',array('style' => 'text-transform: uppercase','size'=>16,'maxlength'=>16,'placeholder'=>'Codice Fiscale','class'=>'form-control','onkeyup'=>"validateCF(this.value)")); ?>
+		<?php echo $form->textField($model,'codfisc',array('style' => 'text-transform: uppercase','size'=>16,'maxlength'=>16,'readonly'=>!$model->isNewRecord,'placeholder'=>'Codice Fiscale','class'=>'form-control','onkeyup'=>"validateCF(this.value)")); ?>
 		<?php echo $form->error($model,'codfisc',array('class'=>'alert alert-danger')); ?>
 		<div id="cf_alert"></div>
 	</div>
