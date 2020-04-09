@@ -156,7 +156,7 @@ class ConsegneController extends Controller
 			die();
 		}
 
-		$header['head'] = array('Codice', 'Nome', 'Tel.', 'Indirizzo','Quartiere','Mn.');
+		$header['head'] = array('ID Ord.', 'Nome', 'Tel.', 'Indirizzo','Quartiere','Mn.');
 		$header['title'] = 'CONSEGNE PRONTE';
 
 		// print colored table
@@ -309,8 +309,9 @@ class ConsegneController extends Controller
 
 	public function actionSelect()
 	{
-		// echo "<pre>".print_r($_POST,true)."</pre>";
-		// exit;
+		  // echo "<pre>".print_r($_POST,true)."</pre>";
+		  // echo "<pre>".print_r($_GET,true)."</pre>";
+		  // exit;
 		if(isset($_POST['consegneSelezionate'])){
 			foreach ($_POST['consegneSelezionate'] as $x => $id_consegna){
 				// echo "<br>".$id_consegna;
@@ -325,7 +326,7 @@ class ConsegneController extends Controller
 		}
 
 		$model=new Consegne('search');
-		$model->unsetAttributes();
+		//$model->unsetAttributes();
 
 		if(isset($_GET['Consegne']))
 			$model->attributes=$_GET['Consegne'];
@@ -333,24 +334,6 @@ class ConsegneController extends Controller
 		$this->render('select',array(
 			'model'=>$model,
 		));
-
-		// $criteria = new CDbCriteria();
-		// $criteria->compare('id_volontario',0,false);
-		//
-		// $dataProvider=new CActiveDataProvider('Consegne', array(
-		// 	'sort'=>array(
-	  //   		'defaultOrder'=>array(
-	  //     			'data'=>false // viene prima la più recente
-	  //   		)
-	  // 		),
-		//     'criteria'=>$criteria,
-		// 		'pagination' => array(
-		// 			'pageSize' => 20,
-		// 			),
-		// ));
-		// $this->render('select',array(
-		// 	'dataProvider'=>$dataProvider,
-		// ));
 	}
 
 
@@ -535,6 +518,20 @@ class ConsegneController extends Controller
 	 */
 	public function actionIndex()
 	{
+		// echo "<pre>".print_r($_POST,true)."</pre>";
+		// echo "<pre>".print_r($_GET,true)."</pre>";
+		// exit;
+		if(isset($_POST['consegneEffettuate'])){
+			foreach ($_POST['consegneEffettuate'] as $x => $id_consegna){
+				// echo "<br>".$id_consegna;
+				$consegna = Consegne::model()->findByPk($id_consegna);
+
+				$consegna->consegnato = 1;
+				$consegna->time_consegnato = time();
+				$consegna->in_consegna = 3;
+				$consegna->update();
+			}
+		}
 		// inizializzo i criteri di ricerca
 		$criteria=new CDbCriteria();
 		// se è loggato il Volontario, questo filtro viene utilizzato
@@ -560,9 +557,16 @@ class ConsegneController extends Controller
 			'criteria'=>$criteria2,
 		));
 
+		// carico il model per i filtri
+		$model=new Consegne('search');
+		$model->unsetAttributes();
+		if(isset($_GET['Consegne']))
+			$model->attributes=$_GET['Consegne'];
+
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 			'dataSpedite'=>$dataSpedite,
+			'model'=>$model
 		));
 	}
 

@@ -74,10 +74,10 @@ class ConsegneMan extends CActiveRecord
     public function attributeLabels()
     {
         return array(
-            'id_archive' => 'Id Pacco',
+            'id_archive' => 'ID Ord.',
             'id_user' => 'Id User',
             'codfisc' => 'Codice Fiscale del capo-famiglia',
-            'data' => 'Data di inserimento',
+            'data' => 'Data ordine',
             'adulti' => 'Adulti',
             'bambini' => 'Neonati (0/12 mesi)',
             'indirizzo' => 'Indirizzo',
@@ -115,7 +115,7 @@ class ConsegneMan extends CActiveRecord
 
         $criteria=new CDbCriteria;
 
-        //$criteria->compare('id_archive',$this->id_archive);
+        $criteria->compare('id_archive',$this->id_archive);
         //$criteria->compare('id_user',$this->id_user);
         $criteria->compare('codfisc',$this->codfisc,true);
         $criteria->compare('nome',$this->nome,true);
@@ -133,7 +133,7 @@ class ConsegneMan extends CActiveRecord
         $criteria->compare('time_consegnato',$this->time_consegnato);
         $criteria->compare('note',$this->note);
 
-        $criteria->compare('quartiere',$this->quartiere);
+        $criteria->compare('quartiere',$this->quartiere,false);
         $criteria->compare('municipalita',$this->municipalita);
 
         if (!isset($_GET['typelist'])){
@@ -148,13 +148,11 @@ class ConsegneMan extends CActiveRecord
         }else if ($_GET['typelist'] == 2){
           $criteria->compare('consegnato',0,false);
           $criteria->compare('in_consegna',1,false);
-        }else if ($_GET['typelist'] == 3){
+        }
+        //else if ($_GET['typelist'] == 3){
           //$criteria->compare('consegnato',0,false);
           //$criteria->compare('in_consegna',1,false);
-        }
-
-        // $criteria->compare('in_consegna',0,false);
-        // $criteria->compare('consegnato',0,false);
+        //}
 
         return new CActiveDataProvider($this, array(
           'criteria'=>$criteria,

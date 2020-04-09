@@ -1,22 +1,21 @@
 <?php
 
 /**
- * This is the model class for table "dali_lista_di_consegna".
+ * This is the model class for table "dali_stradario".
  *
- * The followings are the available columns in table 'dali_lista_di_consegna':
- * @property integer $id_ldc
- * @property integer $id_volontario
- * @property integer $timestamp
- * @property string $id_archive
+ * The followings are the available columns in table 'dali_stradario':
+ * @property integer $id_stradario
+ * @property string $quartiere
+ * @property string $municipalita
  */
-class ListaDiConsegna extends CActiveRecord
+class Quartieri extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'dali_lista_di_consegna';
+		return 'dali_quartieri';
 	}
 
 	/**
@@ -27,12 +26,12 @@ class ListaDiConsegna extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id_volontario, timestamp, id_archive', 'required'),
-			array('id_volontario, timestamp', 'numerical', 'integerOnly'=>true),
-			array('id_archive', 'length', 'max'=>2000),
+			array('id_quartiere, descrizione', 'required'),
+			array('id_quartiere', 'numerical', 'integerOnly'=>true),
+			array('descrizione', 'length', 'max'=>30),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id_ldc, id_volontario, timestamp, id_archive', 'safe', 'on'=>'search'),
+			array('id_quartiere, descrizione', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -53,10 +52,8 @@ class ListaDiConsegna extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id_ldc' => 'Id Ldc',
-			'id_volontario' => 'Id Volontario',
-			'timestamp' => 'Timestamp',
-			'id_archive' => 'Id Archive',
+			'id_quartiere' => 'Id Quartiere',
+			'descrizione' => 'Descrizione',
 		);
 	}
 
@@ -78,10 +75,8 @@ class ListaDiConsegna extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('id_ldc',$this->id_ldc);
-		$criteria->compare('id_volontario',$this->id_volontario);
-		$criteria->compare('timestamp',$this->timestamp);
-		$criteria->compare('id_archive',$this->id_archive,true);
+		$criteria->compare('id_quartiere',$this->id_quartiere);
+		$criteria->compare('descrizione',$this->descrizione,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -92,7 +87,7 @@ class ListaDiConsegna extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return ListaDiConsegna the static model class
+	 * @return Stradario the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{

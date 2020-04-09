@@ -42,4 +42,31 @@ class Controller extends CController
 		return $return;
 	}
 
+	public function setDateArray($time){
+		$oggi = date("Y-m-d",$time);
+		$start = date('Y-m-d', mktime(0,0,0,'03','25','2020'));
+
+		$array[] = $oggi;
+
+		$explode = explode ("-",$oggi);
+		while (true)
+		{
+			$date = date('Y-m-d', mktime(0,0,0,$explode[1],$explode[2]-1,$explode[0]));
+			$array[] = $date;
+			$explode = explode ("-",$date);
+
+			if ($date == $start)
+				break;
+
+		}
+		// creo l'array con le date
+		$t['']='';
+		foreach ($array as $a){
+			$tmp = explode("-",$a);
+			$t[strtotime($tmp[0].'-'.$tmp[1].'-'.$tmp[2])] = date('d M Y', mktime(0,0,0,$tmp[1],$tmp[2],$tmp[0]));
+		}
+
+		return $t;
+	}
+
 }

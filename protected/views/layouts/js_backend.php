@@ -8,35 +8,35 @@ $myBackendScript = <<<JS
 
 	$(function(){
   	backend = {
-      checkConsegne: function()
-			{
-        $.ajax({
-					url:urlBackend,
-					type: "GET",
-          dataType: 'json',
-          success: function(response) {
-						var a = parseInt($('#noti-consegnati').html());
-						var b = parseInt($('#noti-inconsegna').html());
-						var c = parseInt($('#noti-incarico').html());
-						if ( a != response.consegnati
-							|| b != response.inconsegna
-							|| c != response.incarico)
-						{
-							backend.handleResponse(response);
-						}
-            setTimeout(function(){ backend.checkConsegne() }, 60000);
-					},
-    			error: function(data) {
-            setTimeout(function(){ backend.checkConsegne() }, 60000);
-    			}
-				});
-      },
-      handleResponse: function(response)
-			{
-				backend.animateNumbers(response.consegnati,'noti-consegnati');
-				backend.animateNumbers(response.inconsegna,'noti-inconsegna');
-				backend.animateNumbers(response.incarico,'noti-incarico');
-      },
+    	checkConsegne: function()
+		{
+	        $.ajax({
+				url:urlBackend,
+				type: "GET",
+	          	dataType: 'json',
+	          	success: function(response) {
+					var a = parseInt($('#noti-consegnati').html());
+					var b = parseInt($('#noti-inconsegna').html());
+					var c = parseInt($('#noti-incarico').html());
+					if ( a != response.consegnati
+						|| b != response.inconsegna
+						|| c != response.incarico)
+					{
+						backend.handleResponse(response);
+					}
+	            		setTimeout(function(){ backend.checkConsegne() }, 60000);
+				},
+	    		error: function(data) {
+	            	setTimeout(function(){ backend.checkConsegne() }, 60000);
+	    		}
+			});
+      	},
+    	handleResponse: function(response)
+		{
+			backend.animateNumbers(response.consegnati,'noti-consegnati');
+			backend.animateNumbers(response.inconsegna,'noti-inconsegna');
+			backend.animateNumbers(response.incarico,'noti-incarico');
+      	},
 			// Animate the element's value from 0 to Value:
 			animateNumbers: function(value, id){
 				jQuery({someValue: 0}).animate({someValue: value}, {
@@ -49,8 +49,8 @@ $myBackendScript = <<<JS
 				});
 			}
 		}
-    //funzioni da richiamare all'avvio
-    setTimeout(function(){ backend.checkConsegne() }, 1500);
+    	//funzioni da richiamare all'avvio
+    	setTimeout(function(){ backend.checkConsegne() }, 1500);
   });
 
 
