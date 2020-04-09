@@ -1,15 +1,20 @@
 <div class="form">
 <?php
+include ('js_index.php');
+
+
 $form=$this->beginWidget('CActiveForm', array(
 	'id'=>'index-form',
 	'enableAjaxValidation'=>false,
 ));
 
 $actionURL = Yii::app()->createUrl('consegne/select');
-$printURL = Yii::app()->createUrl('consegne/print');
 $consegnaURL = Yii::app()->createUrl('consegne/tutti');
 
 (Yii::app()->user->objUser['privilegi'] > 0) ? $visible = true : $visible = false;
+
+
+
 ?>
 
 <div class='section__content section__content--p30'>
@@ -244,7 +249,7 @@ $consegnaURL = Yii::app()->createUrl('consegne/tutti');
 	<div class="modal-dialog modal-lg" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title" id="mediumModalLabel">Stampa Lista di consegna</h5>
+				<h5 class="modal-title" id="mediumModalLabel">Stampa Bolla di consegna</h5>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">×</span>
 				</button>
@@ -254,9 +259,7 @@ $consegnaURL = Yii::app()->createUrl('consegne/tutti');
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-secondary" data-dismiss="modal">Annulla</button>
-				<a href="<?php echo $printURL;?>" tar get="_blank">
-					<button type="button" class="btn btn-primary btn-danger">Conferma</button>
-				</a>
+				<button type="button" class="btn btn-danger printPdf">Conferma</button>
 			</div>
 		</div>
 	</div>

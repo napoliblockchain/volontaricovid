@@ -156,7 +156,7 @@ class ConsegneController extends Controller
 			die();
 		}
 
-		$header['head'] = array('Codice', 'Nome', 'Tel.', 'Indirizzo','Quartiere','Mn.');
+		$header['head'] = array('ID Ord.', 'Nome', 'Tel.', 'Indirizzo','Quartiere','Mn.');
 		$header['title'] = 'CONSEGNE PRONTE';
 
 		// print colored table
