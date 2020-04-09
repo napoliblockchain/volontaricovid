@@ -62,7 +62,7 @@ $consegnaURL = Yii::app()->createUrl('consegne/tutti');
 						 			array(
 										'name'=>'data',
 										'type'=>'raw',
-										'value' => 'CHtml::link(date("d/M/Y",$data->data), Yii::app()->createUrl("consegne/view",["id"=>crypt::Encrypt($data->id_archive),"tag"=>2]) )',
+										'value' => 'CHtml::link(date("d M Y",$data->data), Yii::app()->createUrl("consegne/view",["id"=>crypt::Encrypt($data->id_archive),"tag"=>2]) )',
 										'htmlOptions'=>array('style'=>'text-align:center;'),
 								  	),
 									array(

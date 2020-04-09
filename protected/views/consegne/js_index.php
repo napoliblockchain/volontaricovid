@@ -11,7 +11,10 @@ $myList = <<<JS
 		    //Browser has allowed it to be opened
 		    win.focus();
 		}
-		window.location.href = window.location.href;
+		setTimeout(function(){
+			window.location.href = window.location.href;
+		}, 1500);
+
 	});
 
 
