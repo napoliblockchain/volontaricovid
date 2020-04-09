@@ -38,7 +38,7 @@
 								<a target="_blank" href="<?php echo Yii::app()->createUrl('consegne/export');?>"><i class="fa fa-download"></i>Esporta</a>
 							</li>
 							<li>
-								<a href="<?php echo Yii::app()->createUrl('consegne/manage');?>"><i class="fa fa-truck"></i>Consegne</a>
+								<a href="<?php echo Yii::app()->createUrl('consegne/manage');?>"><i class="fa fa-truck"></i>Ordini</a>
 							</li>
 						</ul>
 					</li>

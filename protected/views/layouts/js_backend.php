@@ -36,6 +36,8 @@ $myBackendScript = <<<JS
 			backend.animateNumbers(response.consegnati,'noti-consegnati');
 			backend.animateNumbers(response.inconsegna,'noti-inconsegna');
 			backend.animateNumbers(response.incarico,'noti-incarico');
+			backend.animateNumbers(response.adulti,'noti-adulti');
+			backend.animateNumbers(response.bambini,'noti-bambini');
       	},
 			// Animate the element's value from 0 to Value:
 			animateNumbers: function(value, id){

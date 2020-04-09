@@ -68,10 +68,14 @@ class BackendController extends Controller
 		$consegnati = 0;
 		$inconsegna = 0;
 		$incarico = 0;
+		$adulti = 0;
+		$bambini = 0;
 		if (isset($iterator)){
 			foreach($iterator as $item) {
 				if ($item->consegnato == 1){
 					$consegnati++;
+					$adulti += $item->adulti;
+					$bambini += $item->bambini;
 					continue;
 				}
 				if ($item->in_consegna == 2){
@@ -88,6 +92,8 @@ class BackendController extends Controller
 		$response['consegnati'] = $consegnati;
 		$response['inconsegna'] = $inconsegna;
 		$response['incarico'] = $incarico;
+		$response['adulti'] = $adulti;
+		$response['bambini'] = $bambini;
 
 		echo CJSON::encode($response,true);
 	}

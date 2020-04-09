@@ -30,5 +30,13 @@
     <span class="badge badge-primary font_big" id="noti-incarico">0</span>
     <span class="text-light">In&nbsp;carico</span>
   </div>
+  <div class="noti__item js-item-menu noti_box">
+    <span class="badge badge-primary font_big" id="noti-adulti" style="font-size: 1.45em;">0</span></br>
+    <span class="text-light">Adulti</span>
+  </div>
+  <div class="noti__item js-item-menu noti_box">
+    <span class="badge badge-primary font_big" id="noti-bambini" style="font-size: 1.45em;">0</span></br>
+    <span class="text-light">Neonati</span>
+  </div>
 
 </div>
