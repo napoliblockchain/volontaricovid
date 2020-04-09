@@ -518,6 +518,20 @@ class ConsegneController extends Controller
 	 */
 	public function actionIndex()
 	{
+		// echo "<pre>".print_r($_POST,true)."</pre>";
+		// echo "<pre>".print_r($_GET,true)."</pre>";
+		// exit;
+		if(isset($_POST['consegneEffettuate'])){
+			foreach ($_POST['consegneEffettuate'] as $x => $id_consegna){
+				// echo "<br>".$id_consegna;
+				$consegna = Consegne::model()->findByPk($id_consegna);
+
+				$consegna->consegnato = 1;
+				$consegna->time_consegnato = time();
+				$consegna->in_consegna = 3;
+				$consegna->update();
+			}
+		}
 		// inizializzo i criteri di ricerca
 		$criteria=new CDbCriteria();
 		// se è loggato il Volontario, questo filtro viene utilizzato

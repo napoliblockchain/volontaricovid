@@ -1,6 +1,9 @@
+<div class="form">
 <?php
-/* @var $this MerchantsController */
-/* @var $dataProvider CActiveDataProvider */
+$form=$this->beginWidget('CActiveForm', array(
+	'id'=>'index-form',
+	'enableAjaxValidation'=>false,
+));
 
 $actionURL = Yii::app()->createUrl('consegne/select');
 $printURL = Yii::app()->createUrl('consegne/print');
@@ -110,64 +113,120 @@ $consegnaURL = Yii::app()->createUrl('consegne/tutti');
 					<div class="card-body">
 						<div class="table-responsive table--no-card">
 
-							<?php $this->widget('zii.widgets.grid.CGridView', array(
-								//'htmlOptions' => array('class' => 'table table-wallet'),
-								//'id'=>'inconsegna',
+							<?php
+							$this->widget('ext.selgridview.SelGridView', array(
 								'id'=>'consegne-grid-gestore',
-							    'dataProvider'=>$dataSpedite,
-								//'filter'=>$model,
+								'selectableRows' => 2, // valori sono 0,1,2
+								'dataProvider'=>$dataSpedite,
 								'columns' => array(
+									array(
+									   'id'=>'consegneEffettuate',
+									   'class'=>'CCheckBoxColumn',
+									   'htmlOptions'=>array('style'=>'padding:0px 0px 0px 0px; margin:0px 0px 0px 0px;vertical-align:middle;'),
+								  	),
 									array(
 										'name'=>'id_archive',
 										'value'=>'$data->id_archive',
 										'htmlOptions'=>array('style'=>'text-align:center;width:60px;'),
 									),
-						 			array(
-										'name'=>'data',
+									array(
+										'name'=>Yii::t('lang','data'),
 										'type'=>'raw',
-										'value' => 'CHtml::link(date("d/M/Y",$data->data), Yii::app()->createUrl("consegne/view",["id"=>crypt::Encrypt($data->id_archive),"tag"=>1]) )',
+										'value' => 'CHtml::link(date("d M Y",$data->data), Yii::app()->createUrl("consegne/view",["id"=>crypt::Encrypt($data->id_archive),"tag"=>1]) )',
 										'htmlOptions'=>array('style'=>'text-align:center;'),
-								  	),
-
+									),
 									array(
 										'name'=>'municipalita',
+										//'header'=>'Qta',
 										'type'=>'raw',
 										'value'=>'$data->municipalita',
 										'htmlOptions'=>array('style'=>'text-align:center;'),
 									),
 									array(
 										'name'=>'quartiere',
+										//'header'=>'Qta',
 										'type'=>'raw',
 										'value'=>'$data->quartiere',
 										'htmlOptions'=>array('style'=>'text-align:center;'),
 									),
 									array(
-									'name'=>'adulti',
-									'header'=>'Qta',
-									'type'=>'raw',
-									'value'=>'"A:".$data->adulti." / N:".$data->bambini',
-									'htmlOptions'=>array('style'=>'text-align:center;'),
-								),
-									array(
-										 'name'=>'indirizzo',
-										 'header'=>'Indirizzo',
-										 'type'=>'raw',
-										 'value'=> 'Yii::app()->controller->maskAddress($data->indirizzo,$data->id_archive,1)',
-										 'htmlOptions'=>array('style'=>'text-align:center;'),
+										'name'=>'adulti',
+										'header'=>'Qta',
+										'type'=>'raw',
+										'value'=>'"A:".$data->adulti." / N:".$data->bambini',
+										'htmlOptions'=>array('style'=>'text-align:center;'),
 									),
-									// array(
-									// 	//'name' => '',
-									// 	'value'=>'',
-									// ),
 
+									array(
+    									'name'=>'indirizzo',
+    									'type'=>'raw',
+    									'value'=> 'Yii::app()->controller->maskAddress($data->indirizzo,$data->id_archive,1)',
+										'htmlOptions'=>array('style'=>'text-align:center;'),
+    								),
 								)
 							));
+
+							// $this->widget('zii.widgets.grid.CGridView', array(
+							// 	//'htmlOptions' => array('class' => 'table table-wallet'),
+							// 	//'id'=>'inconsegna',
+							// 	'id'=>'consegne-grid-gestore',
+							//     'dataProvider'=>$dataSpedite,
+							// 	//'filter'=>$model,
+							// 	'columns' => array(
+							// 		array(
+							// 			'name'=>'id_archive',
+							// 			'value'=>'$data->id_archive',
+							// 			'htmlOptions'=>array('style'=>'text-align:center;width:60px;'),
+							// 		),
+						 	// 		array(
+							// 			'name'=>'data',
+							// 			'type'=>'raw',
+							// 			'value' => 'CHtml::link(date("d/M/Y",$data->data), Yii::app()->createUrl("consegne/view",["id"=>crypt::Encrypt($data->id_archive),"tag"=>1]) )',
+							// 			'htmlOptions'=>array('style'=>'text-align:center;'),
+							// 	  	),
+							//
+							// 		array(
+							// 			'name'=>'municipalita',
+							// 			'type'=>'raw',
+							// 			'value'=>'$data->municipalita',
+							// 			'htmlOptions'=>array('style'=>'text-align:center;'),
+							// 		),
+							// 		array(
+							// 			'name'=>'quartiere',
+							// 			'type'=>'raw',
+							// 			'value'=>'$data->quartiere',
+							// 			'htmlOptions'=>array('style'=>'text-align:center;'),
+							// 		),
+							// 		array(
+							// 		'name'=>'adulti',
+							// 		'header'=>'Qta',
+							// 		'type'=>'raw',
+							// 		'value'=>'"A:".$data->adulti." / N:".$data->bambini',
+							// 		'htmlOptions'=>array('style'=>'text-align:center;'),
+							// 	),
+							// 		array(
+							// 			 'name'=>'indirizzo',
+							// 			 'header'=>'Indirizzo',
+							// 			 'type'=>'raw',
+							// 			 'value'=> 'Yii::app()->controller->maskAddress($data->indirizzo,$data->id_archive,1)',
+							// 			 'htmlOptions'=>array('style'=>'text-align:center;'),
+							// 		),
+							// 		// array(
+							// 		// 	//'name' => '',
+							// 		// 	'value'=>'',
+							// 		// ),
+							//
+							// 	)
+							// ));
 							?>
 						</div>
 					</div>
 					<div class="card-footer">
 						<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#consegnaModal">
 							<i class="fa fa-check"></i> <?php echo Yii::t('lang','Consegna tutti');?>
+						</button>
+						<button type="button" class="btn btn-info " data-toggle="modal" data-target="#consegnaAlcuniModal">
+							<i class="fas fa-tasks"></i> <?php echo Yii::t('lang','Consegna selezionati');?>
 						</button>
 					</div>
 				</div>
@@ -178,6 +237,8 @@ $consegnaURL = Yii::app()->createUrl('consegne/tutti');
 	<?php echo Logo::footer(); ?>
 	</div>
 </div>
+
+
 <!-- Richiesta stampa -->
 <div class="modal fade" id="mediumModal" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" aria-hidden="true" style="display: none;">
 	<div class="modal-dialog modal-lg" role="document">
@@ -205,20 +266,42 @@ $consegnaURL = Yii::app()->createUrl('consegne/tutti');
 	<div class="modal-dialog modal-lg" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title" id="consegnaModalLabel">Consegna pacchi</h5>
+				<h5 class="modal-title" id="consegnaModalLabel">Consegna ordini</h5>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">×</span>
 				</button>
 			</div>
 			<div class="modal-body">
-				<p>Sono stati consegnati tutti i pacchi della lista?</p>
+				<p>Sono stati consegnati tutti gli ordini della lista?</p>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+				<button type="button" class="btn btn-secondary" data-dismiss="modal" style="min-width:70px;">No</button>
 				<a href="<?php echo $consegnaURL;?>" tar get="_blank">
-					<button type="button" class="btn btn-primary btn-danger">Si</button>
+					<button type="button" class="btn btn-primary" style="min-width:70px;">Si</button>
 				</a>
 			</div>
 		</div>
 	</div>
 </div>
+<!-- consegna selezionati -->
+<div class="modal fade" id="consegnaAlcuniModal" tabindex="-1" role="dialog" aria-labelledby="consegnaAlcuniModalLabel" aria-hidden="true" style="display: none;">
+	<div class="modal-dialog modal-lg " role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="consegnaAlcuniModalLabel">Consegna ordini selezionati</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">×</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<p>Sono stati consegnati gli ordini selezionti della lista?</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal" style="min-width:70px;">No</button>
+				<?php echo CHtml::submitButton(Yii::t('lang','Si'), array('class' => 'btn btn-primary','style'=>'min-width:70px;')); ?>
+			</div>
+		</div>
+	</div>
+</div>
+<?php $this->endWidget(); ?>
+</div><!-- form -->

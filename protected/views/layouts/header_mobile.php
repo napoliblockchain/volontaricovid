@@ -53,7 +53,7 @@
 
 				<li>
 					<a class="js-arrow" href="<?php echo Yii::app()->createUrl('consegne/create');?>">
-						Inserisci&nbsp;<i class="fas fa-tasks"></i></a>
+						Inserisci&nbsp;<i class="fa fa-list-ol"></i></a>
 				</li>
 				<li>
 					<div class="delete-serviceWorker">

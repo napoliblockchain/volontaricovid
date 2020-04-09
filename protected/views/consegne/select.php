@@ -65,19 +65,14 @@ $myList = <<<JS
 			var municipalita = $('#Consegne_municipalita').val();
 
 			var url = '{$url}' + "&Consegne[data]="+data+"&Consegne[quartiere]="+quartiere+"&Consegne[municipalita]="+municipalita;
-
-			console.log(url);
-
 			window.location.href = url;
-
 	}
 
-
 JS;
+
 Yii::app()->clientScript->registerScript('myList', $myList);
-
-
 ?>
+
 <div class='section__content section__content--p30'>
 	<div class='container-fluid container-wallet'>
 		<div class="row">
