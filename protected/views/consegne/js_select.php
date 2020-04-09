@@ -10,7 +10,8 @@ $myList = <<<JS
 
 			var url = '{$url}' + "&Consegne[data]="+data+"&Consegne[quartiere]="+quartiere+"&Consegne[municipalita]="+municipalita;
 			window.location.href = url;
-	}
+	    }
+    }
 
 JS;
 

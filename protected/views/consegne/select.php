@@ -44,16 +44,16 @@ include ('js_select.php');
 						<span class="card-title"><?php echo Yii::t('lang','Presa in carico ordini');?></span>
 					</div>
 					<div class="card-body">
-						<div class="row form-group ">
-							<div class="col col-sm-4">
+						<div class="row m-t-25">
+							<div class="col-sm-6 col-lg-3">
 								<?php echo $form->labelEx($model,'Data'); ?>
 								<?php echo $form->dropDownList($model,'data',$listaDate,array('class'=>'form-control-sm','onchange'=>'lista.cambia();'));	?>
 							</div>
-							<div class="col col-sm-4">
+							<div class="col-sm-6 col-lg-3">
 								<?php echo $form->labelEx($model,'Municipalit&agrave;'); ?>
 								<?php echo $form->dropDownList($model,'municipalita',$listaMun,array('class'=>'form-control-sm','onchange'=>'lista.cambia();'));	?>
 							</div>
-							<div class="col col-sm-4">
+							<div class="col-sm-6 col-lg-3">
 								<?php echo $form->labelEx($model,'Quartiere'); ?>
 								<?php echo $form->dropDownList($model,'quartiere',$listaQuartieri,array('class'=>'form-control-sm','onchange'=>'lista.cambia();'));	?>
 							</div>
