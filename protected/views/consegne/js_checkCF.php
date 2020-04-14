@@ -19,7 +19,7 @@ function validateCF(cf) {
               	$('#cf_alert').show().html('<div class="alert alert-danger">Codice Fiscale già presente nell\'ultima settimana.</div>');
                 $('#Consegne_trigger_alert').val(1);
             }else{
-                $('#cf_alert').hide();
+                $('#cf_alert').show().html('<div class="alert alert-success">Codice Fiscale valido.</div>');
                 $('#Consegne_trigger_alert').val(0);
             }
 
