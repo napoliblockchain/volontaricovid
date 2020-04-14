@@ -26,6 +26,8 @@
  */
 class Consegne extends CActiveRecord
 {
+    public $mancataConsegna;
+    
     /**
      * @return string the associated database table name
      */
