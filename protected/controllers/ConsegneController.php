@@ -217,22 +217,29 @@ class ConsegneController extends Controller
 	}
 
 	public function actionCheckCF(){
-		$criteria = new CDbCriteria();
-		$criteria->compare('codfisc',strtoupper($_POST['codfisc']),false);
+		//VALIDA PRIMA IL CODICE FISCALE
+		$cf = new CodiceFiscale();
 
-		$tmp = explode("/",$_POST['data']);
-		$time = strtotime($tmp[2].'-'.$tmp[1].'-'.$tmp[0]);
-		$settimana = 60 * 60 * 24 * 7;
-		$limite = $time - $settimana;
+		if( $cf->ValidaCodiceFiscale($_POST['codfisc']) ){
+			$criteria = new CDbCriteria();
+			$criteria->compare('codfisc',strtoupper($_POST['codfisc']),false);
 
-		$criteria->addCondition('data > '.$limite);
-		$dataProvider=new CActiveDataProvider('Consegne', array(
-				'criteria'=>$criteria,
-		));
+			$tmp = explode("/",$_POST['data']);
+			$time = strtotime($tmp[2].'-'.$tmp[1].'-'.$tmp[0]);
+			$settimana = 60 * 60 * 24 * 7;
+			$limite = $time - $settimana;
 
-		$totaleCodici = $dataProvider->totalItemCount;
-		if ($totaleCodici >0 ){
-			$result = true;
+			$criteria->addCondition('data > '.$limite);
+			$dataProvider=new CActiveDataProvider('Consegne', array(
+					'criteria'=>$criteria,
+			));
+
+			$totaleCodici = $dataProvider->totalItemCount;
+			if ($totaleCodici >0 ){
+				$result = true;
+			}else{
+				$result = false;
+			}
 		}else{
 			$result = false;
 		}

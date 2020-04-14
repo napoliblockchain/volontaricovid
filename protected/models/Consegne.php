@@ -51,11 +51,39 @@ class Consegne extends CActiveRecord
             array('note', 'length', 'max'=>250),
             array('quartiere', 'length', 'max'=>100),
             array('municipalita', 'length', 'max'=>10),
+
+            array('trigger_alert', 'checkTrigger'),
+
+            array('codfisc', 'validateCF'),
+
             // The following rule is used by search().
             // @todo Please remove those attributes that should not be searched.
             array('id_archive, id_user, codfisc, nome, cognome, telefono, data, adulti, bambini, indirizzo, trigger_alert, id_volontario, in_consegna, consegnato, time_inconsegna, time_consegnato, quartiere, municipalita', 'safe', 'on'=>'search'),
         );
     }
+
+    /**
+	 * check if CF is duplicate
+	 */
+	public function checkTrigger($attribute,$params)
+	{
+	    if ($this->trigger_alert == 1)
+	    	$this->addError('codfisc', 'Questo codice fiscale è già presente nelle consegne dell\'ultima settimana.');
+	}
+
+    /**
+	 * check if CF is valid
+	 */
+	public function validateCF($attribute,$params)
+	{
+        $cf = new CodiceFiscale();
+
+		if( !$cf->ValidaCodiceFiscale($this->codfisc) ){
+            $this->addError('codfisc', 'Codice fiscale non conforme.');
+        }
+
+
+	}
 
     /**
      * @return array relational rules.
