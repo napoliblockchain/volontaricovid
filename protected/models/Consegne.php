@@ -27,7 +27,7 @@
 class Consegne extends CActiveRecord
 {
     public $mancataConsegna;
-    
+
     /**
      * @return string the associated database table name
      */
@@ -62,7 +62,8 @@ class Consegne extends CActiveRecord
             array('codfisc', 'validateCF'),
 
             // VERIFICA L'UNIVOCITA' DEL Telefono
-            array('telefono', 'unique',  'message'=>'Il telefono inserito è già presente in archivio.'),
+            //array('telefono', 'unique',  'message'=>'Il telefono inserito è già presente in archivio.'),
+            array('telefono', 'validatePhone'),
             array('telefono', 'match', 'pattern' => '/^[0-9]{8,12}+$/'),
 
             // The following rule is used by search().
@@ -90,8 +91,27 @@ class Consegne extends CActiveRecord
 		if( !$cf->ValidaCodiceFiscale($this->codfisc) ){
             $this->addError('codfisc', 'Codice fiscale non conforme.');
         }
+	}
+    /**
+	 * check if Phone is valid
+	 */
+	public function validatePhone($attribute,$params)
+	{
+        $criteria = new CDbCriteria();
+        $criteria->compare('telefono',$this->telefono,false);
 
+        $settimana = 60 * 60 * 24 * 7;
+        $limite = $this->data - $settimana;
 
+        $criteria->addCondition('data > '.$limite);
+        $dataProvider=new CActiveDataProvider('Consegne', array(
+            'criteria'=>$criteria,
+        ));
+
+        $totaleCodici = $dataProvider->totalItemCount;
+        if ($totaleCodici >0 ){
+            $this->addError('telefono', 'Questo numero di telefono è già presente nelle consegne dell\'ultima settimana.');
+        }
 	}
 
     /**
