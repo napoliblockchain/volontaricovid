@@ -30,16 +30,26 @@ Distribuzione Aiuti Alimentari
     - aggiungere, eliminare o modificare gli utenti dal menù [`Amministrazione/Volontari`]
     - scaricare in formato .xls l'archivio dal menù [`Amministrazione/Esporta`]
     - dal menù [`Amministrazione/Consegne`] visualizzare lo stato di ciascuna consegna e filtrarle per stato, operatore ed altri campi di ricerca.
+        |Filtro | Operazioni |
+        |---------|-----|
+        |Consegnati | Solo visualizzazione|
+        |In consegna| Consegna / Mancata Consegna (1. Rifiuto 2. Non Trovato)|
+        |In carico  | Rimetti in lista da prendere in carico |
+        |Non trovati| Nuova Spedizione|
+        |Rifiutati | Solo visualizzazione|
+        |Tutti      | Modifica / Elimina|
 
 
 
-## Stati delle consegne
-0. /0 Inserito
-1. /0 In carico all'operatore
-2. /0 In consegna
-3. /1 Consegnato
-4. /0 Non trovato
-5. /0 Rifiutato
+#### Stati delle consegne
+|Ordine | Consegna | Significato|
+|----   |----------|--------|
+|0|0|Inserito
+|1|0|In carico all'operatore
+|2|0|In consegna
+|3|1|Consegnato
+|4|0|Non trovato
+|5|0|Rifiutato
 
 
 

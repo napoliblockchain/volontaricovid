@@ -56,7 +56,9 @@ class ConsegneController extends Controller
 					'tutti', 	// considera consegnati tutti i pacchi nello stato 2 (in consegna)
 					'checkAddress', // carica gli indirizzi in base all'input inserito
 					'manage', //	Il gestore gestisce le consegne
-					//'delete'
+					'delivery2nd', // Una consegna non effettuata torna in spedizione
+					'delete', 		// elimina l'ordine
+					'deliveryError', // Una consegna non è stata effettuata per un motivo: 1 non trovato, 2 rifiuto
 				),
 				'users'=>array('@'),
 			),
@@ -252,6 +254,16 @@ class ConsegneController extends Controller
 	 */
 	public function actionView($id)
 	{
+		// echo "<pre>".print_r($_POST,true)."</pre>";
+		// exit;
+		if(isset($_POST['Consegne']))
+		{
+			$consegna = $this->loadModel(crypt::Decrypt($id));
+			$consegna->consegnato = 0;
+			$consegna->time_consegnato = time();
+			$consegna->in_consegna = $_POST['Consegne']['mancataConsegna'];
+			$consegna->update();
+		}
 		$this->render('view',array(
 			'model'=>$this->loadModel(crypt::Decrypt($id)),
 		));
@@ -378,8 +390,36 @@ class ConsegneController extends Controller
 		));
 	}
 
+	// ORDINE RISULTA CONSEGNATO
 	public function actionDelivery($id)
 	{
+		$consegna = $this->loadModel(crypt::Decrypt($id));
+		$consegna->consegnato = 1;
+		$consegna->time_consegnato = time();
+		$consegna->in_consegna = 3;
+		$consegna->update();
+		$this->redirect(array('index'));
+	}
+
+	// ORDINE NON CONSEGNATO, TORNA IN SPEDIZIONE
+	public function actionDelivery2nd($id)
+	{
+		$consegna = $this->loadModel(crypt::Decrypt($id));
+		$consegna->consegnato = 0;
+		$consegna->time_consegnato = 0;
+		$consegna->in_consegna = 2;
+		$consegna->update();
+		$this->redirect(array('view','id'=>$id));
+	}
+
+	// ORDINE RISULTA NON CONSEGNATO PER UN MOTIVO...
+	// 1 NON TROVATO
+	// 2 RIFIUTO
+	public function actionDeliveryError($id)
+	{
+
+		echo "<pre>".print_r($_POST,true)."</pre>";
+		exit;
 		$consegna = $this->loadModel(crypt::Decrypt($id));
 		$consegna->consegnato = 1;
 		$consegna->time_consegnato = time();
@@ -396,10 +436,7 @@ class ConsegneController extends Controller
 	public function actionDelete($id)
 	{
 		$this->loadModel(crypt::Decrypt($id))->delete();
-
-		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
-		if(!isset($_GET['ajax']))
-			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('index'));
+		$this->redirect(array('manage'));
 	}
 
 	/**
