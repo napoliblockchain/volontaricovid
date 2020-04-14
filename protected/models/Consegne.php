@@ -52,9 +52,16 @@ class Consegne extends CActiveRecord
             array('quartiere', 'length', 'max'=>100),
             array('municipalita', 'length', 'max'=>10),
 
+            // VERIFICA SE IL TRIGGER == 1
+            // che sottindende che il CF è stato inserito già nell'ultima settimana
             array('trigger_alert', 'checkTrigger'),
 
+            // VERIFICA la VALIDITA' DEL CF
             array('codfisc', 'validateCF'),
+
+            // VERIFICA L'UNIVOCITA' DEL Telefono
+            array('telefono', 'unique',  'message'=>'Il telefono inserito è già presente in archivio.'),
+            array('telefono', 'match', 'pattern' => '/^[0-9]{8,12}+$/'),
 
             // The following rule is used by search().
             // @todo Please remove those attributes that should not be searched.
