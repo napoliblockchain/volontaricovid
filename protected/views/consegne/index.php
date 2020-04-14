@@ -16,6 +16,27 @@ $consegnaURL = Yii::app()->createUrl('consegne/tutti');
 
 
 ?>
+<!-- <div class="row alert-warning">
+	<?php
+	// $row = 1;
+	// if (($handle = fopen("felice.csv", "r")) !== FALSE) {
+	//     while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
+	// 		$array[] = $data[0];
+	//     }
+	//     fclose($handle);
+	// }
+	// foreach ($array as $t){
+	// 	$riga = explode(";",$t);
+	// 	//$tmpdata = explode("/",$riga[1]);
+	// 	//$timestamp = strtotime('2020-'.$tmpdata[1].'-'.$tmpdata[0]);
+	// 	$sql[] = "UPDATE dali_archive SET time_consegnato=0, in_consegna=4, consegnato=0, telefono='".$riga[3]."' WHERE id_archive=$riga[0] ;";
+	// }
+	// foreach ($sql as $s)
+	// 	echo "<br>".$s;
+	//
+	// exit;
+	?>
+</div> -->
 
 <div class='section__content section__content--p30'>
 	<div class='container-fluid'>

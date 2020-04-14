@@ -148,11 +148,17 @@ class ConsegneMan extends CActiveRecord
         }else if ($_GET['typelist'] == 2){
           $criteria->compare('consegnato',0,false);
           $criteria->compare('in_consegna',1,false);
-        }
-        //else if ($_GET['typelist'] == 3){
+        }else if ($_GET['typelist'] == 3){
           //$criteria->compare('consegnato',0,false);
-          //$criteria->compare('in_consegna',1,false);
-        //}
+         // $criteria->compare('in_consegna',1,false);
+
+        }else if ($_GET['typelist'] == 4){
+            $criteria->compare('consegnato',0,false);
+            $criteria->compare('in_consegna',4,false);
+        }else if ($_GET['typelist'] == 5){
+            $criteria->compare('consegnato',0,false);
+            $criteria->compare('in_consegna',5,false);
+        }
 
         return new CActiveDataProvider($this, array(
           'criteria'=>$criteria,
