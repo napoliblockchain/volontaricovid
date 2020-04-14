@@ -101,7 +101,14 @@ $tag = [
 									array(
 										'name'=>Yii::t('lang','data'),
 										'type'=>'raw',
-										'value' => 'CHtml::link(date("d/M/Y",$data->data), Yii::app()->createUrl("consegne/view",["id"=>crypt::Encrypt($data->id_archive),"tag"=>'.$tag[$get].']) )',
+										'value' => 'CHtml::link(date("d M Y",$data->data), Yii::app()->createUrl("consegne/view",["id"=>crypt::Encrypt($data->id_archive),"tag"=>'.$tag[$get].']) )',
+										'htmlOptions'=>array('style'=>'vertical-align:middle;'),
+										'filter'=>false,
+									),
+									array(
+										'name'=>Yii::t('lang','time_consegnato'),
+										'type'=>'raw',
+										'value' => '$data->time_consegnato <> 0 ? CHtml::link(date("d M Y",$data->time_consegnato), Yii::app()->createUrl("consegne/view",["id"=>crypt::Encrypt($data->id_archive),"tag"=>'.$tag[$get].']) ) : ""',
 										'htmlOptions'=>array('style'=>'vertical-align:middle;'),
 										'filter'=>false,
 									),

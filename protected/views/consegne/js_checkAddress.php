@@ -16,7 +16,7 @@ $validateAddress = <<<JS
     if(code == 13) { //Enter keycode
       e.preventDefault();
 
-      if (address.length > 3){
+      if (address.length > 1){
         $.ajax({
           url:'{$urlCheckAddress}',
           type: "POST",
@@ -30,7 +30,7 @@ $validateAddress = <<<JS
               $('#warningIndirizzo').hide().text("");
               var grid = document.getElementById('address-grid');
               $(grid).html('');
-              
+
               var table = document.createElement('table');
 
               var head = document.createElement('thead');

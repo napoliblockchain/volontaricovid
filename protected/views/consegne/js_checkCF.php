@@ -15,13 +15,16 @@ function validateCF(cf) {
              },
             dataType: "json",
             success:function(data){
-            if (data.success){
-              	$('#cf_alert').show().html('<div class="alert alert-danger">Codice Fiscale già presente nell\'ultima settimana.</div>');
-                $('#Consegne_trigger_alert').val(1);
-            }else{
-                $('#cf_alert').show().html('<div class="alert alert-success">Codice Fiscale valido.</div>');
-                $('#Consegne_trigger_alert').val(0);
-            }
+                $('#cf_alert').prev().hide();
+                if (data.success == 2){
+                    $('#cf_alert').show().html('<div class="alert alert-danger">Codice Fiscale non conforme.</div>');
+                }else if (data.success == 1){
+                  	$('#cf_alert').show().html('<div class="alert alert-danger">Codice Fiscale già presente nell\'ultima settimana.</div>');
+                    $('#Consegne_trigger_alert').val(1);
+                }else{
+                    $('#cf_alert').show().html('<div class="alert alert-success">Codice Fiscale valido.</div>');
+                    $('#Consegne_trigger_alert').val(0);
+                }
 
         	},
             error: function(j){

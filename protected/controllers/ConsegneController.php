@@ -206,7 +206,7 @@ class ConsegneController extends Controller
 			}
 		}
 
-		if (isset($lista) && count($lista) > 100)
+		if (isset($lista) && count($lista) > 350)
 				$result = false;
 		else{
 			$result = true;
@@ -243,7 +243,7 @@ class ConsegneController extends Controller
 				$result = false;
 			}
 		}else{
-			$result = false;
+			$result = 2;
 		}
 		echo CJSON::encode(['success'=>$result],true);
 	}
