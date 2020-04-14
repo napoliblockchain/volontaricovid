@@ -63,7 +63,7 @@ class Consegne extends CActiveRecord
 
             // VERIFICA L'UNIVOCITA' DEL Telefono
             //array('telefono', 'unique',  'message'=>'Il telefono inserito è già presente in archivio.'),
-            array('telefono', 'validatePhone'),
+            array('telefono', 'validatePhone','on'=>'insert'),
             array('telefono', 'match', 'pattern' => '/^[0-9]{8,12}+$/'),
 
             // The following rule is used by search().

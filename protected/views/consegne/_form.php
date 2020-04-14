@@ -53,7 +53,7 @@ $bambini = [0,1,2,3,4,5,6,7,8,9,10];
 	</div>
 	<div class="form-group">
 		<?php echo $form->labelEx($model,'telefono'); ?>
-		<?php echo $form->textField($model,'telefono',array('size'=>50,'maxlength'=>50,'placeholder'=>'Telefono','class'=>'form-control')); ?>
+		<?php echo $form->textField($model,'telefono',array('size'=>50,'maxlength'=>50,'placeholder'=>'Telefono','class'=>'form-control','readonly'=>!$model->isNewRecord)); ?>
 		<p class="text-primary"><i>Inserire il numero di telefono senza spazi nè altri segni.</i></p>
 		<?php echo $form->error($model,'telefono',array('class'=>'alert alert-danger')); ?>
 	</div>
