@@ -33,6 +33,14 @@ Distribuzione Aiuti Alimentari
 
 
 
+## Stati delle consegne
+0. /0 Inserito
+1. /0 In carico all'operatore
+2. /0 In consegna
+3. /1 Consegnato
+4. /0 Non trovato
+5. /0 Rifiutato
+
 
 
 ## Configurazioni

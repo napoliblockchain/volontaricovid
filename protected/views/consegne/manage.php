@@ -43,6 +43,8 @@ $activeButton = [
     1 => '',    // in consegna
     2 => '',    // in carico
     3 => '',    // tutti
+	4 => '', 	// non trovati
+	5 => '', 	// rifiutati
 ];
 
 
@@ -56,10 +58,12 @@ if (isset($_GET['typelist'])){
 
 
 $tag = [
-	0 => 3,
+	0 => 3, // tutti
 	1 => 1,
 	2 => 2,
-	3 => 0
+	3 => 0, // consegnati
+	4 => 0, // consegnati
+	5 => 0, // consegnati
 ];
 
 ?>
@@ -78,6 +82,8 @@ $tag = [
 							<button title='In consegna' type='button' class='btn-1 btn btn-outline-info btn-sm <?php echo $activeButton[1]; ?>' onclick='lista.cambia(1);'>In consegna</button>
 							<button title='In carico' type='button' class='btn-2 btn btn-outline-info btn-sm <?php echo $activeButton[2]; ?>' onclick='lista.cambia(2);'>In carico</button>
 							<button title='Tutti' type='button' class='btn-3 btn btn-outline-info btn-sm <?php echo $activeButton[3]; ?>' onclick='lista.cambia(3);'>Tutti</button>
+							<button title='Non Trovati' type='button' class='btn-4 btn btn-outline-warning btn-sm <?php echo $activeButton[4]; ?>' onclick='lista.cambia(4);'>Non trovati</button>
+							<button title='Rifiutati' type='button' class='btn-5 btn btn-outline-warning btn-sm <?php echo $activeButton[5]; ?>' onclick='lista.cambia(5);'>Rifiutati</button>
 						</span>
 						<div class="table-responsive table--no-card ">
 							<?php

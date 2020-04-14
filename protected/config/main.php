@@ -118,6 +118,9 @@ return array(
 		'crypt'=>require($libsPath.'/crypt/crypt.php'),
 		'Utils'=>require($libsPath.'/Utils/Utils.php'),
 		'NAPay'=>require($libsPath.'/NAPay/Autoloader.php'),
+		'CF'=>require($libsPath.'/codice-fiscale/CodiceFiscale.php'),
+
+
 		// funzioni di napay
 		// 'WebApp'=>require(dirname(__FILE__).'../../extensions/WebApp.php'),
 		'NMail'=>require(dirname(__FILE__).'../../extensions/NMail.php'),
