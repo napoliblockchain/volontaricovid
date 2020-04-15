@@ -63,7 +63,9 @@
     color: #f0f0f0;
 }
 
-
+.alert-sm {
+  padding: 2px 10px 2px 10px !important;
+}
 
 
 

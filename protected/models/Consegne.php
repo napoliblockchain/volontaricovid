@@ -14,6 +14,7 @@
  * @property integer $adulti
  * @property integer $bambini
  * @property string $indirizzo
+ * @property string $civico
  * @property string $quartiere
  * @property string $municipalita
  * @property integer $trigger_alert
@@ -47,7 +48,7 @@ class Consegne extends CActiveRecord
             array('id_user, codfisc, nome, cognome, data, adulti, bambini, indirizzo, telefono, quartiere, municipalita', 'required'),
             array('id_user, data, adulti, bambini, trigger_alert, id_volontario, in_consegna, consegnato, time_inconsegna, time_consegnato', 'numerical', 'integerOnly'=>true),
             array('codfisc', 'length', 'max'=>16),
-            array('telefono', 'length', 'max'=>50),
+            array('telefono, civico', 'length', 'max'=>50),
             array('nome, cognome', 'length', 'max'=>100),
             array('indirizzo', 'length', 'max'=>500),
             array('note', 'length', 'max'=>250),
@@ -133,11 +134,12 @@ class Consegne extends CActiveRecord
         return array(
             'id_archive' => 'ID Ord.',
             'id_user' => 'Id User',
-            'codfisc' => 'Codice Fiscale del capo-famiglia',
+            'codfisc' => 'Codice Fiscale',
             'data' => 'Data ordine',
             'adulti' => 'Adulti',
             'bambini' => 'Neonati (0/12 mesi)',
             'indirizzo' => 'Indirizzo',
+            'civico' => 'Civico',
             'nome' => 'Nome',
             'cognome' => 'Cognome',
             'telefono' => 'Telefono',
@@ -173,9 +175,6 @@ class Consegne extends CActiveRecord
        // echo "<pre>".print_r($_GET,true)."</pre>";
        // echo "<pre>".print_r($this->attributes,true)."</pre>";
        // exit;
-
-
-
         $criteria=new CDbCriteria;
 
         $criteria->compare('id_archive',$this->id_archive);
