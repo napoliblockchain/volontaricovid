@@ -6,10 +6,10 @@
 <div class='section__content section__content--p30'>
 	<div class='container-fluid'>
 		<div class="row">
-			<div class="col-lg-7">
+			<div class="col-lg-12">
 				<div class="card">
 					<div class="card-header">
-						<h2 class='title-1 m-b-25'><small>Nuova</small> <strong>Consegna</strong></h2>
+						<h2 class='title-1'><small>Nuova</small> <strong>Consegna</strong></h2>
 					</div>
 					<div class="card-body card-block">
 						<?php $this->renderPartial('_form', array('model'=>$model)); ?>

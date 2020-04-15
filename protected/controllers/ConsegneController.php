@@ -284,8 +284,20 @@ class ConsegneController extends Controller
 		{
 			$model->attributes=$_POST['Consegne'];
 
-			$tmp = explode("/",$model->data);
-			$model->data = strtotime($tmp[2].'-'.$tmp[1].'-'.$tmp[0]);
+			if (!(empty($model->data))){
+				$tmp = explode("/",$model->data);
+				if (count($tmp) == 3){
+					$model->data = strtotime(
+						$tmp[2] .'-'.
+						$tmp[1] .'-'.
+						$tmp[0]);
+				}else{
+					$model->data = time();
+				}
+
+			}else{
+				$model->data = time();
+			}
 			$model->id_user = Yii::app()->user->objUser['id_user'];
 			$model->codfisc = strtoupper($model->codfisc);
 			$model->nome = strtoupper($model->nome);
