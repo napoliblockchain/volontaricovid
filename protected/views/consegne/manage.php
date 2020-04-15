@@ -142,7 +142,12 @@ $tag = [
 										'type'=>'raw',
 										'value'=>'"A:".$data->adulti." / N:".$data->bambini'
 									),
-									'indirizzo',
+									array(
+										'name'=>'indirizzo',
+										'header'=>'Indirizzo',
+										'type'=>'raw',
+										'value'=>'$data->indirizzo." ".$data->civico'
+									),
 									'codfisc',
 									'cognome',
 									'nome',

@@ -106,7 +106,7 @@ include ('js_select.php');
 									array(
     									'name'=>'indirizzo',
     									'type'=>'raw',
-    									'value'=> 'Yii::app()->controller->maskAddress($data->indirizzo,$data->id_archive,0)',
+    									'value'=> 'Yii::app()->controller->maskAddress($data->indirizzo." ".$data->civico,$data->id_archive,0)',
 									'htmlOptions'=>array('style'=>'text-align:center;'),
     									),
 								)

@@ -140,7 +140,7 @@ class ConsegneController extends Controller
 			$loadData[$x][] = $data->id_archive;
 			$loadData[$x][] = $data->cognome . " " . $data->nome;
 			$loadData[$x][] = $data->telefono;
-			$loadData[$x][] = $data->indirizzo;
+			$loadData[$x][] = $data->indirizzo." ".$data->civico;
 			$loadData[$x][] = $data->quartiere;
 			$loadData[$x][] = $data->municipalita;
 			$loadData[$x][] = $data->note;
@@ -531,7 +531,7 @@ class ConsegneController extends Controller
 						->setCellValue('H'.$riga, $item->telefono)
 						->setCellValue('I'.$riga, $item->adulti)
 						->setCellValue('J'.$riga, $item->bambini)
-						->setCellValue('K'.$riga, $item->indirizzo)
+						->setCellValue('K'.$riga, $item->indirizzo." ".$data->civico)
 						->setCellValue('L'.$riga, $item->quartiere)
 						->setCellValue('M'.$riga, $item->municipalita)
 						->setCellValue('N'.$riga, $item->trigger_alert)

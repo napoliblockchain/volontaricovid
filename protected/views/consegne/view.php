@@ -59,6 +59,7 @@ $stati = [
 								'cognome',
 								'telefono',
 								'indirizzo',
+								'civico',
 								'quartiere',
 								'municipalita',
 								'note',

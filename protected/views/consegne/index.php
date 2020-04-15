@@ -109,7 +109,7 @@ $consegnaURL = Yii::app()->createUrl('consegne/tutti');
 										 'name'=>'indirizzo',
 										 'header'=>'Indirizzo',
 										 'type'=>'raw',
-										 'value'=> 'Yii::app()->controller->maskAddress($data->indirizzo,$data->id_archive,2)',
+										 'value'=> 'Yii::app()->controller->maskAddress($data->indirizzo." ".$data->civico,$data->id_archive,2)',
 										 'htmlOptions'=>array('style'=>'text-align:center;'),
 									),
 									// array(
@@ -186,7 +186,7 @@ $consegnaURL = Yii::app()->createUrl('consegne/tutti');
 									array(
     									'name'=>'indirizzo',
     									'type'=>'raw',
-    									'value'=> 'Yii::app()->controller->maskAddress($data->indirizzo,$data->id_archive,1)',
+    									'value'=> 'Yii::app()->controller->maskAddress($data->indirizzo." ".$data->civico,$data->id_archive,1)',
 										'htmlOptions'=>array('style'=>'text-align:center;'),
     								),
 								)
