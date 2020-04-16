@@ -531,7 +531,7 @@ class ConsegneController extends Controller
 						->setCellValue('H'.$riga, $item->telefono)
 						->setCellValue('I'.$riga, $item->adulti)
 						->setCellValue('J'.$riga, $item->bambini)
-						->setCellValue('K'.$riga, $item->indirizzo." ".$data->civico)
+						->setCellValue('K'.$riga, $item->indirizzo." ".$item->civico)
 						->setCellValue('L'.$riga, $item->quartiere)
 						->setCellValue('M'.$riga, $item->municipalita)
 						->setCellValue('N'.$riga, $item->trigger_alert)
