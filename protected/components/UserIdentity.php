@@ -36,7 +36,7 @@ class UserIdentity extends CUserIdentity
 		}
 		else if(!CPasswordHelper::verifyPassword($this->password,$record->password)){
 			$this->errorCode=self::ERROR_PASSWORD_INVALID;
-			$save->WriteLog('dali','useridentity','authenticate','Incorrect password.');
+			$save->WriteLog('dali','useridentity','authenticate','Incorrect password for user: '.$this->username);
 		}
 		else if($record->status_activation_code == 0){
 			$this->errorCode=self::ERROR_USERNAME_NOT_ACTIVE;
